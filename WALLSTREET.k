@@ -15,10 +15,9 @@ H-Quartz: 'tick'   'tick' : # : Coursera(X.trading[bots : <Sequential : Form-Que
 [Tick : trial(Symbols.x[RMP - conv(::Generated, export, exchanges)])]
     [Mech-dat]\Confirm
     [Telefirm]\Inframetry\Structure-dentry
-
+    [Teleloc/NoFOMO/Arpegg:VP] n~Flash
 HV: columns DEBT-A[,B : 'SYN' [ack] <FRAME[*attr(con-a : con-b)]>]log.site()
-
-
+STATE: RBL <Rocketeer.AC[jet-use: <reason>,~repeat(swift/MD/[ROR-P])]>
 IV: DRIP<FAUCETS : 'PIP' : 'LAG-LINE' , EP-[3Zod[AS]D*[PO]I]>
 
 
@@ -33,3 +32,4 @@ Sold:s[no-attr(*: 'not-remaining' : S'Bats' : [IC:DC:AC])]
 Parse.jsonifier(-fi 'pause' , ED-free : <juxby : Dessertation>)
 Major-pip-alco : 'M-major' : <DT-convulusion :'AI-deal' , 'informal-K'>
 [Ic: Major-disconnect : Half-frame(No-life, Halving-12 : 6 8)]
+Stone.cap[Ep-info [filter.silicon[mentions]no-enter[Germanium] + Arsenic(LOOM::Slide)]]
