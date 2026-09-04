@@ -9,6 +9,10 @@ Mix-fit : <Arc : Deliberative : 'Ox-code' : 'Form-op' , 'In-tech' , 'TECHNO-BOOM
 
 #IRA : 
   <IRL : 'DET' - [No-prime : 'Formal-Sequencing'][Terminal-Damaged{['New-rear' , 'rare-outgo']}]>
+  <vera//> : [BroadAA-com] [Doubele-BB : //Triple-c :'battery']
+  <Lithium : A, camera-folds[sine.a() : ~tan.H*()]>  || Contents.Outgo(''selections == [Discretions])
+
+
 
 Room-tech : 'Firm-trade' : QUANTFX- [p] : [promo : code[DEEMO]]
 H-Quartz: 'tick'   'tick' : # : Coursera(X.trading[bots : <Sequential : Form-Queueing>])
@@ -19,6 +23,8 @@ H-Quartz: 'tick'   'tick' : # : Coursera(X.trading[bots : <Sequential : Form-Que
 HV: columns DEBT-A[,B : 'SYN' [ack] <FRAME[*attr(con-a : con-b)]>]log.site()
 STATE: RBL <Rocketeer.AC[jet-use: <reason>,~repeat(swift/MD/[ROR-P])]>
 IV: DRIP<FAUCETS : 'PIP' : 'LAG-LINE' , EP-[3Zod[AS]D*[PO]I]>
+
+X:P12b :esp32 : Bit-board  : instr(*attr = [baide-12c :c [12c: 'boots']]) //Start :a <Conv,v: volumes()>
 
 
 Source : <C: call//mm : <Nightly-shade: X11>>TRIBUTE[SDK : SE [D-kit---[consent(A : trial, verbose = 'Truth-set')]]]
@@ -33,3 +39,8 @@ Parse.jsonifier(-fi 'pause' , ED-free : <juxby : Dessertation>)
 Major-pip-alco : 'M-major' : <DT-convulusion :'AI-deal' , 'informal-K'>
 [Ic: Major-disconnect : Half-frame(No-life, Halving-12 : 6 8)]
 Stone.cap[Ep-info [filter.silicon[mentions]no-enter[Germanium] + Arsenic(LOOM::Slide)]]
+
+[Ed~ : //DeEmo] : [Xl . : nm(compulsion)] 
+[Cond-[t,tions : p[]:Expemting + [ tp - [Drive.away()]]]
+A.ion('species' , decl[-c:dequel]) : [Queu: ing [[De: `curbs]]]
+
