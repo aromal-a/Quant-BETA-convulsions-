@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quant-beam</title>
+<meta name="description" content="Quantum-state analysis of market fluctuations: normal curve, cold-probability error, loss functions.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ø</text></svg>">
+<style>
+  :root {
+    --bg: #f6f7fb; --panel: #ffffff; --ink: #151a2d; --muted: #5d6583; --line: #dfe3ee;
+    --beam: #5b3df5; --beam-soft: rgba(91, 61, 245, .16); --normal: #d9480f; --empirical: #0b7285;
+    --up: #2b8a3e; --down: #c92a2a; --warn: #e8590c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0c17; --panel: #12162a; --ink: #e8ebff; --muted: #9aa2c7; --line: #252b48;
+      --beam: #9d8bff; --beam-soft: rgba(157, 139, 255, .18); --normal: #ff922b; --empirical: #3bc9db;
+      --up: #51cf66; --down: #ff6b6b; --warn: #ffa94d;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0c17; --panel: #12162a; --ink: #e8ebff; --muted: #9aa2c7; --line: #252b48;
+    --beam: #9d8bff; --beam-soft: rgba(157, 139, 255, .18); --normal: #ff922b; --empirical: #3bc9db;
+    --up: #51cf66; --down: #ff6b6b; --warn: #ffa94d;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 24px 16px 64px; }
+  header { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: end; justify-content: space-between; }
+  h1 { margin: 0; font-size: 30px; letter-spacing: -.02em; }
+  h1 span { color: var(--beam); }
+  h2 { font-size: 20px; margin: 36px 0 4px; }
+  .sub { color: var(--muted); margin: 4px 0 0; }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  select, button { font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 14px 0; }
+  .tab { cursor: pointer; }
+  .tab[aria-pressed="true"] { border-color: var(--beam); background: var(--beam-soft); }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; min-width: 0; }
+  .panel h3 { margin: 0 0 8px; font-size: 14px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+  .hero { display: grid; gap: 16px; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  @media (max-width: 820px) { .hero { grid-template-columns: 1fr; } }
+  canvas { width: 100%; display: block; }
+  .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .stat b { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+  .stat small { color: var(--muted); }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .legend i { display: inline-block; width: 14px; height: 3px; vertical-align: middle; margin-right: 6px; border-radius: 2px; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 14px; }
+  th, td { text-align: right; padding: 6px 4px; border-bottom: 1px solid var(--line); }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--muted); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .up { color: var(--up); } .down { color: var(--down); } .warn { color: var(--warn); }
+  .pill { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); }
+  .note { color: var(--muted); font-size: 13px; }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+  #error { color: var(--down); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1><span>ø</span> Quant-beam</h1>
+      <p class="sub">Quantum-state analysis of market fluctuations, re-read on a schedule. <span id="updated"></span></p>
+    </div>
+    <div class="controls">
+      <label for="country">Country</label>
+      <select id="country"></select>
+      <button id="theme" type="button" aria-label="Toggle colour theme">◐</button>
+    </div>
+  </header>
+  <p id="error" hidden></p>
+
+  <h2 id="country-title">Local markets</h2>
+  <p class="sub" id="country-sub"></p>
+  <section id="country-section"></section>
+
+  <h2>Crypto</h2>
+  <p class="sub">Kept separate from country markets. Priced in USD, with Tether (USDT) tracked against its 1.00 USD peg.</p>
+  <section id="crypto-section"></section>
+
+  <footer>
+    <p><b>How to read this.</b> Returns are daily log returns, standardized to z = (r − μ) / σ.
+      The <b>normal curve</b> is the bell curve with the same μ and σ. The <b>cold-probability error</b> is how often moves
+      bigger than kσ really happened, minus how often the curve said they would. The <b>quantum curve</b> treats the return
+      distribution as |ψ|² and expands ψ in harmonic-oscillator states; state 0 is exactly the normal curve, so
+      <b>ground-state purity</b> measures how normal the market is and higher states hold the fat tails. The pulsing beam
+      is those states evolving in time with phases e<sup>−i(n+½)t</sup>.</p>
+    <p>Losses are in-sample (the quantum curve is fitted to the same data it is scored on), so they describe the past, not the future.
+      This is an analysis tool, <b>not financial advice</b> and not a price prediction.</p>
+  </footer>
+</main>
+
+<template id="market-template">
+  <div class="tabs" role="group" aria-label="Markets"></div>
+  <div class="hero">
+    <div class="panel">
+      <h3>Pulsating quantum beam · <span data-k="title"></span></h3>
+      <canvas data-k="beam" height="300"></canvas>
+      <div class="legend">
+        <span><i style="background:var(--beam)"></i>|ψ(z,t)|² quantum beam</span>
+        <span><i style="background:var(--empirical)"></i>real returns</span>
+        <span><i style="background:var(--normal)"></i>normal curve</span>
+        <span><i style="background:var(--ink)"></i>today's move</span>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Now</h3>
+      <div class="stats" data-k="stats"></div>
+    </div>
+  </div>
+  <div class="grid" style="margin-top:16px">
+    <div class="panel">
+      <h3>Price (last 180 days)</h3>
+      <canvas data-k="price" height="160"></canvas>
+      <h3 style="margin-top:12px">20-day volatility</h3>
+      <canvas data-k="vol" height="90"></canvas>
+    </div>
+    <div class="panel">
+      <h3>Quantum state populations</h3>
+      <canvas data-k="states" height="160"></canvas>
+      <p class="note" data-k="state-note"></p>
+    </div>
+  </div>
+  <div class="grid" style="margin-top:16px">
+    <div class="panel scroll">
+      <h3>Cold-probability error (big moves)</h3>
+      <table data-k="errors"></table>
+      <p class="note">× = how many times more often it happened than the curve predicted.</p>
+    </div>
+    <div class="panel scroll">
+      <h3>Loss functions (lower = better fit)</h3>
+      <table data-k="losses"></table>
+      <p class="note">NLL: average −log p(z). KL: divergence from the real return curve (integrated). Tail: mean squared cold-probability error.</p>
+    </div>
+  </div>
+</template>
+
+<script>
+(() => {
+  const DATA_URL = "data/quant_beam.json";
+  const PREF_KEY = "quant-beam-country";
+  const THEME_KEY = "quant-beam-theme";
+  const store = {
+    get(key) { try { return localStorage.getItem(key); } catch { return null; } },
+    set(key, value) { try { localStorage.setItem(key, value); } catch {} },
+  };
+
+  const savedTheme = store.get(THEME_KEY);
+  if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+  document.getElementById("theme").addEventListener("click", () => {
+    const current = document.documentElement.dataset.theme;
+    const dark = current ? current === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = dark ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    store.set(THEME_KEY, next);
+  });
+
+  const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const pct = (v, digits = 2) => v == null ? "–" : (v * 100).toFixed(digits) + "%";
+  const num = (v, digits = 3) => v == null ? "–" : Number(v).toFixed(digits);
+  const money = (v, currency) => {
+    try { return new Intl.NumberFormat(undefined, { style: "currency", currency, maximumFractionDigits: v < 10 ? 4 : 2 }).format(v); }
+    catch { return v.toFixed(2) + " " + currency; }
+  };
+
+  function hermiteFunctions(zs, count) {
+    // phi_n(z) = 2^(-1/4) h_n(z / sqrt 2); phi_0^2 is the standard normal curve.
+    const rows = Array.from({ length: count }, () => new Float64Array(zs.length));
+    zs.forEach((z, i) => {
+      const y = z / Math.SQRT2;
+      let h0 = Math.pow(Math.PI, -0.25) * Math.exp(-y * y / 2);
+      let h1 = Math.SQRT2 * y * h0;
+      rows[0][i] = h0;
+      if (count > 1) rows[1][i] = h1;
+      for (let n = 2; n < count; n++) {
+        const hn = Math.sqrt(2 / n) * y * h1 - Math.sqrt((n - 1) / n) * h0;
+        rows[n][i] = hn; h0 = h1; h1 = hn;
+      }
+      for (let n = 0; n < count; n++) rows[n][i] *= Math.pow(2, -0.25);
+    });
+    return rows;
+  }
+
+  function fitCanvas(canvas) {
+    const ratio = window.devicePixelRatio || 1;
+    const width = canvas.clientWidth;
+    const height = Number(canvas.dataset.height || canvas.getAttribute("height"));
+    canvas.dataset.height = height;
+    if (canvas.width !== Math.round(width * ratio)) {
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      canvas.style.height = height + "px";
+    }
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+    return { ctx, width, height };
+  }
+
+  function line(ctx, xs, ys, x, y, color, widthPx, dash) {
+    ctx.beginPath();
+    xs.forEach((v, i) => (i ? ctx.lineTo(x(v), y(ys[i])) : ctx.moveTo(x(v), y(ys[i]))));
+    ctx.strokeStyle = color; ctx.lineWidth = widthPx; ctx.setLineDash(dash || []); ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  function sparkline(canvas, values, color) {
+    const { ctx, width, height } = fitCanvas(canvas);
+    if (!values.length) return;
+    const lo = Math.min(...values), hi = Math.max(...values), pad = 16;
+    const x = i => pad + (i / (values.length - 1)) * (width - 2 * pad);
+    const y = v => height - pad - ((v - lo) / (hi - lo || 1)) * (height - 2 * pad);
+    line(ctx, values.map((_, i) => i), values, x, y, color, 2);
+    ctx.fillStyle = css("--muted"); ctx.font = "12px system-ui";
+    ctx.fillText("high " + hi.toPrecision(5), pad, 12);
+    ctx.textAlign = "right";
+    ctx.fillText("low " + lo.toPrecision(5), width - pad, height - 2);
+    ctx.textAlign = "left";
+  }
+
+  function statesChart(canvas, populations) {
+    const { ctx, width, height } = fitCanvas(canvas);
+    const n = populations.length, pad = 22, gap = 4;
+    const bar = (width - 2 * pad) / n - gap;
+    // log scale so small excited states stay visible next to the ground state
+    const logv = p => Math.max(0, Math.log10(Math.max(p, 1e-6)) + 6) / 6;
+    populations.forEach((p, i) => {
+      const h = logv(p) * (height - 2 * pad);
+      ctx.fillStyle = i === 0 ? css("--normal") : i % 2 ? css("--empirical") : css("--beam");
+      ctx.fillRect(pad + i * (bar + gap), height - pad - h, bar, h);
+      ctx.fillStyle = css("--muted"); ctx.font = "11px system-ui"; ctx.textAlign = "center";
+      ctx.fillText(i, pad + i * (bar + gap) + bar / 2, height - 6);
+    });
+    ctx.textAlign = "left";
+    ctx.fillText("log scale · n = oscillator level", pad, 12);
+  }
+
+  const beams = [];
+  function animate(time) {
+    const t = time / 900;
+    beams.forEach(draw => draw(t));
+    requestAnimationFrame(animate);
+  }
+
+  function beamDrawer(canvas, market) {
+    const curves = market.curves;
+    const zs = curves.z;
+    const coefficients = market.quantum.coefficients;
+    const phis = hermiteFunctions(zs, coefficients.length);
+    const dz = zs[1] - zs[0];
+    const view = 6;
+    const peak = Math.max(...curves.empirical, ...curves.normal) * 1.45;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const lastZ = market.last_z;
+
+    return t => {
+      if (!canvas.isConnected) return;
+      const { ctx, width, height } = fitCanvas(canvas);
+      const pad = 24;
+      const x = z => pad + ((z + view) / (2 * view)) * (width - 2 * pad);
+      const y = p => height - pad - (p / peak) * (height - 2 * pad);
+      const time = reduce ? 0 : t;
+
+      // psi(z, t) = sum c_n phi_n(z) e^{-i (n + 1/2) t}
+      const re = new Float64Array(zs.length), im = new Float64Array(zs.length);
+      coefficients.forEach((c, n) => {
+        const angle = -(n + 0.5) * time;
+        const cr = c * Math.cos(angle), ci = c * Math.sin(angle);
+        const row = phis[n];
+        for (let i = 0; i < zs.length; i++) { re[i] += cr * row[i]; im[i] += ci * row[i]; }
+      });
+      let density = Array.from(re, (r, i) => r * r + im[i] * im[i]);
+      const area = density.reduce((s, v) => s + v, 0) * dz;
+      density = density.map(v => v / area);
+
+      // axes and sigma bands
+      ctx.strokeStyle = css("--line"); ctx.lineWidth = 1;
+      ctx.fillStyle = css("--muted"); ctx.font = "11px system-ui"; ctx.textAlign = "center";
+      for (let k = -view; k <= view; k++) {
+        ctx.beginPath(); ctx.moveTo(x(k), pad / 2); ctx.lineTo(x(k), height - pad); ctx.stroke();
+        if (k % 2 === 0) ctx.fillText(k + "σ", x(k), height - 8);
+      }
+
+      const visible = zs.map((z, i) => [z, i]).filter(([z]) => Math.abs(z) <= view);
+      const vz = visible.map(([z]) => z);
+      const pick = arr => visible.map(([, i]) => arr[i]);
+
+      // glowing beam fill
+      const pulse = reduce ? 1 : 0.75 + 0.25 * Math.sin(t * 1.3);
+      ctx.beginPath();
+      ctx.moveTo(x(vz[0]), y(0));
+      vz.forEach((z, j) => ctx.lineTo(x(z), y(pick(density)[j])));
+      ctx.lineTo(x(vz[vz.length - 1]), y(0));
+      ctx.closePath();
+      ctx.globalAlpha = 0.35 * pulse; ctx.fillStyle = css("--beam"); ctx.fill(); ctx.globalAlpha = 1;
+      ctx.shadowColor = css("--beam"); ctx.shadowBlur = 18 * pulse;
+      line(ctx, vz, pick(density), x, y, css("--beam"), 2.5);
+      ctx.shadowBlur = 0;
+
+      line(ctx, vz, pick(curves.empirical), x, y, css("--empirical"), 1.5);
+      line(ctx, vz, pick(curves.normal), x, y, css("--normal"), 1.5, [5, 4]);
+
+      if (Math.abs(lastZ) <= view) {
+        ctx.strokeStyle = css("--ink"); ctx.lineWidth = 1.5; ctx.setLineDash([2, 3]);
+        ctx.beginPath(); ctx.moveTo(x(lastZ), pad / 2); ctx.lineTo(x(lastZ), height - pad); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = css("--ink"); ctx.textAlign = lastZ > 3 ? "right" : "left";
+        ctx.fillText(" today " + lastZ.toFixed(2) + "σ ", x(lastZ), pad);
+      }
+      ctx.textAlign = "left";
+    };
+  }
+
+  function stat(label, value, cls) {
+    return `<div class="stat"><small>${label}</small><b class="${cls || ""}">${value}</b></div>`;
+  }
+
+  function renderMarket(host, market) {
+    host.querySelector('[data-k="title"]').textContent = `${market.name} (${market.symbol})`;
+    const change = market.last_return;
+    const tailRow = market.cold_probability_error.normal.find(r => r.sigma === 3);
+    const peg = market.peg
+      ? stat("Peg deviation", (market.peg.deviation >= 0 ? "+" : "") + market.peg.deviation.toFixed(4), Math.abs(market.peg.deviation) > 0.005 ? "warn" : "")
+      : "";
+    host.querySelector('[data-k="stats"]').innerHTML = [
+      stat("Last price · " + market.last_date, money(market.last_price, market.currency)),
+      stat("Last move", pct(Math.expm1(change)), change >= 0 ? "up" : "down"),
+      stat("Today in σ", num(market.last_z, 2) + "σ", Math.abs(market.last_z) > 2 ? "warn" : ""),
+      stat("Yearly volatility", pct(market.annual_volatility, 1)),
+      stat("Ground-state purity", pct(market.quantum.ground_state_purity, 1)),
+      stat("Mean energy ⟨n+½⟩", num(market.quantum.mean_energy, 3)),
+      stat("3σ moves vs normal", tailRow.multiplier == null ? "–" : "×" + tailRow.multiplier.toFixed(1), tailRow.multiplier > 2 ? "warn" : ""),
+      stat("Excess kurtosis", num(market.excess_kurtosis, 2)),
+      peg,
+    ].join("") + (market.stale ? '<p class="note">⚠ Could not re-read this market on the last run; showing the previous data.</p>' : "");
+
+    sparkline(host.querySelector('[data-k="price"]'), market.prices.close, css("--beam"));
+    sparkline(host.querySelector('[data-k="vol"]'), market.rolling_volatility_20, css("--normal"));
+    statesChart(host.querySelector('[data-k="states"]'), market.quantum.populations);
+    host.querySelector('[data-k="state-note"]').textContent =
+      `Ground state (normal curve): ${pct(market.quantum.ground_state_purity, 1)} · ` +
+      `odd states (lopsided moves): ${pct(market.quantum.odd_share, 2)} · ` +
+      `higher even states (fat tails): ${pct(market.quantum.excited_even_share, 2)}. Based on ${market.observations} daily returns.`;
+
+    const n = market.cold_probability_error.normal, q = market.cold_probability_error.quantum;
+    host.querySelector('[data-k="errors"]').innerHTML =
+      "<tr><th>Move</th><th>Happened</th><th>Normal said</th><th>Error</th><th>×</th><th>Quantum said</th></tr>" +
+      n.map((row, i) => `<tr><td>&gt; ${row.sigma}σ</td><td>${pct(row.observed)}</td><td>${pct(row.predicted, 3)}</td>` +
+        `<td class="${row.error > 0 ? "warn" : ""}">${row.error >= 0 ? "+" : ""}${pct(row.error)}</td>` +
+        `<td>${row.multiplier == null ? "–" : row.multiplier.toFixed(1)}</td><td>${pct(q[i].predicted, 3)}</td></tr>`).join("");
+
+    const ln = market.loss.normal, lq = market.loss.quantum;
+    const better = (a, b) => (b < a ? "up" : "");
+    host.querySelector('[data-k="losses"]').innerHTML =
+      "<tr><th>Loss</th><th>Normal</th><th>Quantum</th></tr>" +
+      `<tr><td>Negative log-likelihood</td><td>${num(ln.negative_log_likelihood)}</td><td class="${better(ln.negative_log_likelihood, lq.negative_log_likelihood)}">${num(lq.negative_log_likelihood)}</td></tr>` +
+      `<tr><td>KL divergence</td><td>${num(ln.kl_divergence, 4)}</td><td class="${better(ln.kl_divergence, lq.kl_divergence)}">${num(lq.kl_divergence, 4)}</td></tr>` +
+      `<tr><td>Tail loss</td><td>${ln.tail_loss.toExponential(2)}</td><td class="${better(ln.tail_loss, lq.tail_loss)}">${lq.tail_loss.toExponential(2)}</td></tr>`;
+
+    return beamDrawer(host.querySelector('[data-k="beam"]'), market);
+  }
+
+  const sections = new Map();
+  function renderGroup(section, markets, key) {
+    section.replaceChildren(document.getElementById("market-template").content.cloneNode(true));
+    const tabs = section.querySelector(".tabs");
+    const state = { markets, active: 0, drawer: null, host: section };
+    markets.forEach((m, i) => {
+      const button = document.createElement("button");
+      button.type = "button"; button.className = "tab";
+      button.innerHTML = `${m.name}${m.stale ? ' <span class="pill">stale</span>' : ""}`;
+      button.addEventListener("click", () => select(i));
+      tabs.appendChild(button);
+    });
+    function select(i) {
+      state.active = i;
+      tabs.querySelectorAll(".tab").forEach((b, j) => b.setAttribute("aria-pressed", String(i === j)));
+      state.drawer = beamDrawerFor(section, markets[i]);
+    }
+    sections.set(key, state);
+    select(0);
+  }
+
+  // each section keeps its own animated beam
+  const drawers = new Map();
+  function beamDrawerFor(section, market) {
+    const draw = renderMarket(section, market);
+    drawers.set(section, draw);
+    beams.length = 0;
+    drawers.forEach(d => beams.push(d));
+    return draw;
+  }
+
+  function detectCountry(countries) {
+    const saved = store.get(PREF_KEY);
+    if (saved && countries[saved]) return saved;
+    const zone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    const byZone = Object.entries(countries).find(([, c]) => c.timezone === zone);
+    if (byZone) return byZone[0];
+    if (zone.startsWith("Asia/Calcutta")) return "IN";
+    const region = (navigator.language || "").split("-")[1];
+    return countries[region] ? region : Object.keys(countries)[0];
+  }
+
+  async function main() {
+    let data;
+    try {
+      const response = await fetch(DATA_URL, { cache: "no-store" });
+      if (!response.ok) throw new Error(response.status + " " + response.statusText);
+      data = await response.json();
+    } catch (error) {
+      const box = document.getElementById("error");
+      box.hidden = false;
+      box.textContent = "Could not load market data (" + error.message + "). The scheduled job may not have run yet.";
+      return;
+    }
+    document.getElementById("updated").textContent =
+      "Last re-read " + new Date(data.generated_at).toLocaleString() + ".";
+
+    const picker = document.getElementById("country");
+    Object.entries(data.countries).forEach(([code, c]) => picker.add(new Option(c.name, code)));
+    const showCountry = code => {
+      const country = data.countries[code];
+      picker.value = code;
+      document.getElementById("country-title").textContent = country.name + " markets";
+      document.getElementById("country-sub").textContent =
+        "Local indexes and big stocks, priced in " + country.currency + ". Pick another country above; your choice is remembered.";
+      renderGroup(document.getElementById("country-section"), country.markets, "country");
+    };
+    picker.addEventListener("change", () => { store.set(PREF_KEY, picker.value); showCountry(picker.value); });
+    showCountry(detectCountry(data.countries));
+    renderGroup(document.getElementById("crypto-section"), data.crypto.markets, "crypto");
+
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => sections.forEach(s => s.host.querySelectorAll(".tab")[s.active].click()), 150);
+    });
+    requestAnimationFrame(animate);
+  }
+
+  main();
+})();
+</script>
+</body>
+</html>
