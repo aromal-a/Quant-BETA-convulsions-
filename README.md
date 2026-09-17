@@ -5,7 +5,8 @@
 Quant-beam re-reads market prices on a schedule, measures their normal fluctuations,
 works out the *cold-probability error* (how badly the normal bell curve misjudges big
 moves), describes the returns as quantum harmonic-oscillator states, scores every model
-with loss functions, and shows it all on a pulsing web page.
+with loss functions, and shows it all on a pulsing web page. A **paper QuantBot** then
+tests which fluctuations were worth trading and trades them with pretend money.
 
 > This is an analysis and learning tool. It describes past price behaviour. It is **not
 > financial advice** and it does **not** predict prices.
@@ -125,6 +126,75 @@ Then open http://localhost:8000.
 
 The page lives in [`docs/`](docs/). To publish it with GitHub Pages: **Settings → Pages →
 Deploy from a branch → `main` / `/docs`**.
+
+---
+
+## Paper QuantBot (pretend money only)
+
+The paper bot trades **pretend money** on real daily prices: ₹10,00,000 for India and
+$10,000 shared by the US and crypto markets. It never connects to a broker, never logs in
+anywhere, and never places a real order.
+
+### Step 1 — Research: which fluctuations were worth trading? (`research.py`)
+Three rule types are tested on 10 years of daily history, each with 32 settings
+(move size k = 1.5–3σ, holding 1–10 days, stop-loss 1.5σ or 3σ):
+
+| Rule | Idea |
+|---|---|
+| `dip_buy` | Buy after a fall of kσ or more (bet on a bounce) |
+| `momentum` | Buy after a rise of kσ or more (bet it keeps going) |
+| `calm_dip_buy` | Dip buy, but only while the market's quantum ground-state purity is high (calm) |
+
+Here σ is the volatility of the previous 60 days, so every signal uses only past data.
+For each group (India, US, crypto), the settings are **picked** on the older 60% of the history.
+They are then **tested** on the newer 40% the bot never saw. A rule passes only if, in that test and
+after costs (0.1% per side for stocks, 0.2% for crypto):
+
+1. it made at least 20 trades,
+2. its average trade made money, and
+3. its win rate beat simply buying on a random day and holding just as long.
+
+Each result also gets an **evidence** grade from a t-test. Many settings were tried, so a
+"weak" result can easily be luck.
+
+**First results (test period Sept 2022 – Sept 2026):** only 1 of 9 rules passed. That rule is India
+`momentum` (z ≥ +3σ, hold 10 days): 35 trades, 54% wins against 51% for random days, and
+its evidence is weak (p ≈ 0.23). No US or crypto rule passed. In crypto, every rule lost
+money in the test period. Simply buying and holding usually did better than every rule.
+
+### Step 2 — The bot (`paperbot.py`)
+Every run it:
+- ignores today's unfinished bar, fills yesterday's signals at the next close, and exits trades on
+  stop-loss or holding time,
+- uses **only rules that passed research** (if none passed, it stays in cash),
+- **spreads money evenly** across the markets that share a wallet,
+- **guards against losses:** if a wallet falls 10% below its peak, it closes everything and halts.
+
+```bash
+python -m quant_beam research
+```
+
+```bash
+python -m quant_beam bot run
+```
+
+```bash
+python -m quant_beam bot watch
+```
+
+In `watch` mode: **Enter** runs the bot now, **Esc** cancels every pretend position and halts,
+**r** resumes, and **q** quits. `bot status`, `bot cancel` and `bot resume` also work as commands.
+
+### Optional: Alpha Vantage backup source
+If Yahoo Finance fails for a stock, Quant-beam can fall back to Alpha Vantage. Add your key
+as a secret. **Never put it in a file in this public repo.**
+
+- Locally: `export ALPHAVANTAGE_API_KEY=...` in your own terminal.
+- On GitHub: **Settings → Secrets and variables → Actions → New repository secret**,
+  named `ALPHAVANTAGE_API_KEY`.
+
+> Past results do not guarantee future results. This is a research and learning tool, not
+> financial advice, and nothing here is a recommendation to buy or sell anything.
 
 ---
 

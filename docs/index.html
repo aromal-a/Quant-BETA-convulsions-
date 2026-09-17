@@ -83,6 +83,26 @@
   <p class="sub">Kept separate from country markets. Priced in USD, with Tether (USDT) tracked against its 1.00 USD peg.</p>
   <section id="crypto-section"></section>
 
+  <h2>Paper QuantBot</h2>
+  <p class="sub"><b>Pretend money only.</b> No broker is connected and no real orders are ever placed. The bot only uses rules that passed the research below.</p>
+  <section id="bot-section" class="grid" style="margin-top:14px">
+    <div class="panel">
+      <h3>Paper wallets</h3>
+      <div class="stats" id="bot-wallets" style="grid-template-columns:1fr"></div>
+      <p class="note" id="bot-status"></p>
+    </div>
+    <div class="panel scroll">
+      <h3>Open positions</h3>
+      <table id="bot-positions"></table>
+      <h3 style="margin-top:14px">Closed trades</h3>
+      <table id="bot-trades"></table>
+    </div>
+  </section>
+
+  <h2>Research: which fluctuations were worth trading?</h2>
+  <p class="sub" id="research-sub">Each rule's settings were picked on the older 60% of 10 years of history, then tested on the newer 40% it had never seen. Results are after costs.</p>
+  <section id="research-section"></section>
+
   <footer>
     <p><b>How to read this.</b> Returns are daily log returns, standardized to z = (r − μ) / σ.
       The <b>normal curve</b> is the bell curve with the same μ and σ. The <b>cold-probability error</b> is how often moves
@@ -442,7 +462,72 @@
     requestAnimationFrame(animate);
   }
 
+  async function loadJson(url) {
+    const response = await fetch(url, { cache: "no-store" });
+    if (!response.ok) throw new Error(response.status + " " + response.statusText);
+    return response.json();
+  }
+
+  const esc = text => String(text).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  async function renderBot() {
+    let state;
+    try { state = await loadJson("data/paper_wallet.json"); }
+    catch { document.getElementById("bot-status").textContent = "The paper bot has not run yet."; return; }
+    const lastPrice = state.last_price || {};
+    const wallets = Object.entries(state.wallets).map(([currency, w]) => {
+      const held = state.positions.filter(p => p.currency === currency)
+        .reduce((sum, p) => sum + p.qty * (lastPrice[p.symbol] ?? p.entry_price), 0);
+      const value = w.cash + held;
+      const change = value / w.start - 1;
+      return `<div class="stat"><small>${currency} paper wallet</small><b>${money(value, currency)} ` +
+        `<small class="${change >= 0 ? "up" : "down"}">${change >= 0 ? "+" : ""}${pct(change)} since start</small></b></div>`;
+    });
+    document.getElementById("bot-wallets").innerHTML = wallets.join("");
+    const closed = state.trades || [];
+    const wins = closed.filter(t => t.pnl > 0).length;
+    const rules = Object.values(state.active_rules || {}).flat();
+    document.getElementById("bot-status").innerHTML =
+      (state.halted ? `<b class="warn">Halted: ${esc(state.halt_reason)}</b><br>` : "<b>Running.</b> ") +
+      `Last run ${state.updated_at ? new Date(state.updated_at).toLocaleString() : "–"}. ` +
+      `Guard: halts and closes everything if a wallet falls 10% below its peak. ` +
+      (closed.length ? `Closed trades: ${closed.length}, win rate ${pct(wins / closed.length, 0)}. ` : "No closed trades yet. ") +
+      (rules.length ? `Active rules: ${rules.map(esc).join("; ")}.` : "No rule passed research, so the bot stays in cash.");
+    document.getElementById("bot-positions").innerHTML = state.positions.length
+      ? "<tr><th>Market</th><th>Since</th><th>Entry</th><th>Now</th><th>P/L</th></tr>" + state.positions.map(p => {
+          const now = lastPrice[p.symbol] ?? p.entry_price, change = now / p.entry_price - 1;
+          return `<tr><td>${esc(p.symbol)}</td><td>${esc(p.entry_date)}</td><td>${num(p.entry_price, 2)}</td><td>${num(now, 2)}</td><td class="${change >= 0 ? "up" : "down"}">${pct(change)}</td></tr>`;
+        }).join("")
+      : "<tr><td>None open.</td></tr>";
+    document.getElementById("bot-trades").innerHTML = closed.length
+      ? "<tr><th>Market</th><th>Exit</th><th>Why</th><th>Return</th></tr>" + closed.slice(-12).reverse().map(t =>
+          `<tr><td>${esc(t.symbol)}</td><td>${esc(t.exit_date)}</td><td>${esc(t.reason)}</td><td class="${t.return >= 0 ? "up" : "down"}">${pct(t.return)}</td></tr>`).join("")
+      : "<tr><td>None yet.</td></tr>";
+  }
+
+  async function renderResearch() {
+    let report;
+    const host = document.getElementById("research-section");
+    try { report = await loadJson("data/research.json"); }
+    catch { host.innerHTML = '<p class="note">Research has not run yet.</p>'; return; }
+    host.innerHTML = Object.values(report.groups).map(g => {
+      const rows = g.rules.map(r => {
+        const o = r.out_of_sample;
+        return `<tr><td>${r.passed ? '<b class="up">pass</b>' : '<span class="down">fail</span>'}</td>` +
+          `<td style="text-align:left">${esc(r.label)}</td><td>${o.trades}</td><td>${pct(o.win_rate, 1)}</td>` +
+          `<td>${pct(r.random_entry_win_rate, 1)}</td><td class="${(o.expectancy || 0) > 0 ? "up" : "down"}">${pct(o.expectancy)}</td>` +
+          `<td>${pct(Math.expm1(o.total_log_return / g.symbols.length), 0)}</td><td>${esc(r.evidence)} (p ${num(o.p_value, 2)})</td></tr>`;
+      }).join("");
+      return `<div class="panel scroll" style="margin-top:14px"><h3>${esc(g.name)} · tested from ${esc(g.test_period_start)}</h3>` +
+        `<table><tr><th>Result</th><th style="text-align:left">Rule</th><th>Trades</th><th>Win rate</th><th>Random-day win rate</th><th>Avg trade</th><th>Gain per market</th><th>Evidence</th></tr>${rows}</table>` +
+        `<p class="note">Compare with simply buying and holding each market over the same test period: ${pct(Math.expm1(g.buy_and_hold_log_return), 0)} per market. ` +
+        `"Evidence" is the chance the result is luck; many settings were tried, so anything but strong can easily be luck.</p></div>`;
+    }).join("");
+  }
+
   main();
+  renderBot();
+  renderResearch();
 })();
 </script>
 </body>

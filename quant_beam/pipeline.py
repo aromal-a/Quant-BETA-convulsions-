@@ -7,7 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
-from . import fluctuations, losses, quantum
+from . import alphavantage, fluctuations, losses, quantum
 from .fetch import FetchError, fetch_closes
 from .markets import COUNTRIES, CRYPTO, PEGGED
 
@@ -99,7 +99,8 @@ def previous_records(path):
     return found
 
 
-def run(output_path, reader=fetch_closes, log=lambda msg: print(msg, file=sys.stderr)):
+def run(output_path, reader=None, log=lambda msg: print(msg, file=sys.stderr)):
+    reader = reader or alphavantage.with_fallback(fetch_closes)
     previous = previous_records(output_path)
     result = {
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
