@@ -99,3 +99,22 @@ def test_bot_ignores_todays_unfinished_bar():
     stamps = [0, 86400, 2 * 86400]
     kept, closes = paperbot.completed_days(stamps, [1.0, 2.0, 3.0], paperbot.day(2 * 86400))
     assert kept == [0, 86400] and closes == [1.0, 2.0]
+
+
+def test_cancel_signals_keeps_bot_running_and_split_adds_up(tmp_path):
+    wallet = tmp_path / "wallet.json"
+    state = paperbot.new_state()
+    state["pending"].append({"symbol": "AAPL", "rule": {}, "signal_date": "2026-09-18", "risk_sigma": 0.01})
+    state["positions"].append({"symbol": "NVDA", "group": "US", "currency": "USD", "rule": {}, "entry_date": "x",
+                               "entry_price": 100.0, "qty": 20.0, "invested": 2000.0, "risk_sigma": 0.01, "bars_held": 0})
+    state["wallets"]["USD"]["cash"] = 8000.0
+    state["last_price"]["NVDA"] = 100.0
+    paperbot.save_state(state, wallet)
+
+    state = paperbot.cancel_signals(wallet, log=lambda _: None)
+    assert state["pending"] == [] and not state["halted"] and len(state["positions"]) == 1
+
+    split = paperbot.allocation(state)["USD"]
+    assert math.isclose(split["cash_share"] + sum(h["share"] for h in split["positions"]), 1.0)
+    assert math.isclose(split["positions"][0]["share"], 0.2)
+    assert math.isclose(split["slot_size"], 10000.0 / split["slots"])

@@ -1,6 +1,7 @@
 """Interactive paper-bot console.
 
     Enter  run the bot now (re-read prices, act on new bars)
+    c      cancel today's queued signals only (positions stay open)
     Esc    cancel: close every pretend position and halt the bot
     r      resume after a cancel or a guard halt
     q      quit
@@ -13,7 +14,7 @@ import tty
 
 from . import paperbot
 
-KEYS = "[Enter] run now   [Esc] cancel all & halt   [r] resume   [q] quit"
+KEYS = "[Enter] run now   [c] cancel queued signals   [Esc] cancel all & halt   [r] resume   [q] quit"
 
 
 def read_key():
@@ -42,6 +43,8 @@ def watch(state_path, research_path):
             elif key == "\x1b":
                 print("\ncancelling every pretend position…")
                 state = paperbot.cancel(state_path)
+            elif key == "c":
+                state = paperbot.cancel_signals(state_path)
             elif key == "r":
                 state = paperbot.resume(state_path)
             elif key == "q":

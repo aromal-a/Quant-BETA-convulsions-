@@ -168,6 +168,22 @@ def step_market(state, symbol, group, currency, asset, stamps, closes, rules, lo
 
     if stamps:
         state["last_seen"][symbol] = stamps[-1]
+    return z
+
+
+def radar_entry(symbol, group, z, stamps, rules):
+    """How far the latest finished day is from firing each active rule."""
+    last = float(z[-1]) if len(z) and np.isfinite(z[-1]) else None
+    nearest = None
+    for rule in rules:
+        if last is None:
+            break
+        gap = rule.k - last if rule.kind == "momentum" else last + rule.k
+        gap = max(gap, 0.0)
+        if nearest is None or gap < nearest["gap_sigma"]:
+            nearest = {"rule": rule.label(), "gap_sigma": gap}
+    return {"symbol": symbol, "group": group, "date": day(stamps[-1]) if stamps else None,
+            "z": last, "nearest_rule": nearest}
 
 
 def guard(state, log):
@@ -206,6 +222,7 @@ def run(state_path, research_path, reader=None, log=lambda m: print(m, file=sys.
     rules = passed_rules(research_path)
     state["active_rules"] = {code: [r.label() for r in rs] for code, rs in rules.items()}
     today = today or dt.datetime.now(dt.timezone.utc).date().isoformat()
+    radar = []
     for symbol, group, currency, asset in universe():
         try:
             stamps, closes = reader(symbol)
@@ -213,7 +230,9 @@ def run(state_path, research_path, reader=None, log=lambda m: print(m, file=sys.
             log(f"skip  {symbol}: {error}")
             continue
         stamps, closes = completed_days(stamps, closes, today)
-        step_market(state, symbol, group, currency, asset, stamps, closes, rules.get(group, []), log)
+        z = step_market(state, symbol, group, currency, asset, stamps, closes, rules.get(group, []), log)
+        radar.append(radar_entry(symbol, group, z, stamps, rules.get(group, [])))
+    state["radar"] = radar
     guard(state, log)
     record_equity(state)
     save_state(state, state_path)
@@ -236,6 +255,34 @@ def cancel(state_path, reader=None, log=lambda m: print(m, file=sys.stderr)):
     return state
 
 
+def cancel_signals(state_path, log=lambda m: print(m, file=sys.stderr)):
+    """Drop today's queued signals before they are filled. Open positions and the bot keep running."""
+    state = load_state(state_path)
+    dropped = [p["symbol"] for p in state["pending"]]
+    state["pending"] = []
+    save_state(state, state_path)
+    log(f"cancelled {len(dropped)} queued signal(s): {', '.join(dropped) or 'none'}")
+    return state
+
+
+def allocation(state):
+    """How each wallet's money is split right now: cash, each position, and the slot size."""
+    result = {}
+    for currency in state["wallets"]:
+        total = equity(state, currency)
+        slots = sum(1 for _, _, c, _ in universe() if c == currency)
+        held = []
+        for p in state["positions"]:
+            if p["currency"] != currency:
+                continue
+            value = p["qty"] * state["last_price"].get(p["symbol"], p["entry_price"])
+            held.append({"symbol": p["symbol"], "value": value, "share": value / total if total else 0.0})
+        cash = state["wallets"][currency]["cash"]
+        result[currency] = {"equity": total, "cash": cash, "cash_share": cash / total if total else 0.0,
+                            "slots": slots, "slot_size": total / slots, "positions": held}
+    return result
+
+
 def resume(state_path, log=lambda m: print(m, file=sys.stderr)):
     state = load_state(state_path)
     state["halted"], state["halt_reason"] = False, None
@@ -253,10 +300,23 @@ def summary(state):
     for currency, wallet in state["wallets"].items():
         value = equity(state, currency)
         lines.append(f"  {currency} wallet: {value:,.2f}  ({value / wallet['start'] - 1:+.2%} since start, cash {wallet['cash']:,.2f})")
+    for currency, split in allocation(state).items():
+        parts = [f"cash {split['cash_share']:.0%}"] + [f"{h['symbol']} {h['share']:.0%}" for h in split["positions"]]
+        lines.append(f"  {currency} split: {', '.join(parts)}  (each market gets up to {split['slot_size']:,.2f}, "
+                     f"1/{split['slots']} of the wallet)")
     lines.append(f"  open positions: {len(state['positions'])}, queued signals: {len(state['pending'])}")
+    for p in state["pending"]:
+        lines.append(f"    queued {p['symbol']} from {p['signal_date']} (fills at the next close unless cancelled)")
     for p in state["positions"]:
         last = state["last_price"].get(p["symbol"], p["entry_price"])
         lines.append(f"    {p['symbol']:12} since {p['entry_date']}  {last / p['entry_price'] - 1:+.2%}")
+    for entry in state.get("radar", []):
+        near = entry["nearest_rule"]
+        if near and entry["z"] is not None:
+            lines.append(f"  radar {entry['symbol']:12} today {entry['z']:+.2f}σ, {near['gap_sigma']:.2f}σ from: {near['rule']}")
+    idle = sorted({e["group"] for e in state.get("radar", []) if not e["nearest_rule"]})
+    if idle:
+        lines.append(f"  no rule passed research for {', '.join(idle)}, so those markets cannot signal")
     closed = state["trades"]
     if closed:
         wins = sum(t["pnl"] > 0 for t in closed)

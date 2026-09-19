@@ -182,8 +182,18 @@ python -m quant_beam bot run
 python -m quant_beam bot watch
 ```
 
-In `watch` mode: **Enter** runs the bot now, **Esc** cancels every pretend position and halts,
-**r** resumes, and **q** quits. `bot status`, `bot cancel` and `bot resume` also work as commands.
+In `watch` mode: **Enter** runs the bot now, **c** cancels today's queued signals (open
+positions stay), **Esc** closes every pretend position and halts, **r** resumes, and **q** quits.
+The same actions work as commands: `bot status`, `bot cancel-signals`, `bot cancel`, `bot resume`.
+
+`bot status` shows **how the money is split** in each wallet: cash and each open position as a
+share of the wallet, and the most any one market can get (the wallet divided evenly across its
+markets). It also shows a **signal radar**: today's move in σ for each market and how far it is
+from firing a rule. Big moves are rare, so days or weeks without a signal are normal.
+
+**Which APIs does it use?** No broker API. The bot only reads public prices (the Yahoo Finance
+chart API, with Alpha Vantage as an optional backup) and keeps its pretend wallet in
+`docs/data/paper_wallet.json`.
 
 ### Optional: Alpha Vantage backup source
 If Yahoo Finance fails for a stock, Quant-beam can fall back to Alpha Vantage. Add your key
@@ -195,6 +205,37 @@ as a secret. **Never put it in a file in this public repo.**
 
 > Past results do not guarantee future results. This is a research and learning tool, not
 > financial advice, and nothing here is a recommendation to buy or sell anything.
+
+## Oil & transport value chain
+
+`python -m quant_beam oil` follows the chain from the oil well to the car and the truck, across
+35 companies in the US, India and a few global majors (UK, Japan):
+
+| Segment | Examples |
+|---|---|
+| Oil producers | ConocoPhillips, EOG, Occidental, ONGC |
+| Rigs & oilfield services | SLB, Halliburton, Baker Hughes, Transocean |
+| Pipelines | Kinder Morgan, Williams, Energy Transfer |
+| Integrated majors | ExxonMobil, Chevron, Shell, BP, Reliance |
+| Refiners & fuel retail | Valero, Marathon, Phillips 66, BPCL, Indian Oil, HPCL |
+| Car makers | Toyota, GM, Ford, Tesla, Maruti Suzuki, Mahindra, Tata Motors PV |
+| Airlines, freight & logistics | Delta, United, UPS, FedEx, IndiGo, Container Corp of India |
+
+For each company it reports:
+- **Margins:** gross, operating and net margin in the latest quarter, compared with the same quarter a
+  year earlier (from quarterly filings via Yahoo Finance's fundamentals feed).
+- **Margin leaks:** operating margin down 2 points or more. Each leak is split into a *gross-margin squeeze*
+  (selling price vs input cost) and *cost growth* (operating costs rising faster than revenue).
+- **Oil sensitivity:** the share's beta and correlation to WTI crude over the last year.
+- **The refining margin:** the 3-2-1 crack spread, what a refinery earns turning 3 barrels of crude into 2
+  of gasoline and 1 of diesel.
+- **Ensemble:** a margin score (operating margin ranked **within its segment**, its change and revenue
+  growth) and a price score (6-month trend and calm quantum state, minus tail risk), averaged. When the two
+  point the same way the company is **aligned**. When they disagree it is flagged as **diverging**, e.g.
+  "price ahead of margins".
+
+Only about five quarters of margins are available, so the ensemble is a **description of now**. It
+has not been back-tested and it is not a recommendation.
 
 ---
 

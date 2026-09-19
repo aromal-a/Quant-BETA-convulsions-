@@ -97,6 +97,30 @@
       <h3 style="margin-top:14px">Closed trades</h3>
       <table id="bot-trades"></table>
     </div>
+    <div class="panel scroll">
+      <h3>Signal radar</h3>
+      <table id="bot-radar"></table>
+      <p class="note">Today's move in σ for each market, and how far it still is from firing a rule. Big moves are rare, so days or weeks without a signal are normal.</p>
+    </div>
+  </section>
+
+  <h2>Oil &amp; transport value chain</h2>
+  <p class="sub">From the oil well to the car and the truck: who is winning on profit margins right now, where margins are leaking, and whether the share price agrees. Margins come from the latest quarterly filings, compared with the same quarter a year earlier.</p>
+  <section id="oil-section">
+    <div class="grid" style="margin-top:14px">
+      <div class="panel"><h3>Oil &amp; fuel prices</h3><div class="stats" id="oil-bench"></div></div>
+      <div class="panel"><h3>Refining margin · 3-2-1 crack spread ($/barrel)</h3><canvas id="oil-crack" height="140"></canvas><p class="note" id="oil-crack-note"></p></div>
+    </div>
+    <div class="panel scroll" style="margin-top:16px"><h3>Segments</h3><table id="oil-segments"></table></div>
+    <div class="panel scroll" style="margin-top:16px">
+      <h3>Companies · ensemble</h3>
+      <div class="controls" style="margin-bottom:8px">
+        <label for="oil-filter-segment">Segment</label><select id="oil-filter-segment"></select>
+        <label for="oil-filter-country">Country</label><select id="oil-filter-country"></select>
+      </div>
+      <table id="oil-companies"></table>
+      <p class="note">Ensemble = average of a margin score (operating margin compared with the same segment, its change over a year, and revenue growth) and a price score (6-month trend and calm, minus tail risk). All scores are ranks against the other companies here. "Aligned" = price and margins point the same way. "Diverging" = they disagree. This describes the latest data. It has not been back-tested, and it is not a recommendation to buy or sell.</p>
+    </div>
   </section>
 
   <h2>Research: which fluctuations were worth trading?</h2>
@@ -499,6 +523,12 @@
           return `<tr><td>${esc(p.symbol)}</td><td>${esc(p.entry_date)}</td><td>${num(p.entry_price, 2)}</td><td>${num(now, 2)}</td><td class="${change >= 0 ? "up" : "down"}">${pct(change)}</td></tr>`;
         }).join("")
       : "<tr><td>None open.</td></tr>";
+    const radar = state.radar || [];
+    document.getElementById("bot-radar").innerHTML = radar.length
+      ? "<tr><th>Market</th><th>Day</th><th>Move</th><th>Distance to signal</th></tr>" + radar.map(r =>
+          `<tr><td>${esc(r.symbol)}</td><td>${esc(r.date || "–")}</td><td>${r.z == null ? "–" : (r.z >= 0 ? "+" : "") + r.z.toFixed(2) + "σ"}</td>` +
+          `<td>${r.nearest_rule ? r.nearest_rule.gap_sigma.toFixed(2) + "σ" : '<span class="note">no rule passed research</span>'}</td></tr>`).join("")
+      : "<tr><td>Radar appears after the next bot run.</td></tr>";
     document.getElementById("bot-trades").innerHTML = closed.length
       ? "<tr><th>Market</th><th>Exit</th><th>Why</th><th>Return</th></tr>" + closed.slice(-12).reverse().map(t =>
           `<tr><td>${esc(t.symbol)}</td><td>${esc(t.exit_date)}</td><td>${esc(t.reason)}</td><td class="${t.return >= 0 ? "up" : "down"}">${pct(t.return)}</td></tr>`).join("")
@@ -525,8 +555,56 @@
     }).join("");
   }
 
+  async function renderOil() {
+    let report;
+    try { report = await loadJson("data/oil_chain.json"); }
+    catch { document.getElementById("oil-section").innerHTML = '<p class="note">The oil value chain has not run yet.</p>'; return; }
+    const signed = (v, digits = 1) => v == null ? "–" : (v >= 0 ? "+" : "") + pct(v, digits);
+    const tone = v => v == null ? "" : v >= 0 ? "up" : "down";
+
+    document.getElementById("oil-bench").innerHTML = Object.values(report.benchmarks).map(b =>
+      `<div class="stat"><small>${esc(b.name)}</small><b>${num(b.last, 2)} <small class="${tone(b.return_1y)}">${signed(b.return_1y, 0)} 1y</small></b></div>`).join("");
+    const crack = report.crack_spread_321;
+    if (crack) {
+      sparkline(document.getElementById("oil-crack"), crack.values, css("--beam"));
+      document.getElementById("oil-crack-note").textContent =
+        `Now $${crack.last.toFixed(2)} per barrel against a 1-year average of $${crack.avg_1y.toFixed(2)}. That's roughly what a refinery earns from turning 3 barrels of crude into 2 of gasoline and 1 of diesel.`;
+    }
+
+    const segments = Object.entries(report.segments);
+    document.getElementById("oil-segments").innerHTML =
+      "<tr><th>Segment</th><th>Operating margin</th><th>Change vs 1y ago</th><th>Revenue growth</th><th>Share price 1y</th><th>Oil beta</th><th>Margin leaks</th><th>Ensemble</th></tr>" +
+      segments.sort((a, b) => (b[1].median_ensemble ?? -9) - (a[1].median_ensemble ?? -9)).map(([, g]) =>
+        `<tr><td>${esc(g.name)}</td><td>${pct(g.median_operating_margin, 1)}</td><td class="${tone(g.median_operating_margin_change)}">${signed(g.median_operating_margin_change)}</td>` +
+        `<td>${signed(g.median_revenue_growth, 0)}</td><td class="${tone(g.median_return_1y)}">${signed(g.median_return_1y, 0)}</td>` +
+        `<td>${num(g.median_oil_beta, 2)}</td><td class="${g.leaking.length ? "warn" : ""}">${g.leaking.length ? esc(g.leaking.join(", ")) : "none"}</td><td>${num(g.median_ensemble, 2)}</td></tr>`).join("") +
+      '<tr><td colspan="8" class="note" style="text-align:left">Medians per segment. Oil beta: how much the share moves for a 1% move in crude.</td></tr>';
+
+    const segPick = document.getElementById("oil-filter-segment"), countryPick = document.getElementById("oil-filter-country");
+    segPick.add(new Option("All", "")); segments.forEach(([code, g]) => segPick.add(new Option(g.name, code)));
+    countryPick.add(new Option("All", ""));
+    [...new Set(report.companies.map(c => c.country))].sort().forEach(c => countryPick.add(new Option(c, c)));
+    const alignClass = a => a.startsWith("diverging") ? "warn" : a === "aligned: strong" ? "up" : a === "aligned: weak" ? "down" : "";
+
+    const draw = () => {
+      const rows = report.companies.filter(c => (!segPick.value || c.segment === segPick.value) && (!countryPick.value || c.country === countryPick.value));
+      document.getElementById("oil-companies").innerHTML =
+        "<tr><th>Company</th><th>Segment</th><th>Quarter</th><th>Op. margin</th><th>Change</th><th>Leak</th><th>6m price</th><th>Ensemble</th><th>Price vs margins</th></tr>" +
+        rows.map(c => {
+          const m = c.margins, change = (m.change || {}).operating, leak = m.leak;
+          return `<tr><td>${esc(c.name)} <span class="pill">${esc(c.symbol)} · ${esc(c.country)}</span></td><td>${esc(c.segment_name)}</td><td>${esc(m.quarter)}</td>` +
+            `<td>${pct((m.margins || {}).operating, 1)}</td><td class="${tone(change)}">${signed(change)}</td>` +
+            `<td class="${leak ? "warn" : ""}">${leak ? esc(leak.main_cause) : "–"}</td><td class="${tone(c.price.trend_6m)}">${signed(c.price.trend_6m == null ? null : Math.expm1(c.price.trend_6m), 0)}</td>` +
+            `<td>${num(c.scores.ensemble, 2)}</td><td class="${alignClass(c.alignment)}">${esc(c.alignment)}</td></tr>`;
+        }).join("");
+    };
+    segPick.addEventListener("change", draw); countryPick.addEventListener("change", draw);
+    draw();
+  }
+
   main();
   renderBot();
+  renderOil();
   renderResearch();
 })();
 </script>

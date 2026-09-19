@@ -18,38 +18,48 @@
  "pending": [],
  "trades": [],
  "last_seen": {
-  "^NSEI": 1789530300,
-  "^BSESN": 1789530300,
-  "RELIANCE.NS": 1789530300,
-  "TCS.NS": 1789530300,
-  "INFY.NS": 1789530300,
-  "^GSPC": 1789565400,
-  "^IXIC": 1789565400,
-  "AAPL": 1789565400,
-  "NVDA": 1789565400,
-  "TSLA": 1789565400,
-  "BTC-USD": 1789516800,
-  "ETH-USD": 1789516800,
-  "SOL-USD": 1789516800
+  "^NSEI": 1789703100,
+  "^BSESN": 1789703100,
+  "RELIANCE.NS": 1789703100,
+  "TCS.NS": 1789703100,
+  "INFY.NS": 1789703100,
+  "^GSPC": 1789738200,
+  "^IXIC": 1789738200,
+  "AAPL": 1789738200,
+  "NVDA": 1789738200,
+  "TSLA": 1789738200,
+  "BTC-USD": 1789689600,
+  "ETH-USD": 1789689600,
+  "SOL-USD": 1789689600
  },
  "last_price": {
-  "^NSEI": 23217.599609375,
-  "^BSESN": 74336.453125,
-  "RELIANCE.NS": 1240.0,
-  "TCS.NS": 2188.800048828125,
-  "INFY.NS": 1060.0,
-  "^GSPC": 7551.81005859375,
-  "^IXIC": 25978.4296875,
-  "AAPL": 332.4100036621094,
-  "NVDA": 213.89999389648438,
-  "TSLA": 358.0799865722656,
-  "BTC-USD": 76150.3203125,
-  "ETH-USD": 2416.119873046875,
-  "SOL-USD": 98.64186096191406
+  "^NSEI": 23346.400390625,
+  "^BSESN": 74294.9609375,
+  "RELIANCE.NS": 1226.4000244140625,
+  "TCS.NS": 2105.0,
+  "INFY.NS": 1051.4000244140625,
+  "^GSPC": 7650.5,
+  "^IXIC": 26522.5390625,
+  "AAPL": 336.1300048828125,
+  "NVDA": 222.27000427246094,
+  "TSLA": 364.2699890136719,
+  "BTC-USD": 80901.4609375,
+  "ETH-USD": 2611.34716796875,
+  "SOL-USD": 112.5992202758789
  },
  "equity_history": [
   {
    "date": "2026-09-17",
+   "INR": 1000000.0,
+   "USD": 10000.0
+  },
+  {
+   "date": "2026-09-17",
+   "INR": 1000000.0,
+   "USD": 10000.0
+  },
+  {
+   "date": "2026-09-19",
    "INR": 1000000.0,
    "USD": 10000.0
   }
@@ -61,5 +71,113 @@
   "US": [],
   "CRYPTO": []
  },
- "updated_at": "2026-09-17T11:42:33+00:00"
+ "updated_at": "2026-09-19T08:44:36+00:00",
+ "radar": [
+  {
+   "symbol": "^NSEI",
+   "group": "IN",
+   "date": "2026-09-18",
+   "z": 0.5311912280853911,
+   "nearest_rule": {
+    "rule": "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3",
+    "gap_sigma": 2.468808771914609
+   }
+  },
+  {
+   "symbol": "^BSESN",
+   "group": "IN",
+   "date": "2026-09-18",
+   "z": -0.04224094700555732,
+   "nearest_rule": {
+    "rule": "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3",
+    "gap_sigma": 3.042240947005557
+   }
+  },
+  {
+   "symbol": "RELIANCE.NS",
+   "group": "IN",
+   "date": "2026-09-18",
+   "z": -1.2397857227444204,
+   "nearest_rule": {
+    "rule": "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3",
+    "gap_sigma": 4.23978572274442
+   }
+  },
+  {
+   "symbol": "TCS.NS",
+   "group": "IN",
+   "date": "2026-09-18",
+   "z": -1.9691761091557982,
+   "nearest_rule": {
+    "rule": "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3",
+    "gap_sigma": 4.969176109155798
+   }
+  },
+  {
+   "symbol": "INFY.NS",
+   "group": "IN",
+   "date": "2026-09-18",
+   "z": -0.3410062907593512,
+   "nearest_rule": {
+    "rule": "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3",
+    "gap_sigma": 3.341006290759351
+   }
+  },
+  {
+   "symbol": "^GSPC",
+   "group": "US",
+   "date": "2026-09-18",
+   "z": 0.24155929382350455,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "^IXIC",
+   "group": "US",
+   "date": "2026-09-18",
+   "z": 0.3629516941424927,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "AAPL",
+   "group": "US",
+   "date": "2026-09-18",
+   "z": -0.1265579016970018,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "NVDA",
+   "group": "US",
+   "date": "2026-09-18",
+   "z": 0.5334691258285117,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "TSLA",
+   "group": "US",
+   "date": "2026-09-18",
+   "z": -0.14662386311753378,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "BTC-USD",
+   "group": "CRYPTO",
+   "date": "2026-09-18",
+   "z": 2.846769847340919,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "ETH-USD",
+   "group": "CRYPTO",
+   "date": "2026-09-18",
+   "z": 2.202367560015114,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "SOL-USD",
+   "group": "CRYPTO",
+   "date": "2026-09-18",
+   "z": 3.6055260315768956,
+   "nearest_rule": null
+  }
+ ]
 }
