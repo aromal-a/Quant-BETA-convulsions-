@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-17T11:39:15+00:00",
+ "generated_at": "2026-09-19T11:17:04+00:00",
  "method": {
   "split": 0.6,
   "grid": {
@@ -43,8 +43,8 @@
     "TCS.NS",
     "INFY.NS"
    ],
-   "test_period_start": "2022-09-16",
-   "buy_and_hold_log_return": -0.0010829321337805676,
+   "test_period_start": "2022-09-19",
+   "buy_and_hold_log_return": -0.01580954759426594,
    "rules": [
     {
      "rule": {
@@ -83,11 +83,13 @@
       "t_stat": 0.7488541311788984,
       "p_value": 0.2269725646124419
      },
-     "random_entry_win_rate": 0.5099338002563477,
+     "random_entry_win_rate": 0.5096284059273622,
+     "random_hold_average": -0.0017743010554761892,
      "checks": {
       "enough_trades": true,
       "profitable_after_costs": true,
-      "beats_random_entry_win_rate": true
+      "beats_random_entry_win_rate": true,
+      "beats_random_hold_average": true
      },
      "passed": true,
      "evidence": "weak"
@@ -129,11 +131,13 @@
       "t_stat": -0.15328194128585365,
       "p_value": 0.5609120294273908
      },
-     "random_entry_win_rate": 0.4602387673253524,
+     "random_entry_win_rate": 0.46016596096311335,
+     "random_hold_average": -0.002007278554784353,
      "checks": {
       "enough_trades": true,
       "profitable_after_costs": false,
-      "beats_random_entry_win_rate": false
+      "beats_random_entry_win_rate": false,
+      "beats_random_hold_average": true
      },
      "passed": false,
      "evidence": "weak"
@@ -175,11 +179,13 @@
       "t_stat": -0.4405293474703995,
       "p_value": 0.670223119191998
      },
-     "random_entry_win_rate": 0.5099338002563477,
+     "random_entry_win_rate": 0.5096284059273622,
+     "random_hold_average": -0.0017743010554761892,
      "checks": {
       "enough_trades": true,
       "profitable_after_costs": false,
-      "beats_random_entry_win_rate": true
+      "beats_random_entry_win_rate": true,
+      "beats_random_hold_average": false
      },
      "passed": false,
      "evidence": "weak"
@@ -196,8 +202,8 @@
     "NVDA",
     "TSLA"
    ],
-   "test_period_start": "2022-09-14",
-   "buy_and_hold_log_return": 1.0310186597838205,
+   "test_period_start": "2022-09-15",
+   "buy_and_hold_log_return": 1.06236901623102,
    "rules": [
     {
      "rule": {
@@ -236,11 +242,13 @@
       "t_stat": 0.7357383670434972,
       "p_value": 0.23094496786040547
      },
-     "random_entry_win_rate": 0.5790954773869347,
+     "random_entry_win_rate": 0.5793172690763052,
+     "random_hold_average": 0.008790488535973804,
      "checks": {
       "enough_trades": true,
       "profitable_after_costs": true,
-      "beats_random_entry_win_rate": false
+      "beats_random_entry_win_rate": false,
+      "beats_random_hold_average": false
      },
      "passed": false,
      "evidence": "weak"
@@ -282,11 +290,13 @@
       "t_stat": 0.9177009088774954,
       "p_value": 0.17938773585979895
      },
-     "random_entry_win_rate": 0.4717131474103586,
+     "random_entry_win_rate": 0.47243781094527365,
+     "random_hold_average": -0.0009419260234872811,
      "checks": {
       "enough_trades": true,
       "profitable_after_costs": true,
-      "beats_random_entry_win_rate": false
+      "beats_random_entry_win_rate": false,
+      "beats_random_hold_average": true
      },
      "passed": false,
      "evidence": "weak"
@@ -328,11 +338,13 @@
       "t_stat": 0.0288097353045132,
       "p_value": 0.48850816822686205
      },
-     "random_entry_win_rate": 0.4717131474103586,
+     "random_entry_win_rate": 0.47243781094527365,
+     "random_hold_average": -0.0009419260234872811,
      "checks": {
       "enough_trades": true,
       "profitable_after_costs": true,
-      "beats_random_entry_win_rate": false
+      "beats_random_entry_win_rate": false,
+      "beats_random_hold_average": true
      },
      "passed": false,
      "evidence": "weak"
@@ -347,8 +359,8 @@
     "ETH-USD",
     "SOL-USD"
    ],
-   "test_period_start": "2022-09-17",
-   "buy_and_hold_log_return": 0.5571172963524353,
+   "test_period_start": "2022-09-19",
+   "buy_and_hold_log_return": 0.6657138748615421,
    "rules": [
     {
      "rule": {
@@ -387,11 +399,13 @@
       "t_stat": -0.4812139851152431,
       "p_value": 0.6848177888471252
      },
-     "random_entry_win_rate": 0.4969272234605278,
+     "random_entry_win_rate": 0.49769968779064094,
+     "random_hold_average": 0.00018485482065715327,
      "checks": {
       "enough_trades": true,
       "profitable_after_costs": false,
-      "beats_random_entry_win_rate": false
+      "beats_random_entry_win_rate": false,
+      "beats_random_hold_average": false
      },
      "passed": false,
      "evidence": "weak"
@@ -410,34 +424,36 @@
      "in_sample": {
       "trades": 204,
       "win_rate": 0.44607843137254904,
-      "avg_win": 0.1201265315080003,
+      "avg_win": 0.12032207538399742,
       "avg_loss": -0.0992568954948557,
-      "expectancy": -0.0013946805082875786,
-      "profit_factor": 0.9746331951488653,
-      "total_log_return": -0.28451482369066605,
-      "max_drawdown": 2.3420955522688995,
+      "expectancy": -0.0013074526028182798,
+      "profit_factor": 0.9762197185443414,
+      "total_log_return": -0.2667203309749291,
+      "max_drawdown": 2.3243010595531626,
       "stops": 94,
-      "t_stat": -0.14127914292159913,
-      "p_value": 0.5561752870617374
+      "t_stat": -0.1324250179338137,
+      "p_value": 0.552675936259275
      },
      "out_of_sample": {
       "trades": 117,
-      "win_rate": 0.39316239316239315,
-      "avg_win": 0.06687232664393147,
-      "avg_loss": -0.06388155963661972,
-      "expectancy": -0.012474048791274808,
-      "profit_factor": 0.6782197084992112,
-      "total_log_return": -1.4594637085791524,
-      "max_drawdown": 1.61451149054392,
+      "win_rate": 0.4017094017094017,
+      "avg_win": 0.07097209301169687,
+      "avg_loss": -0.06473674661603089,
+      "expectancy": -0.010221229842499218,
+      "profit_factor": 0.7360995649778144,
+      "total_log_return": -1.1958838915724086,
+      "max_drawdown": 1.4668828085773242,
       "stops": 59,
-      "t_stat": -1.6908867139675257,
-      "p_value": 0.9545707793628042
+      "t_stat": -1.356978006861111,
+      "p_value": 0.9126059006189609
      },
-     "random_entry_win_rate": 0.4969272234605278,
+     "random_entry_win_rate": 0.49769968779064094,
+     "random_hold_average": 0.00018485482065715327,
      "checks": {
       "enough_trades": true,
       "profitable_after_costs": false,
-      "beats_random_entry_win_rate": false
+      "beats_random_entry_win_rate": false,
+      "beats_random_hold_average": false
      },
      "passed": false,
      "evidence": "weak"
@@ -454,36 +470,208 @@
      "label": "calm_dip_buy: z \u2264 \u22122\u03c3, purity \u2265 0.97; hold 10d, stop 3\u03c3",
      "description": "Dip buy, but only while the market is in a calm, high-purity state.",
      "in_sample": {
-      "trades": 73,
-      "win_rate": 0.4520547945205479,
-      "avg_win": 0.12650700744021035,
-      "avg_loss": -0.11492923133128863,
-      "expectancy": -0.0057868220236247095,
-      "profit_factor": 0.9081091026992717,
-      "total_log_return": -0.42243800772460377,
-      "max_drawdown": 1.5567918518443817,
+      "trades": 74,
+      "win_rate": 0.47297297297297297,
+      "avg_win": 0.12045754112012091,
+      "avg_loss": -0.1265009018316702,
+      "expectancy": -0.009696232867985237,
+      "profit_factor": 0.854562457285131,
+      "total_log_return": -0.7175212322309075,
+      "max_drawdown": 1.6751646770114421,
       "stops": 21,
-      "t_stat": -0.3141136551627753,
-      "p_value": 0.6232826406370437
+      "t_stat": -0.5052113836445178,
+      "p_value": 0.6932948121527215
      },
      "out_of_sample": {
       "trades": 48,
       "win_rate": 0.3958333333333333,
-      "avg_win": 0.06840298306100333,
+      "avg_win": 0.07450567437890586,
       "avg_loss": -0.09315167858843475,
-      "expectancy": -0.029202958352198844,
-      "profit_factor": 0.4811050987146722,
-      "total_log_return": -1.4017420009055446,
+      "expectancy": -0.026787309705529092,
+      "profit_factor": 0.5240277283652862,
+      "total_log_return": -1.2857908658653965,
       "max_drawdown": 1.4070027236640528,
       "stops": 17,
-      "t_stat": -2.0098217706057317,
-      "p_value": 0.9777749721190928
+      "t_stat": -1.803941089121441,
+      "p_value": 0.9643797286594921
      },
-     "random_entry_win_rate": 0.4969272234605278,
+     "random_entry_win_rate": 0.49769968779064094,
+     "random_hold_average": 0.00018485482065715327,
      "checks": {
       "enough_trades": true,
       "profitable_after_costs": false,
-      "beats_random_entry_win_rate": false
+      "beats_random_entry_win_rate": false,
+      "beats_random_hold_average": false
+     },
+     "passed": false,
+     "evidence": "weak"
+    }
+   ]
+  },
+  "OIL": {
+   "name": "US oil chain (no car makers or pipelines)",
+   "asset": "stock",
+   "symbols": [
+    "COP",
+    "EOG",
+    "OXY",
+    "SLB",
+    "HAL",
+    "BKR",
+    "RIG",
+    "XOM",
+    "CVX",
+    "VLO",
+    "MPC",
+    "PSX",
+    "DAL",
+    "UAL",
+    "UPS",
+    "FDX"
+   ],
+   "test_period_start": "2022-09-15",
+   "buy_and_hold_log_return": 0.5449354266686182,
+   "rules": [
+    {
+     "rule": {
+      "kind": "momentum",
+      "k": 1.5,
+      "hold": 10,
+      "stop": 3.0,
+      "take": null,
+      "min_purity": null
+     },
+     "label": "momentum: z \u2265 +1.5\u03c3; hold 10d, stop 3\u03c3",
+     "description": "Buy after a rise of k sigma or more (bet it keeps going).",
+     "in_sample": {
+      "trades": 854,
+      "win_rate": 0.5175644028103045,
+      "avg_win": 0.061366520802994436,
+      "avg_loss": -0.06175548382103777,
+      "expectancy": 0.0019680829750070017,
+      "profit_factor": 1.0660584730350295,
+      "total_log_return": 1.6807428606559796,
+      "max_drawdown": 2.733386064393035,
+      "stops": 219,
+      "t_stat": 0.6664348238891572,
+      "p_value": 0.2525666049829822
+     },
+     "out_of_sample": {
+      "trades": 593,
+      "win_rate": 0.5295109612141653,
+      "avg_win": 0.049950919821955875,
+      "avg_loss": -0.0473965168525783,
+      "expectancy": 0.004150017912689371,
+      "profit_factor": 1.186103283051841,
+      "total_log_return": 2.460960622224797,
+      "max_drawdown": 1.0267543135657138,
+      "stops": 141,
+      "t_stat": 1.6498291262634734,
+      "p_value": 0.04948894488694972
+     },
+     "random_entry_win_rate": 0.5355170682730923,
+     "random_hold_average": 0.004395634164740099,
+     "checks": {
+      "enough_trades": true,
+      "profitable_after_costs": true,
+      "beats_random_entry_win_rate": false,
+      "beats_random_hold_average": false
+     },
+     "passed": false,
+     "evidence": "moderate"
+    },
+    {
+     "rule": {
+      "kind": "dip_buy",
+      "k": 1.5,
+      "hold": 1,
+      "stop": 1.5,
+      "take": null,
+      "min_purity": null
+     },
+     "label": "dip_buy: z \u2264 \u22121.5\u03c3; hold 1d, stop 1.5\u03c3",
+     "description": "Buy after a fall of k sigma or more (bet on a bounce).",
+     "in_sample": {
+      "trades": 1281,
+      "win_rate": 0.492583918813427,
+      "avg_win": 0.020738931403308562,
+      "avg_loss": -0.02544169429468926,
+      "expectancy": -0.0026938607151134357,
+      "profit_factor": 0.7913276628580601,
+      "total_log_return": -3.450835576060311,
+      "max_drawdown": 3.698426476214629,
+      "stops": 137,
+      "t_stat": -2.221506520563668,
+      "p_value": 0.9868416632207457
+     },
+     "out_of_sample": {
+      "trades": 845,
+      "win_rate": 0.45798816568047335,
+      "avg_win": 0.015802684317565766,
+      "avg_loss": -0.016781892671840493,
+      "expectancy": -0.0018585420269881586,
+      "profit_factor": 0.7956744494006555,
+      "total_log_return": -1.570468012804994,
+      "max_drawdown": 1.8773411767819894,
+      "stops": 71,
+      "t_stat": -2.4194136840071714,
+      "p_value": 0.9922272251666917
+     },
+     "random_entry_win_rate": 0.468407960199005,
+     "random_hold_average": -0.0014567853165841974,
+     "checks": {
+      "enough_trades": true,
+      "profitable_after_costs": false,
+      "beats_random_entry_win_rate": false,
+      "beats_random_hold_average": false
+     },
+     "passed": false,
+     "evidence": "weak"
+    },
+    {
+     "rule": {
+      "kind": "calm_dip_buy",
+      "k": 1.5,
+      "hold": 1,
+      "stop": 1.5,
+      "take": null,
+      "min_purity": 0.97
+     },
+     "label": "calm_dip_buy: z \u2264 \u22121.5\u03c3, purity \u2265 0.97; hold 1d, stop 1.5\u03c3",
+     "description": "Dip buy, but only while the market is in a calm, high-purity state.",
+     "in_sample": {
+      "trades": 1007,
+      "win_rate": 0.5163853028798411,
+      "avg_win": 0.020040344940013315,
+      "avg_loss": -0.022397130752821477,
+      "expectancy": -0.00048304201372108974,
+      "profit_factor": 0.9554042953910923,
+      "total_log_return": -0.4864233078171374,
+      "max_drawdown": 1.8349479726286988,
+      "stops": 91,
+      "t_stat": -0.39298568667452893,
+      "p_value": 0.6528349734712029
+     },
+     "out_of_sample": {
+      "trades": 715,
+      "win_rate": 0.45594405594405596,
+      "avg_win": 0.015892933552777606,
+      "avg_loss": -0.01743840308284861,
+      "expectancy": -0.0022411782671644892,
+      "profit_factor": 0.7637748513792021,
+      "total_log_return": -1.6024424610226098,
+      "max_drawdown": 1.9783157956257178,
+      "stops": 62,
+      "t_stat": -2.6317915564184036,
+      "p_value": 0.9957532022220082
+     },
+     "random_entry_win_rate": 0.468407960199005,
+     "random_hold_average": -0.0014567853165841974,
+     "checks": {
+      "enough_trades": true,
+      "profitable_after_costs": false,
+      "beats_random_entry_win_rate": false,
+      "beats_random_hold_average": false
      },
      "passed": false,
      "evidence": "weak"

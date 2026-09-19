@@ -14,6 +14,7 @@ spread out instead of piled into one trade.
 """
 
 import datetime as dt
+from zoneinfo import ZoneInfo
 import json
 import math
 import sys
@@ -21,7 +22,7 @@ from pathlib import Path
 
 import numpy as np
 
-from . import alphavantage, backtest, signals
+from . import alphavantage, backtest, oilchain, signals
 from .fetch import FetchError, fetch_closes
 from .markets import COUNTRIES, CRYPTO
 
@@ -38,15 +39,26 @@ def universe():
     for symbol in CRYPTO["symbols"]:
         if symbol != "USDT-USD":
             yield symbol, "CRYPTO", CRYPTO["currency"], "crypto"
+    for symbol in oilchain.us_tradable():
+        yield symbol, "OIL", "USD", "stock"
 
 
-def day(ts):
-    return dt.datetime.fromtimestamp(ts, dt.timezone.utc).date().isoformat()
+# Dates are recorded in each market's own time zone (US and oil chain in New York time).
+GROUP_TZ = {code: country["timezone"] for code, country in COUNTRIES.items()}
+GROUP_TZ.update({"OIL": "America/New_York", "CRYPTO": "UTC"})
 
 
-def completed_days(stamps, closes, today):
+def day(ts, tz="UTC"):
+    return dt.datetime.fromtimestamp(ts, ZoneInfo(tz)).date().isoformat()
+
+
+def market_today(group):
+    return dt.datetime.now(ZoneInfo(GROUP_TZ.get(group, "UTC"))).date().isoformat()
+
+
+def completed_days(stamps, closes, today, tz="UTC"):
     """Drop today's bar: its close can still change, and trading on it would peek ahead."""
-    keep = sum(1 for ts in stamps if day(ts) < today)
+    keep = sum(1 for ts in stamps if day(ts, tz) < today)
     return stamps[:keep], closes[:keep]
 
 
@@ -106,13 +118,14 @@ def close_position(state, position, price, ts, reason, cost):
     state["positions"].remove(position)
     state["trades"].append({
         **{k: position[k] for k in ("symbol", "group", "currency", "rule", "entry_date", "entry_price", "qty")},
-        "exit_date": day(ts), "exit_price": price, "reason": reason,
+        "exit_date": day(ts, GROUP_TZ.get(position["group"], "UTC")), "exit_price": price, "reason": reason,
         "pnl": pnl, "return": pnl / position["invested"],
     })
 
 
 def step_market(state, symbol, group, currency, asset, stamps, closes, rules, log):
     cost = backtest.COST[asset]
+    tz = GROUP_TZ.get(group, "UTC")
     z, sigma = signals.trailing_z(closes)
     purity = signals.trailing_purity(closes) if any(r.needs_purity for r in rules) else None
     last = state["last_seen"].get(symbol)
@@ -151,7 +164,7 @@ def step_market(state, symbol, group, currency, asset, stamps, closes, rules, lo
             wallet["cash"] -= budget
             state["positions"].append({
                 "symbol": symbol, "group": group, "currency": currency, "rule": pending["rule"],
-                "entry_date": day(ts), "entry_price": price, "qty": qty, "invested": budget,
+                "entry_date": day(ts, tz), "entry_price": price, "qty": qty, "invested": budget,
                 "risk_sigma": pending["risk_sigma"], "bars_held": 0,
                 "stop_price": price * math.exp(-pending["rule"]["stop"] * pending["risk_sigma"]),
             })
@@ -162,7 +175,7 @@ def step_market(state, symbol, group, currency, asset, stamps, closes, rules, lo
             for rule in rules:
                 if rule.fires(z[i], None if purity is None else purity[i]) and not np.isnan(sigma[i]):
                     state["pending"].append({"symbol": symbol, "rule": rule.to_dict(),
-                                             "signal_date": day(ts), "risk_sigma": float(sigma[i])})
+                                             "signal_date": day(ts, tz), "risk_sigma": float(sigma[i])})
                     log(f"signal {symbol} z={z[i]:.2f}: {rule.label()}")
                     break
 
@@ -182,7 +195,8 @@ def radar_entry(symbol, group, z, stamps, rules):
         gap = max(gap, 0.0)
         if nearest is None or gap < nearest["gap_sigma"]:
             nearest = {"rule": rule.label(), "gap_sigma": gap}
-    return {"symbol": symbol, "group": group, "date": day(stamps[-1]) if stamps else None,
+    tz = GROUP_TZ.get(group, "UTC")
+    return {"symbol": symbol, "group": group, "date": day(stamps[-1], tz) if stamps else None, "timezone": tz,
             "z": last, "nearest_rule": nearest}
 
 
@@ -221,7 +235,6 @@ def run(state_path, research_path, reader=None, log=lambda m: print(m, file=sys.
     state = load_state(state_path)
     rules = passed_rules(research_path)
     state["active_rules"] = {code: [r.label() for r in rs] for code, rs in rules.items()}
-    today = today or dt.datetime.now(dt.timezone.utc).date().isoformat()
     radar = []
     for symbol, group, currency, asset in universe():
         try:
@@ -229,7 +242,8 @@ def run(state_path, research_path, reader=None, log=lambda m: print(m, file=sys.
         except (FetchError, ValueError) as error:
             log(f"skip  {symbol}: {error}")
             continue
-        stamps, closes = completed_days(stamps, closes, today)
+        tz = GROUP_TZ.get(group, "UTC")
+        stamps, closes = completed_days(stamps, closes, today or market_today(group), tz)
         z = step_market(state, symbol, group, currency, asset, stamps, closes, rules.get(group, []), log)
         radar.append(radar_entry(symbol, group, z, stamps, rules.get(group, [])))
     state["radar"] = radar

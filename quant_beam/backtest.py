@@ -57,6 +57,15 @@ def baseline_win_rate(closes, hold, cost, start, end):
     return float(np.mean(moves > 0))
 
 
+def baseline_avg_return(closes, hold, cost, start, end):
+    """Average net log return of holding `hold` days from EVERY start day (the no-skill average)."""
+    prices = np.asarray(closes[start:end], dtype=float)
+    if prices.size <= hold + 1:
+        return None
+    moves = np.log(prices[hold:] / prices[:-hold]) + 2 * math.log(1 - cost)
+    return float(np.mean(moves))
+
+
 def metrics(trades):
     if not trades:
         return {"trades": 0, "win_rate": None, "avg_win": None, "avg_loss": None,

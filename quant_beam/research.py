@@ -5,8 +5,8 @@ For each market group (each country, and crypto) the history is split in time:
 * the last 40% (out-of-sample) is used ONLY to TEST them, like the future.
 
 A rule "passes" only if, out-of-sample and after costs, it made money on
-average, beat the win rate of simply buying on a random day, and traded often
-enough to mean something. Only passing rules are given to the paper bot.
+average, beat both the win rate AND the average return of holding just as long
+from random days, and traded often enough to mean something. Only passing rules are given to the paper bot.
 """
 
 import datetime as dt
@@ -18,7 +18,7 @@ from pathlib import Path
 
 import numpy as np
 
-from . import backtest, signals
+from . import backtest, oilchain, signals
 from .fetch import FetchError, fetch_closes
 from .markets import COUNTRIES, CRYPTO
 
@@ -38,6 +38,7 @@ def groups():
     for code, country in COUNTRIES.items():
         yield code, country["name"], "stock", country["symbols"]
     yield "CRYPTO", CRYPTO["name"], "crypto", {s: n for s, n in CRYPTO["symbols"].items() if s != "USDT-USD"}
+    yield "OIL", "US oil chain (no car makers or pipelines)", "stock", oilchain.us_tradable()
 
 
 def prepare(symbol, reader):
@@ -60,6 +61,12 @@ def baseline(markets, hold, cost):
     rates = [backtest.baseline_win_rate(m["closes"], hold, cost, m["split"], len(m["closes"])) for m in markets]
     rates = [r for r in rates if r is not None]
     return float(np.mean(rates)) if rates else None
+
+
+def random_hold_average(markets, hold, cost):
+    values = [backtest.baseline_avg_return(m["closes"], hold, cost, m["split"], len(m["closes"])) for m in markets]
+    values = [v for v in values if v is not None]
+    return float(np.mean(values)) if values else None
 
 
 def buy_and_hold(markets, cost):
@@ -91,10 +98,12 @@ def research_group(markets, cost):
     for kind, (rule, in_stats) in best.items():
         out_stats = backtest.metrics(pooled(markets, rule, cost, "out"))
         base = baseline(markets, rule.hold, cost)
+        random_avg = random_hold_average(markets, rule.hold, cost)
         checks = {
             "enough_trades": out_stats["trades"] >= MIN_TRADES_OUT,
             "profitable_after_costs": (out_stats["expectancy"] or 0) > 0,
             "beats_random_entry_win_rate": base is not None and (out_stats["win_rate"] or 0) > base,
+            "beats_random_hold_average": random_avg is not None and (out_stats["expectancy"] or 0) > random_avg,
         }
         results.append({
             "rule": rule.to_dict(),
@@ -103,6 +112,7 @@ def research_group(markets, cost):
             "in_sample": in_stats,
             "out_of_sample": out_stats,
             "random_entry_win_rate": base,
+            "random_hold_average": random_avg,
             "checks": checks,
             "passed": all(checks.values()),
             "evidence": evidence(out_stats["p_value"]),

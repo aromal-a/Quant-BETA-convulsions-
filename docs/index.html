@@ -570,11 +570,11 @@
         const o = r.out_of_sample;
         return `<tr><td>${r.passed ? '<b class="up">pass</b>' : '<span class="down">fail</span>'}</td>` +
           `<td style="text-align:left">${esc(r.label)}</td><td>${o.trades}</td><td>${pct(o.win_rate, 1)}</td>` +
-          `<td>${pct(r.random_entry_win_rate, 1)}</td><td class="${(o.expectancy || 0) > 0 ? "up" : "down"}">${pct(o.expectancy)}</td>` +
+          `<td>${pct(r.random_entry_win_rate, 1)}</td><td class="${(o.expectancy || 0) > 0 ? "up" : "down"}">${pct(o.expectancy)}</td><td>${pct(r.random_hold_average)}</td>` +
           `<td>${pct(Math.expm1(o.total_log_return / g.symbols.length), 0)}</td><td>${esc(r.evidence)} (p ${num(o.p_value, 2)})</td></tr>`;
       }).join("");
       return `<div class="panel scroll" style="margin-top:14px"><h3>${esc(g.name)} · tested from ${esc(g.test_period_start)}</h3>` +
-        `<table><tr><th>Result</th><th style="text-align:left">Rule</th><th>Trades</th><th>Win rate</th><th>Random-day win rate</th><th>Avg trade</th><th>Gain per market</th><th>Evidence</th></tr>${rows}</table>` +
+        `<table><tr><th>Result</th><th style="text-align:left">Rule</th><th>Trades</th><th>Win rate</th><th>Random-day win rate</th><th>Avg trade</th><th>Random-hold avg</th><th>Gain per market</th><th>Evidence</th></tr>${rows}</table>` +
         `<p class="note">Compare with simply buying and holding each market over the same test period: ${pct(Math.expm1(g.buy_and_hold_log_return), 0)} per market. ` +
         `"Evidence" is the chance the result is luck; many settings were tried, so anything but strong can easily be luck.</p></div>`;
     }).join("");

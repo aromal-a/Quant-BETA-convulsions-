@@ -130,3 +130,17 @@ def test_radar_switch_hides_radar_lines(tmp_path):
     hidden = paperbot.set_radar(wallet, False, log=lambda _: None)
     assert "radar ^NSEI" not in paperbot.summary(hidden) and "radar hidden" in paperbot.summary(hidden)
     assert "radar ^NSEI" in paperbot.summary(paperbot.set_radar(wallet, True, log=lambda _: None))
+
+
+def test_dates_use_market_time_zone():
+    # 2026-09-18 23:30 in New York is already 2026-09-19 in UTC
+    ts = 1789788600
+    assert paperbot.day(ts) == "2026-09-19"
+    assert paperbot.day(ts, "America/New_York") == "2026-09-18"
+    kept, _ = paperbot.completed_days([ts], [1.0], "2026-09-19", "America/New_York")
+    assert kept == [ts]
+
+
+def test_random_hold_average_baseline():
+    closes = [100.0, 110.0, 121.0, 133.1]
+    assert math.isclose(backtest.baseline_avg_return(closes, 1, 0.0, 0, 4), math.log(1.1))

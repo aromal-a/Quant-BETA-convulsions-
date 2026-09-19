@@ -65,6 +65,16 @@ SEGMENTS = {
     },
 }
 
+# Segments the paper research may trade: car makers and pipelines are left out.
+TRADABLE_SEGMENTS = ("producers", "rigs", "integrated", "refiners", "transport")
+
+
+def us_tradable():
+    """{symbol: name} for US-listed oil-chain companies in the tradable segments."""
+    return {symbol: name for code in TRADABLE_SEGMENTS
+            for symbol, (name, country) in SEGMENTS[code]["companies"].items() if country == "US"}
+
+
 BENCHMARKS = {"CL=F": "WTI crude", "BZ=F": "Brent crude", "RB=F": "Gasoline (RBOB)", "HO=F": "Diesel / heating oil"}
 GALLONS_PER_BARREL = 42
 WEIGHTS = {

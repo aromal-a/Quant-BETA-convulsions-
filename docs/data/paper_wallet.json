@@ -30,7 +30,23 @@
   "TSLA": 1789738200,
   "BTC-USD": 1789689600,
   "ETH-USD": 1789689600,
-  "SOL-USD": 1789689600
+  "SOL-USD": 1789689600,
+  "COP": 1789738200,
+  "EOG": 1789738200,
+  "OXY": 1789738200,
+  "SLB": 1789738200,
+  "HAL": 1789738200,
+  "BKR": 1789738200,
+  "RIG": 1789738200,
+  "XOM": 1789738200,
+  "CVX": 1789738200,
+  "VLO": 1789738200,
+  "MPC": 1789738200,
+  "PSX": 1789738200,
+  "DAL": 1789738200,
+  "UAL": 1789738200,
+  "UPS": 1789738200,
+  "FDX": 1789738200
  },
  "last_price": {
   "^NSEI": 23346.400390625,
@@ -45,7 +61,23 @@
   "TSLA": 364.2699890136719,
   "BTC-USD": 80901.4609375,
   "ETH-USD": 2611.34716796875,
-  "SOL-USD": 112.5992202758789
+  "SOL-USD": 112.5992202758789,
+  "COP": 131.8300018310547,
+  "EOG": 144.22999572753906,
+  "OXY": 58.84000015258789,
+  "SLB": 51.119998931884766,
+  "HAL": 33.63999938964844,
+  "BKR": 57.25,
+  "RIG": 5.639999866485596,
+  "XOM": 163.5399932861328,
+  "CVX": 209.50999450683594,
+  "VLO": 413.2799987792969,
+  "MPC": 424.8900146484375,
+  "PSX": 273.1300048828125,
+  "DAL": 79.62000274658203,
+  "UAL": 108.70999908447266,
+  "UPS": 99.05999755859375,
+  "FDX": 303.6499938964844
  },
  "equity_history": [
   {
@@ -62,6 +94,11 @@
    "date": "2026-09-19",
    "INR": 1000000.0,
    "USD": 10000.0
+  },
+  {
+   "date": "2026-09-19",
+   "INR": 1000000.0,
+   "USD": 10000.0
   }
  ],
  "active_rules": {
@@ -69,14 +106,16 @@
    "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3"
   ],
   "US": [],
-  "CRYPTO": []
+  "CRYPTO": [],
+  "OIL": []
  },
- "updated_at": "2026-09-19T08:48:43+00:00",
+ "updated_at": "2026-09-19T11:18:45+00:00",
  "radar": [
   {
    "symbol": "^NSEI",
    "group": "IN",
    "date": "2026-09-18",
+   "timezone": "Asia/Kolkata",
    "z": 0.5311912280853911,
    "nearest_rule": {
     "rule": "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3",
@@ -87,6 +126,7 @@
    "symbol": "^BSESN",
    "group": "IN",
    "date": "2026-09-18",
+   "timezone": "Asia/Kolkata",
    "z": -0.04224094700555732,
    "nearest_rule": {
     "rule": "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3",
@@ -97,6 +137,7 @@
    "symbol": "RELIANCE.NS",
    "group": "IN",
    "date": "2026-09-18",
+   "timezone": "Asia/Kolkata",
    "z": -1.2397857227444204,
    "nearest_rule": {
     "rule": "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3",
@@ -107,6 +148,7 @@
    "symbol": "TCS.NS",
    "group": "IN",
    "date": "2026-09-18",
+   "timezone": "Asia/Kolkata",
    "z": -1.9691761091557982,
    "nearest_rule": {
     "rule": "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3",
@@ -117,6 +159,7 @@
    "symbol": "INFY.NS",
    "group": "IN",
    "date": "2026-09-18",
+   "timezone": "Asia/Kolkata",
    "z": -0.3410062907593512,
    "nearest_rule": {
     "rule": "momentum: z \u2265 +3\u03c3; hold 10d, stop 3\u03c3",
@@ -127,6 +170,7 @@
    "symbol": "^GSPC",
    "group": "US",
    "date": "2026-09-18",
+   "timezone": "America/New_York",
    "z": 0.24155929382350455,
    "nearest_rule": null
   },
@@ -134,6 +178,7 @@
    "symbol": "^IXIC",
    "group": "US",
    "date": "2026-09-18",
+   "timezone": "America/New_York",
    "z": 0.3629516941424927,
    "nearest_rule": null
   },
@@ -141,6 +186,7 @@
    "symbol": "AAPL",
    "group": "US",
    "date": "2026-09-18",
+   "timezone": "America/New_York",
    "z": -0.1265579016970018,
    "nearest_rule": null
   },
@@ -148,6 +194,7 @@
    "symbol": "NVDA",
    "group": "US",
    "date": "2026-09-18",
+   "timezone": "America/New_York",
    "z": 0.5334691258285117,
    "nearest_rule": null
   },
@@ -155,6 +202,7 @@
    "symbol": "TSLA",
    "group": "US",
    "date": "2026-09-18",
+   "timezone": "America/New_York",
    "z": -0.14662386311753378,
    "nearest_rule": null
   },
@@ -162,6 +210,7 @@
    "symbol": "BTC-USD",
    "group": "CRYPTO",
    "date": "2026-09-18",
+   "timezone": "UTC",
    "z": 2.846769847340919,
    "nearest_rule": null
   },
@@ -169,6 +218,7 @@
    "symbol": "ETH-USD",
    "group": "CRYPTO",
    "date": "2026-09-18",
+   "timezone": "UTC",
    "z": 2.202367560015114,
    "nearest_rule": null
   },
@@ -176,7 +226,136 @@
    "symbol": "SOL-USD",
    "group": "CRYPTO",
    "date": "2026-09-18",
+   "timezone": "UTC",
    "z": 3.6055260315768956,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "COP",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": -0.5240427270879496,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "EOG",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": -0.3966882717881336,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "OXY",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": -0.3479355131249319,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "SLB",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": -0.7511780094621947,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "HAL",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": -0.542369264456519,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "BKR",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": 0.5788042482546926,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "RIG",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": -0.11814577084246977,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "XOM",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": 0.10329399943390863,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "CVX",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": -0.6292477430693902,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "VLO",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": 0.08633610520871955,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "MPC",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": 0.3373228295820827,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "PSX",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": -0.20985683203385783,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "DAL",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": 0.12328431169717226,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "UAL",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": 0.40000276391310535,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "UPS",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": -0.6129802346597005,
+   "nearest_rule": null
+  },
+  {
+   "symbol": "FDX",
+   "group": "OIL",
+   "date": "2026-09-18",
+   "timezone": "America/New_York",
+   "z": -0.45401700615860574,
    "nearest_rule": null
   }
  ],

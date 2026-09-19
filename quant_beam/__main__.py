@@ -16,6 +16,7 @@ def main():
     commands.add_parser("analyse", help="re-read markets and rebuild the analysis (default)")
     commands.add_parser("research", help="test trading rules on 10 years of history")
     commands.add_parser("oil", help="oil & transport value chain: margins, leaks and the ensemble")
+    commands.add_parser("boot", help="bold one-screen bulletin of the latest saved data (instant, offline)")
     commands.add_parser("cost", help="trading cost slice: round-trip loss on the live Binance order book")
     bot = commands.add_parser("bot", help="paper QuantBot (pretend money only)")
     bot.add_argument("action", choices=["run", "status", "cancel", "cancel-signals", "resume", "watch", "radar"])
@@ -26,6 +27,9 @@ def main():
         research.run(RESEARCH)
     elif args.command == "oil":
         oilchain.run(OIL)
+    elif args.command == "boot":
+        from .boot import bulletin
+        print(bulletin())
     elif args.command == "cost":
         tradingcost.run(COST)
     elif args.command == "bot":

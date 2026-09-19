@@ -102,25 +102,39 @@ not as forecasting skill.
 
 ---
 
-## Run it yourself
+## Quick start (anyone who clones this repo)
 
 ```bash
-pip install -r requirements.txt pytest
+git clone https://github.com/aromal-a/Quant-BETA-convulsions-.git
 ```
 
 ```bash
-python -m pytest -q tests
+cd Quant-BETA-convulsions- && ./setup.sh
 ```
+
+`setup.sh` needs Python 3.9 or newer. It creates `.venv`, installs everything, runs the tests and
+shows the boot bulletin. After that:
 
 ```bash
-python -m quant_beam --out docs/data/quant_beam.json
+source .venv/bin/activate
 ```
+
+| Command | What it does |
+|---|---|
+| `quant-beam boot` | Bold one-screen bulletin of the latest data (instant, offline) |
+| `quant-beam analyse` | Re-read markets and rebuild the quantum analysis |
+| `quant-beam research` | Test the trading rules on 10 years of history |
+| `quant-beam bot run` / `status` / `watch` | Paper QuantBot (pretend money) |
+| `quant-beam oil` | Oil & transport value chain |
+| `quant-beam cost` | Trading cost from the live Binance order book |
+
+To see the web page:
 
 ```bash
-python -m http.server 8000 --directory docs
+python3 -m http.server 8000 --directory docs
 ```
 
-Then open http://localhost:8000.
+Then open http://localhost:8000. Every change to this repo is listed in [CHANGELOG.md](CHANGELOG.md).
 
 ## Web page
 
@@ -146,21 +160,22 @@ Three rule types are tested on 10 years of daily history, each with 32 settings
 | `calm_dip_buy` | Dip buy, but only while the market's quantum ground-state purity is high (calm) |
 
 Here σ is the volatility of the previous 60 days, so every signal uses only past data.
-For each group (India, US, crypto), the settings are **picked** on the older 60% of the history.
+For each group (India, US, crypto, and the US oil chain without car makers or pipelines), the settings are **picked** on the older 60% of the history.
 They are then **tested** on the newer 40% the bot never saw. A rule passes only if, in that test and
 after costs (0.1% per side for stocks, 0.2% for crypto):
 
 1. it made at least 20 trades,
 2. its average trade made money, and
-3. its win rate beat simply buying on a random day and holding just as long.
+3. its win rate beat simply buying on a random day and holding just as long, and
+4. its average trade beat the average of holding just as long from random start days.
 
 Each result also gets an **evidence** grade from a t-test. Many settings were tried, so a
 "weak" result can easily be luck.
 
-**First results (test period Sept 2022 – Sept 2026):** only 1 of 9 rules passed. That rule is India
-`momentum` (z ≥ +3σ, hold 10 days): 35 trades, 54% wins against 51% for random days, and
-its evidence is weak (p ≈ 0.23). No US or crypto rule passed. In crypto, every rule lost
-money in the test period. Simply buying and holding usually did better than every rule.
+**Latest results (test period Sept 2022 – Sept 2026):** only 1 of 12 rules passed. It's India
+`momentum` (z ≥ +3σ, hold 10 days): 35 trades, 54% wins against 51% for random days, and weak
+evidence (p ≈ 0.23). No US, crypto or oil-chain rule passed. The best oil-chain rule did no better than
+holding for the same 10 days from random start days. Simply buying and holding usually beat every rule.
 
 ### Step 2 — The bot (`paperbot.py`)
 Every run it:
@@ -171,15 +186,15 @@ Every run it:
 - **guards against losses:** if a wallet falls 10% below its peak, it closes everything and halts.
 
 ```bash
-python -m quant_beam research
+quant-beam research
 ```
 
 ```bash
-python -m quant_beam bot run
+quant-beam bot run
 ```
 
 ```bash
-python -m quant_beam bot watch
+quant-beam bot watch
 ```
 
 In `watch` mode: **Enter** runs the bot now, **c** cancels today's queued signals (open
@@ -210,7 +225,7 @@ as a secret. **Never put it in a file in this public repo.**
 
 ## Trading cost slice
 
-`python -m quant_beam cost` reads the live Binance order book for Bitcoin, Ethereum and Solana. It
+`quant-beam cost` reads the live Binance order book for Bitcoin, Ethereum and Solana. It
 works out how much **one round trip** (buy, then sell straight back) loses at sizes from $100 to
 $5 million. The loss has three parts:
 
@@ -225,7 +240,7 @@ move, which is why frequent small trades rarely pay.
 
 ## Oil & transport value chain
 
-`python -m quant_beam oil` follows the chain from the oil well to the car and the truck, across
+`quant-beam oil` follows the chain from the oil well to the car and the truck, across
 35 companies in the US, India and a few global majors (UK, Japan):
 
 | Segment | Examples |
