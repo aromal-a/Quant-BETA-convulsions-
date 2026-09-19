@@ -122,11 +122,11 @@
       <p class="note" id="cost-note"></p></div>
   </section>
 
-  <h2>Oil &amp; transport value chain</h2>
-  <p class="sub">From the oil well to the car and the truck: who is winning on profit margins right now, where margins are leaking, and whether the share price agrees. Margins come from the latest quarterly filings, compared with the same quarter a year earlier.</p>
+  <h2>Oil, lithium &amp; transport value chain</h2>
+  <p class="sub">From the oil well and the lithium mine to the car and the truck: who is winning on profit margins right now, where margins are leaking, and whether the share price agrees. Margins come from the latest quarterly filings, compared with the same quarter a year earlier.</p>
   <section id="oil-section">
     <div class="grid" style="margin-top:14px">
-      <div class="panel"><h3>Oil &amp; fuel prices</h3><div class="stats" id="oil-bench"></div></div>
+      <div class="panel"><h3>Oil, fuel &amp; lithium prices</h3><div class="stats" id="oil-bench"></div></div>
       <div class="panel"><h3>Refining margin · 3-2-1 crack spread ($/barrel)</h3><canvas id="oil-crack" height="140"></canvas><p class="note" id="oil-crack-note"></p></div>
     </div>
     <div class="panel scroll" style="margin-top:16px"><h3>Segments</h3><table id="oil-segments"></table></div>
@@ -596,12 +596,12 @@
 
     const segments = Object.entries(report.segments);
     document.getElementById("oil-segments").innerHTML =
-      "<tr><th>Segment</th><th>Operating margin</th><th>Change vs 1y ago</th><th>Revenue growth</th><th>Share price 1y</th><th>Oil beta</th><th>Margin leaks</th><th>Ensemble</th></tr>" +
+      "<tr><th>Segment</th><th>Operating margin</th><th>Change vs 1y ago</th><th>Revenue growth</th><th>Share price 1y</th><th>Oil beta</th><th>Lithium beta</th><th>Margin leaks</th><th>Ensemble</th></tr>" +
       segments.sort((a, b) => (b[1].median_ensemble ?? -9) - (a[1].median_ensemble ?? -9)).map(([, g]) =>
         `<tr><td>${esc(g.name)}</td><td>${pct(g.median_operating_margin, 1)}</td><td class="${tone(g.median_operating_margin_change)}">${signed(g.median_operating_margin_change)}</td>` +
         `<td>${signed(g.median_revenue_growth, 0)}</td><td class="${tone(g.median_return_1y)}">${signed(g.median_return_1y, 0)}</td>` +
-        `<td>${num(g.median_oil_beta, 2)}</td><td class="${g.leaking.length ? "warn" : ""}">${g.leaking.length ? esc(g.leaking.join(", ")) : "none"}</td><td>${num(g.median_ensemble, 2)}</td></tr>`).join("") +
-      '<tr><td colspan="8" class="note" style="text-align:left">Medians per segment. Oil beta: how much the share moves for a 1% move in crude.</td></tr>';
+        `<td>${num(g.median_oil_beta, 2)}</td><td>${num(g.median_lithium_beta, 2)}</td><td class="${g.leaking.length ? "warn" : ""}">${g.leaking.length ? esc(g.leaking.join(", ")) : "none"}</td><td>${num(g.median_ensemble, 2)}</td></tr>`).join("") +
+      '<tr><td colspan="9" class="note" style="text-align:left">Medians per segment. Oil beta: how much the share moves for a 1% move in crude. Lithium beta: the same against the lithium &amp; battery ETF (LIT). Lithium and battery companies are part of that ETF, so their own lithium beta is partly circular.</td></tr>';
 
     const segPick = document.getElementById("oil-filter-segment"), countryPick = document.getElementById("oil-filter-country");
     segPick.add(new Option("All", "")); segments.forEach(([code, g]) => segPick.add(new Option(g.name, code)));
@@ -621,7 +621,7 @@
             `<td>${num(c.scores.ensemble, 2)}</td><td class="${alignClass(c.alignment)}">${esc(c.alignment)}</td></tr>`;
         }).join("");
     };
-    const palette = ["#7048e8", "#1c7ed6", "#0ca678", "#f59f00", "#e03131", "#d6336c", "#495057"];
+    const palette = ["#7048e8", "#1c7ed6", "#0ca678", "#f59f00", "#e03131", "#d6336c", "#495057", "#15aabf", "#94d82d"];
     const segColor = Object.fromEntries(segments.map(([code], i) => [code, palette[i % palette.length]]));
     document.getElementById("oil-dots-legend").innerHTML = segments.map(([code, g]) =>
       `<span><i style="background:${segColor[code]};height:10px;width:10px;border-radius:50%"></i>${esc(g.name)}</span>`).join("");

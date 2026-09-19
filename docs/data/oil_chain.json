@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-17T12:01:25+00:00",
+ "generated_at": "2026-09-19T11:36:32+00:00",
  "weights": {
   "margin": {
    "operating_margin_vs_segment": 0.4,
@@ -15,30 +15,34 @@
  "benchmarks": {
   "CL=F": {
    "name": "WTI crude",
-   "last": 100.75,
-   "return_1y": 0.5615313893669742
+   "last": 100.30000305175781,
+   "return_1y": 0.5659640635880523
   },
   "BZ=F": {
    "name": "Brent crude",
-   "last": 99.41000366210938,
-   "return_1y": 0.4518767619365982
+   "last": 103.87000274658203,
+   "return_1y": 0.5286240973005527
   },
   "RB=F": {
    "name": "Gasoline (RBOB)",
-   "last": 3.178800106048584,
-   "return_1y": 0.5570141669637751
+   "last": 3.527600049972534,
+   "return_1y": 0.7388474653557386
   },
   "HO=F": {
    "name": "Diesel / heating oil",
-   "last": 4.869900226593018,
-   "return_1y": 1.0346354895330414
+   "last": 5.057799816131592,
+   "return_1y": 1.1478681189262012
+  },
+  "LIT": {
+   "name": "Lithium & battery (LIT ETF)",
+   "last": 70.5,
+   "return_1y": 0.3410690585745064
   }
  },
  "crack_spread_321": {
-  "last": 56.4350061416626,
-  "avg_1y": 41.903545364500985,
+  "last": 69.28199577331543,
+  "avg_1y": 42.12185959399692,
   "dates": [
-   "2025-12-30",
    "2025-12-31",
    "2026-01-02",
    "2026-01-05",
@@ -217,10 +221,10 @@
    "2026-09-14",
    "2026-09-15",
    "2026-09-16",
-   "2026-09-17"
+   "2026-09-17",
+   "2026-09-18"
   ],
   "values": [
-   20.34,
    20.02,
    19.84,
    19.84,
@@ -399,22 +403,24 @@
    60.95,
    64.86,
    68.6,
-   56.44
+   67.89,
+   69.28
   ]
  },
  "segments": {
   "producers": {
    "name": "Oil producers (upstream)",
    "companies": 4,
-   "median_operating_margin": 0.3404681022643611,
-   "median_operating_margin_change": 0.06811822541106115,
-   "median_revenue_growth": 0.3125116005456644,
-   "median_return_1y": 0.2692515495959805,
-   "median_oil_beta": 0.34198451456670864,
+   "median_operating_margin": 0.35904570588310547,
+   "median_operating_margin_change": 0.10923148713648083,
+   "median_revenue_growth": 0.451052552066578,
+   "median_return_1y": 0.22519787012228154,
+   "median_oil_beta": 0.34088140881328366,
+   "median_lithium_beta": -0.05484952397224872,
    "leaking": [
     "ONGC.NS"
    ],
-   "median_ensemble": 0.30505391945847815
+   "median_ensemble": 0.26522560764055175
   },
   "rigs": {
    "name": "Rigs & oilfield services",
@@ -422,12 +428,13 @@
    "median_operating_margin": 0.12768108911431894,
    "median_operating_margin_change": -0.009997352977025337,
    "median_revenue_growth": 0.00737819349434593,
-   "median_return_1y": 0.5439620460028226,
-   "median_oil_beta": 0.12011887988953884,
+   "median_return_1y": 0.49064888533006557,
+   "median_oil_beta": 0.11862518508181943,
+   "median_lithium_beta": 0.33594669902293883,
    "leaking": [
     "SLB"
    ],
-   "median_ensemble": -0.17029625408680224
+   "median_ensemble": -0.1395346985458494
   },
   "pipelines": {
    "name": "Pipelines (midstream)",
@@ -435,10 +442,11 @@
    "median_operating_margin": 0.30064775519320974,
    "median_operating_margin_change": 0.015640333124926742,
    "median_revenue_growth": 0.10761999010390899,
-   "median_return_1y": 0.20353474962842588,
-   "median_oil_beta": 0.06005095257103395,
+   "median_return_1y": 0.20593260476898068,
+   "median_oil_beta": 0.059412783156932096,
+   "median_lithium_beta": -0.020063845677664015,
    "leaking": [],
-   "median_ensemble": 0.14172532225391313
+   "median_ensemble": 0.04126669394865562
   },
   "integrated": {
    "name": "Integrated majors",
@@ -446,10 +454,11 @@
    "median_operating_margin": 0.158868059618088,
    "median_operating_margin_change": 0.046747571929825996,
    "median_revenue_growth": 0.4473289912240468,
-   "median_return_1y": 0.33528672238349655,
-   "median_oil_beta": 0.25748615161778804,
+   "median_return_1y": 0.3087013511115211,
+   "median_oil_beta": 0.25749564675525305,
+   "median_lithium_beta": 0.00571350792056167,
    "leaking": [],
-   "median_ensemble": 0.21810633207265648
+   "median_ensemble": 0.12730741813510632
   },
   "refiners": {
    "name": "Refiners & fuel retail",
@@ -457,29 +466,59 @@
    "median_operating_margin": 0.041436486746621114,
    "median_operating_margin_change": -4.720507581660108e-05,
    "median_revenue_growth": 0.4365597794144128,
-   "median_return_1y": 0.4909775245248813,
-   "median_oil_beta": 0.04637169258193216,
+   "median_return_1y": 0.5109666905541745,
+   "median_oil_beta": 0.045202576289852234,
+   "median_lithium_beta": 0.06172970988282195,
    "leaking": [
     "IOC.NS",
     "BPCL.NS",
     "HINDPETRO.NS"
    ],
-   "median_ensemble": 0.37395947645042105
+   "median_ensemble": 0.2919861482937467
   },
   "cars": {
    "name": "Car makers",
-   "companies": 7,
-   "median_operating_margin": 0.030379377837004954,
-   "median_operating_margin_change": -0.01654150327429703,
-   "median_revenue_growth": 0.10381458879001504,
-   "median_return_1y": -0.12671939540008026,
-   "median_oil_beta": -0.1534137353981711,
+   "companies": 8,
+   "median_operating_margin": 0.03968290276079441,
+   "median_operating_margin_change": -0.0156501387340953,
+   "median_revenue_growth": 0.09600823425110283,
+   "median_return_1y": -0.1522970761980219,
+   "median_oil_beta": -0.14825171885096317,
+   "median_lithium_beta": 0.22147450718254988,
    "leaking": [
-    "MARUTI.NS",
     "TSLA",
+    "MARUTI.NS",
     "TMPV.NS"
    ],
-   "median_ensemble": -0.22564074177290305
+   "median_ensemble": -0.1440299209149689
+  },
+  "lithium": {
+   "name": "Lithium miners",
+   "companies": 4,
+   "median_operating_margin": 0.26877800705689714,
+   "median_operating_margin_change": 0.29242972434011705,
+   "median_revenue_growth": 1.6931551668755915,
+   "median_return_1y": 0.47288812341129116,
+   "median_oil_beta": -0.02774189782086528,
+   "median_lithium_beta": 1.0721128744598645,
+   "leaking": [],
+   "median_ensemble": 0.4655796496704804
+  },
+  "batteries": {
+   "name": "Battery makers",
+   "companies": 5,
+   "median_operating_margin": 0.058618496917813095,
+   "median_operating_margin_change": -0.022832695178916923,
+   "median_revenue_growth": 0.18538118293517325,
+   "median_return_1y": 0.03703703703703698,
+   "median_oil_beta": -0.01771533445972768,
+   "median_lithium_beta": 0.38632603916415453,
+   "leaking": [
+    "006400.KS",
+    "300750.SZ",
+    "373220.KS"
+   ],
+   "median_ensemble": -0.1590222783399935
   },
   "transport": {
    "name": "Airlines, freight & logistics",
@@ -487,15 +526,16 @@
    "median_operating_margin": 0.06867527635494293,
    "median_operating_margin_change": -0.03852235758020636,
    "median_revenue_growth": 0.14265601343542078,
-   "median_return_1y": 0.09614592443042169,
-   "median_oil_beta": -0.19040334568540565,
+   "median_return_1y": 0.10354644647546363,
+   "median_oil_beta": -0.1909345627387291,
+   "median_lithium_beta": 0.2599267607627748,
    "leaking": [
     "DAL",
     "UAL",
     "UPS",
     "INDIGO.NS"
    ],
-   "median_ensemble": -0.07993474331064315
+   "median_ensemble": 0.0026846480290973022
   }
  },
  "companies": [
@@ -505,12 +545,12 @@
    "country": "US",
    "segment": "refiners",
    "segment_name": "Refiners & fuel retail",
-   "last_price": 413.9200134277344,
+   "last_price": 424.8900146484375,
    "price": {
-    "return_1y": 1.3003223730783202,
-    "trend_6m": 0.5735190631647576,
-    "annual_volatility": 0.34325573324319153,
-    "purity": 0.9876359117100009,
+    "return_1y": 1.3006824317692165,
+    "trend_6m": 0.5889311846835649,
+    "annual_volatility": 0.34332872755913896,
+    "purity": 0.9876985158150106,
     "tail_multiplier_3sigma": 2.9396694233726866
    },
    "margins": {
@@ -535,20 +575,22 @@
      "net": 0.035977395780940266
     }
    },
-   "oil_beta": 0.27001195546718104,
-   "oil_correlation": 0.43549103490328084,
+   "oil_beta": 0.2688688951472032,
+   "oil_correlation": 0.4335428930645862,
+   "lithium_beta": 0.05159400686321948,
+   "lithium_correlation": 0.04945222461004152,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": 1.1008135551088858,
-     "operating_margin_change": 1.0531095467100204,
-     "revenue_growth": 1.4009382811739963,
-     "trend_6m": 3.0,
-     "calm": -0.01684135893839888,
+     "operating_margin_change": 0.4718424333676675,
+     "revenue_growth": 0.610796406316918,
+     "trend_6m": 2.9362840036977347,
+     "calm": 0.0,
      "tail_risk": 0.0
     },
-    "margin": 1.141756896962362,
-    "price": 1.7957896602654002,
-    "ensemble": 1.468773278613881
+    "margin": 0.751221676654005,
+    "price": 1.7617704022186407,
+    "ensemble": 1.256496039436323
    },
    "alignment": "aligned: strong"
   },
@@ -558,12 +600,12 @@
    "country": "US",
    "segment": "refiners",
    "segment_name": "Refiners & fuel retail",
-   "last_price": 403.2799987792969,
+   "last_price": 413.2799987792969,
    "price": {
-    "return_1y": 1.5593703118227382,
-    "trend_6m": 0.535968779159152,
-    "annual_volatility": 0.36332894355733447,
-    "purity": 0.9906916892334934,
+    "return_1y": 1.5250809763723239,
+    "trend_6m": 0.534898355608696,
+    "annual_volatility": 0.3627407998055273,
+    "purity": 0.9904000300979128,
     "tail_multiplier_3sigma": 4.40950413505903
    },
    "margins": {
@@ -588,22 +630,79 @@
      "net": 0.023888387032018468
     }
    },
-   "oil_beta": 0.30018743845160734,
-   "oil_correlation": 0.4574109358334342,
+   "oil_beta": 0.2983816769660114,
+   "oil_correlation": 0.4553836114293376,
+   "lithium_beta": 0.0035595960779441016,
+   "lithium_correlation": 0.003229245278782327,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": 0.8943902850842712,
-     "operating_margin_change": 1.118327301580891,
-     "revenue_growth": 1.1521369742848304,
-     "trend_6m": 3.0,
-     "calm": 0.0871724867851239,
-     "tail_risk": 0.8172753093650327
+     "operating_margin_change": 0.5024729126015656,
+     "revenue_growth": 0.5016991596732985,
+     "trend_6m": 2.654664957238664,
+     "calm": 0.10345728449567229,
+     "tail_risk": 0.7984951211111357
     },
-    "margin": 1.035514429523031,
-    "price": 1.699201825291526,
-    "ensemble": 1.3673581274072784
+    "margin": 0.6590851110089945,
+    "price": 1.498889027300446,
+    "ensemble": 1.0789870691547203
    },
    "alignment": "aligned: strong"
+  },
+  {
+   "symbol": "SQM",
+   "name": "SQM",
+   "country": "CL",
+   "segment": "lithium",
+   "segment_name": "Lithium miners",
+   "last_price": 67.72000122070312,
+   "price": {
+    "return_1y": 0.5621684799165643,
+    "trend_6m": -0.09756294724624921,
+    "annual_volatility": 0.4813604247515359,
+    "purity": 0.9953655217923676,
+    "tail_multiplier_3sigma": 1.4698347116863433
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 2468300000.0,
+    "margins": {
+     "gross": 0.5104727950411214,
+     "operating": 0.4892436089616335,
+     "net": 0.26739051168820643
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 1.3672197180397045,
+    "change": {
+     "gross": 0.2678334932285195,
+     "operating": 0.2922550216402563,
+     "net": 0.18261061334736056
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.2426393018126019,
+     "operating": 0.1969885873213772,
+     "net": 0.08477989834084589
+    }
+   },
+   "oil_beta": -0.036545875327440316,
+   "oil_correlation": -0.042030991922077876,
+   "lithium_beta": 0.9688400878663636,
+   "lithium_correlation": 0.6623361185173163,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 2.1900477220163843,
+     "operating_margin_change": 1.706832805222348,
+     "revenue_growth": 2.4089433981554844,
+     "trend_6m": -0.6417226663942709,
+     "calm": 0.2936159263157066,
+     "tail_risk": -0.7984951211111357
+    },
+    "margin": 2.04054089052659,
+    "price": -0.19185535009096555,
+    "ensemble": 0.9243427702178122
+   },
+   "alignment": "mixed"
   },
   {
    "symbol": "PSX",
@@ -611,12 +710,12 @@
    "country": "US",
    "segment": "refiners",
    "segment_name": "Refiners & fuel retail",
-   "last_price": 264.6300048828125,
+   "last_price": 273.1300048828125,
    "price": {
-    "return_1y": 1.0173046169994877,
-    "trend_6m": 0.42671871616078305,
-    "annual_volatility": 0.30908671563728546,
-    "purity": 0.9946162567035124,
+    "return_1y": 1.051449648001487,
+    "trend_6m": 0.42625607002338467,
+    "annual_volatility": 0.3106852642842988,
+    "purity": 0.9947004659405446,
     "tail_multiplier_3sigma": 2.9396694233726866
    },
    "margins": {
@@ -641,75 +740,134 @@
      "net": 0.026318158629175043
     }
    },
-   "oil_beta": 0.24029121131428444,
-   "oil_correlation": 0.4303993151864835,
+   "oil_beta": 0.2392566899158627,
+   "oil_correlation": 0.4263292081328481,
+   "lithium_beta": 0.023634566512742896,
+   "lithium_correlation": 0.02503362290292969,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": 0.5039404795284572,
-     "operating_margin_change": 0.6851850612232058,
-     "revenue_growth": 1.3626707623018297,
-     "trend_6m": 2.387554740768867,
-     "calm": 0.22075857157691306,
+     "operating_margin_change": 0.29904127922398044,
+     "revenue_growth": 0.5940164263520381,
+     "trend_6m": 2.0884214827525236,
+     "calm": 0.2681469243922209,
      "tail_risk": 0.0
     },
-    "margin": 0.7481843687610311,
-    "price": 1.4877224873555484,
-    "ensemble": 1.1179534280582897
+    "margin": 0.4399959887713827,
+    "price": 1.3200896207495694,
+    "ensemble": 0.880042804760476
    },
    "alignment": "aligned: strong"
   },
   {
-   "symbol": "OXY",
-   "name": "Occidental",
-   "country": "US",
-   "segment": "producers",
-   "segment_name": "Oil producers (upstream)",
-   "last_price": 59.36000061035156,
+   "symbol": "SGML",
+   "name": "Sigma Lithium",
+   "country": "CA",
+   "segment": "lithium",
+   "segment_name": "Lithium miners",
+   "last_price": 9.970000267028809,
    "price": {
-    "return_1y": 0.305476116488955,
-    "trend_6m": 0.02784364799787548,
-    "annual_volatility": 0.3588804106901144,
-    "purity": 0.9881306866676139,
+    "return_1y": 0.7160069475420849,
+    "trend_6m": 0.008056430408226152,
+    "annual_volatility": 1.146136489220273,
+    "purity": 0.9850736841790202,
+    "tail_multiplier_3sigma": 4.40950413505903
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 54700000.0,
+    "margins": {
+     "gross": 0.599762340036563,
+     "operating": 0.23842778793418648,
+     "net": -0.0483363802559415
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 2.238986262434865,
+    "change": {
+     "gross": 0.9950726195249572,
+     "operating": 0.9780654004401079,
+     "net": 1.0683737097487955
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": -0.39531027948839415,
+     "operating": -0.7396376125059214,
+     "net": -1.116710090004737
+    }
+   },
+   "oil_beta": -0.01893792031429024,
+   "oil_correlation": -0.009147398480664674,
+   "lithium_beta": 1.9260510898986452,
+   "lithium_correlation": 0.5530038866144601,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -0.3014911518083974,
+     "operating_margin_change": 3.0,
+     "revenue_growth": 3.0,
+     "trend_6m": -0.09123458476079828,
+     "calm": -0.10052064319503186,
+     "tail_risk": 0.7984951211111357
+    },
+    "margin": 1.6794035392766413,
+    "price": -0.1996451798219073,
+    "ensemble": 0.739879179727367
+   },
+   "alignment": "mixed"
+  },
+  {
+   "symbol": "EXIDEIND.NS",
+   "name": "Exide Industries",
+   "country": "IN",
+   "segment": "batteries",
+   "segment_name": "Battery makers",
+   "last_price": 435.8500061035156,
+   "price": {
+    "return_1y": 0.040711601737140946,
+    "trend_6m": 0.36472115929050675,
+    "annual_volatility": 0.2928430357797982,
+    "purity": 0.9748616490021617,
     "tail_multiplier_3sigma": 5.879338846745373
    },
    "margins": {
     "quarter": "2026-06-30",
-    "revenue": 8065000000.0,
+    "revenue": 55283800000.0,
     "margins": {
-     "gross": 0.575077495350279,
-     "operating": 0.45443273403595785,
-     "net": 0.36912585244885304
+     "gross": 0.3089132802014333,
+     "operating": 0.08671798971850705,
+     "net": 0.06339470152196484
     },
     "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.5338531761125904,
+    "revenue_growth": 0.1774736321968342,
     "change": {
-     "gross": 0.22285231467321542,
-     "operating": 0.30266400067726634,
-     "net": 0.28202048919286216
+     "gross": -0.015828153457344285,
+     "operating": 0.0037808123939658267,
+     "net": 0.005251352683170521
     },
     "leak": null,
     "margins_year_ago": {
-     "gross": 0.35222518067706354,
-     "operating": 0.1517687333586915,
-     "net": 0.08710536325599087
+     "gross": 0.3247414336587776,
+     "operating": 0.08293717732454123,
+     "net": 0.05814334883879432
     }
    },
-   "oil_beta": 0.422372681967744,
-   "oil_correlation": 0.6515685188312129,
+   "oil_beta": -0.08037476360633482,
+   "oil_correlation": -0.15000669763339178,
+   "lithium_beta": 0.07712902154639492,
+   "lithium_correlation": 0.08483472777557725,
    "scores": {
     "parts": {
-     "operating_margin_vs_segment": 0.8808676630303502,
-     "operating_margin_change": 3.0,
-     "revenue_growth": 1.378792444407788,
-     "trend_6m": -0.07349788343081376,
-     "calm": 0.0,
-     "tail_risk": 1.6345506187300654
+     "operating_margin_vs_segment": 0.4415174619069694,
+     "operating_margin_change": 0.042789746594851644,
+     "revenue_growth": -0.17202377052083545,
+     "trend_6m": 1.7677015948390995,
+     "calm": -0.4916010958354917,
+     "tail_risk": 1.5969902422222715
     },
-    "margin": 1.828105554093698,
-    "price": -0.28928132286799807,
-    "ensemble": 0.76941211561285
+    "margin": 0.15931812929656133,
+    "price": 0.698172146611246,
+    "ensemble": 0.4287451379539037
    },
-   "alignment": "diverging: margins ahead of price"
+   "alignment": "aligned: strong"
   },
   {
    "symbol": "CVX",
@@ -717,12 +875,12 @@
    "country": "US",
    "segment": "integrated",
    "segment_name": "Integrated majors",
-   "last_price": 211.5399932861328,
+   "last_price": 209.50999450683594,
    "price": {
-    "return_1y": 0.3447333072860792,
-    "trend_6m": 0.06629856393231441,
-    "annual_volatility": 0.23776687543283914,
-    "purity": 0.9928638004862372,
+    "return_1y": 0.3087013511115211,
+    "trend_6m": 0.039279862285012644,
+    "annual_volatility": 0.2376542999850706,
+    "purity": 0.993049818512605,
     "tail_multiplier_3sigma": 5.879338846745373
    },
    "margins": {
@@ -747,126 +905,22 @@
      "net": 0.056112676056338025
     }
    },
-   "oil_beta": 0.25748615161778804,
-   "oil_correlation": 0.5995377730157514,
+   "oil_beta": 0.25749564675525305,
+   "oil_correlation": 0.5998268019822037,
+   "lithium_beta": -0.07984125212582338,
+   "lithium_correlation": -0.11055499839584751,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": 1.4921231669728425,
-     "operating_margin_change": 1.5794922255756105,
-     "revenue_growth": 1.2822732882080021,
-     "trend_6m": 0.16376831675991008,
-     "calm": 0.16110772683460498,
-     "tail_risk": 1.6345506187300654
+     "operating_margin_change": 0.7190658121239571,
+     "revenue_growth": 0.5587628210940657,
+     "trend_6m": 0.07150190827265891,
+     "calm": 0.20493367335179263,
+     "tail_risk": 1.5969902422222715
     },
-    "margin": 1.4851008146609819,
-    "price": -0.10664467104491251,
-    "ensemble": 0.6892280718080347
-   },
-   "alignment": "mixed"
-  },
-  {
-   "symbol": "COP",
-   "name": "ConocoPhillips",
-   "country": "US",
-   "segment": "producers",
-   "segment_name": "Oil producers (upstream)",
-   "last_price": 132.5399932861328,
-   "price": {
-    "return_1y": 0.4355029855696777,
-    "trend_6m": 0.07575752777163546,
-    "annual_volatility": 0.30892170568719357,
-    "purity": 0.9961169989123634,
-    "tail_multiplier_3sigma": 1.4698347116863433
-   },
-   "margins": {
-    "quarter": "2026-06-30",
-    "revenue": 19161000000.0,
-    "margins": {
-     "gross": 0.3671520275559731,
-     "operating": 0.312040081415375,
-     "net": 0.20515630708209384
-    },
-    "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.3682519280205656,
-    "change": {
-     "gross": 0.11658076220321673,
-     "operating": 0.12595039275499223,
-     "net": 0.0644108057967468
-    },
-    "leak": null,
-    "margins_year_ago": {
-     "gross": 0.25057126535275637,
-     "operating": 0.18608968866038275,
-     "net": 0.14074550128534705
-    }
-   },
-   "oil_beta": 0.35717140895750815,
-   "oil_correlation": 0.6400918352743303,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": -0.21972890975518838,
-     "operating_margin_change": 1.6400684412007498,
-     "revenue_growth": 0.5595156230501357,
-     "trend_6m": 0.22212996840734617,
-     "calm": 0.27184146860791103,
-     "tail_risk": -0.8172753093650327
-    },
-    "margin": 0.6800389371882517,
-    "price": 0.32382964460114033,
-    "ensemble": 0.501934290894696
-   },
-   "alignment": "aligned: strong"
-  },
-  {
-   "symbol": "M&M.NS",
-   "name": "Mahindra & Mahindra",
-   "country": "IN",
-   "segment": "cars",
-   "segment_name": "Car makers",
-   "last_price": 3076.5,
-   "price": {
-    "return_1y": -0.14731152993348118,
-    "trend_6m": 0.010160363840719196,
-    "annual_volatility": 0.2644126322905918,
-    "purity": 0.9919461484521881,
-    "tail_multiplier_3sigma": 2.9396694233726866
-   },
-   "margins": {
-    "quarter": "2026-06-30",
-    "revenue": 575334400000.0,
-    "margins": {
-     "gross": 0.3685069065920619,
-     "operating": 0.14622000700809826,
-     "net": 0.09480642909584408
-    },
-    "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.2662556552222606,
-    "change": {
-     "gross": -0.007869208495837776,
-     "operating": -0.00281617320894606,
-     "net": 0.004936484901960303
-    },
-    "leak": null,
-    "margins_year_ago": {
-     "gross": 0.3763761150878997,
-     "operating": 0.14903618021704432,
-     "net": 0.08986994419388378
-    }
-   },
-   "oil_beta": -0.1534137353981711,
-   "oil_correlation": -0.3186375484732457,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": 1.8457408195562006,
-     "operating_margin_change": 0.0585555564892399,
-     "revenue_growth": 0.05491083817504139,
-     "trend_6m": -0.1826034564611742,
-     "calm": 0.1298722993979981,
-     "tail_risk": 0.0
-    },
-    "margin": 0.7727007180531845,
-    "price": -0.077093999027205,
-    "ensemble": 0.34780335951298974
+    "margin": 0.9962281558575331,
+    "price": -0.1454139730317972,
+    "ensemble": 0.4254070914128679
    },
    "alignment": "mixed"
   },
@@ -876,12 +930,12 @@
    "country": "US",
    "segment": "transport",
    "segment_name": "Airlines, freight & logistics",
-   "last_price": 77.87000274658203,
+   "last_price": 79.62000274658203,
    "price": {
-    "return_1y": 0.3329340155299061,
-    "trend_6m": 0.18327231742942504,
-    "annual_volatility": 0.3871843294028817,
-    "purity": 0.9925880290889667,
+    "return_1y": 0.35362127099072516,
+    "trend_6m": 0.20272421499189708,
+    "annual_volatility": 0.38718370573279864,
+    "purity": 0.9928261565869178,
     "tail_multiplier_3sigma": 2.9396694233726866
    },
    "margins": {
@@ -911,181 +965,304 @@
      "net": 0.12794329649207112
     }
    },
-   "oil_beta": -0.3157540780775997,
-   "oil_correlation": -0.4514869703246142,
+   "oil_beta": -0.31519824004583563,
+   "oil_correlation": -0.45068008181679825,
+   "lithium_beta": 0.3556515408297481,
+   "lithium_correlation": 0.3022764703754602,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": 0.6528951599504218,
-     "operating_margin_change": -0.2988379597775277,
-     "revenue_growth": -0.338430578058873,
-     "trend_6m": 0.8854944560556757,
-     "calm": 0.151720903562905,
+     "operating_margin_change": -0.16311962726719173,
+     "revenue_growth": -0.15190197261278954,
+     "trend_6m": 0.9233736970819073,
+     "calm": 0.19636830850322495,
      "tail_risk": 0.0
     },
-    "margin": 0.07393676445738302,
-    "price": 0.5692268995241316,
-    "ensemble": 0.32158183199075735
+    "margin": 0.16552981855073412,
+    "price": 0.6031162953749506,
+    "ensemble": 0.38432305696284236
    },
    "alignment": "aligned: strong"
   },
   {
-   "symbol": "SHEL",
-   "name": "Shell",
-   "country": "GB",
-   "segment": "integrated",
-   "segment_name": "Integrated majors",
-   "last_price": 95.69999694824219,
+   "symbol": "OXY",
+   "name": "Occidental",
+   "country": "US",
+   "segment": "producers",
+   "segment_name": "Oil producers (upstream)",
+   "last_price": 58.84000015258789,
    "price": {
-    "return_1y": 0.33528672238349655,
-    "trend_6m": 0.039755816382665225,
-    "annual_volatility": 0.22957317037050545,
-    "purity": 0.9952733974727505,
+    "return_1y": 0.24687437730259099,
+    "trend_6m": -0.012498079691338012,
+    "annual_volatility": 0.3554930574692638,
+    "purity": 0.9879724549547354,
+    "tail_multiplier_3sigma": 5.879338846745373
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 8065000000.0,
+    "margins": {
+     "gross": 0.575077495350279,
+     "operating": 0.45443273403595785,
+     "net": 0.36912585244885304
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.5338531761125904,
+    "change": {
+     "gross": 0.22285231467321542,
+     "operating": 0.30266400067726634,
+     "net": 0.28202048919286216
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.35222518067706354,
+     "operating": 0.1517687333586915,
+     "net": 0.08710536325599087
+    }
+   },
+   "oil_beta": 0.4198349851165305,
+   "oil_correlation": 0.653806380966403,
+   "lithium_beta": -0.049235715313229976,
+   "lithium_correlation": -0.04557701183754766,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 0.7090728633733987,
+     "operating_margin_change": 1.766876264078483,
+     "revenue_growth": 0.601085646168505,
+     "trend_6m": -0.1983646690777216,
+     "calm": 0.010490782777785774,
+     "tail_risk": 1.5969902422222715
+    },
+    "margin": 1.1105967802144538,
+    "price": -0.35594464208552723,
+    "ensemble": 0.3773260690644633
+   },
+   "alignment": "diverging: margins ahead of price"
+  },
+  {
+   "symbol": "M&M.NS",
+   "name": "Mahindra & Mahindra",
+   "country": "IN",
+   "segment": "cars",
+   "segment_name": "Car makers",
+   "last_price": 3052.0,
+   "price": {
+    "return_1y": -0.1599691618911343,
+    "trend_6m": -0.004609314131883327,
+    "annual_volatility": 0.2644044312144321,
+    "purity": 0.9920965054061246,
     "tail_multiplier_3sigma": 2.9396694233726866
    },
    "margins": {
     "quarter": "2026-06-30",
-    "revenue": 94664000000.0,
+    "revenue": 575334400000.0,
     "margins": {
-     "gross": 0.19516394828023326,
-     "operating": 0.16032493873066847,
-     "net": 0.11430955801571875
+     "gross": 0.3685069065920619,
+     "operating": 0.14622000700809826,
+     "net": 0.09480642909584408
     },
     "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.4473289912240468,
+    "revenue_growth": 0.2662556552222606,
     "change": {
-     "gross": 0.04643141609664153,
-     "operating": 0.0683914769687506,
-     "net": 0.059253446955571366
+     "gross": -0.007869208495837776,
+     "operating": -0.00281617320894606,
+     "net": 0.004936484901960303
     },
     "leak": null,
     "margins_year_ago": {
-     "gross": 0.14873253218359173,
-     "operating": 0.09193346176191787,
-     "net": 0.055056111060147385
+     "gross": 0.3763761150878997,
+     "operating": 0.14903618021704432,
+     "net": 0.08986994419388378
     }
    },
-   "oil_beta": 0.212966355082897,
-   "oil_correlation": 0.5135750189993582,
+   "oil_beta": -0.15120369287100255,
+   "oil_correlation": -0.314729224519749,
+   "lithium_beta": 0.03954865911409452,
+   "lithium_correlation": 0.048514475886256875,
    "scores": {
     "parts": {
-     "operating_margin_vs_segment": 0.040575261324390245,
-     "operating_margin_change": 0.9331289785807766,
-     "revenue_growth": 0.9507325113893139,
-     "trend_6m": 0.0,
-     "calm": 0.24312660657444926,
+     "operating_margin_vs_segment": 1.7740813305323502,
+     "operating_margin_change": 0.0047355020609194725,
+     "revenue_growth": 0.020574876639205306,
+     "trend_6m": -0.15724843154896914,
+     "calm": 0.16842556162541653,
      "tail_risk": 0.0
     },
-    "margin": 0.5796281982399296,
-    "price": 0.060781651643612315,
-    "ensemble": 0.32020492494177094
+    "margin": 0.715641708365149,
+    "price": -0.05224266852302736,
+    "ensemble": 0.3316995199210608
+   },
+   "alignment": "mixed"
+  },
+  {
+   "symbol": "EOG",
+   "name": "EOG Resources",
+   "country": "US",
+   "segment": "producers",
+   "segment_name": "Oil producers (upstream)",
+   "last_price": 144.22999572753906,
+   "price": {
+    "return_1y": 0.2035213629419721,
+    "trend_6m": 0.03823103530088411,
+    "annual_volatility": 0.2889914741113223,
+    "purity": 0.9926723421206042,
+    "tail_multiplier_3sigma": 2.9396694233726866
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 8494000000.0,
+    "margins": {
+     "gross": 0.7172121497527667,
+     "operating": 0.4060513303508359,
+     "net": 0.32069696256180835
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.5861811391223155,
+    "change": {
+     "gross": 0.07276770530832222,
+     "operating": 0.09251258151796943,
+     "net": 0.06952982904173366
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.6444444444444445,
+     "operating": 0.3135387488328665,
+     "net": 0.2511671335200747
+    }
+   },
+   "oil_beta": 0.3255007697711825,
+   "oil_correlation": 0.6235462079108771,
+   "lithium_beta": -0.06046333263126747,
+   "lithium_correlation": -0.06884997243298334,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 0.34942290772051504,
+     "operating_margin_change": 0.5546326765965204,
+     "revenue_growth": 0.7146029387563003,
+     "trend_6m": 0.06603542317039728,
+     "calm": 0.19047782437672317,
+     "tail_risk": 0.0
+    },
+    "margin": 0.5045428214780743,
+    "price": 0.08724070999641916,
+    "ensemble": 0.29589176573724674
    },
    "alignment": "aligned: strong"
   },
   {
-   "symbol": "XOM",
-   "name": "ExxonMobil",
-   "country": "US",
-   "segment": "integrated",
-   "segment_name": "Integrated majors",
-   "last_price": 163.32000732421875,
+   "symbol": "006400.KS",
+   "name": "Samsung SDI",
+   "country": "KR",
+   "segment": "batteries",
+   "segment_name": "Battery makers",
+   "last_price": 541000.0,
    "price": {
-    "return_1y": 0.4536716470168727,
-    "trend_6m": 0.028003007547762172,
-    "annual_volatility": 0.2597522037048016,
-    "purity": 0.9915250885494867,
-    "tail_multiplier_3sigma": 2.9396694233726866
+    "return_1y": 1.6716049382716047,
+    "trend_6m": 0.2895322117399423,
+    "annual_volatility": 0.7347074363212872,
+    "purity": 0.9774942660765878,
+    "tail_multiplier_3sigma": 4.40950413505903
    },
    "margins": {
     "quarter": "2026-06-30",
-    "revenue": 114529000000.0,
+    "revenue": 3768808123250.0,
     "margins": {
-     "gross": 0.2251744099747662,
-     "operating": 0.158868059618088,
-     "net": 0.12682377389132884
+     "gross": 0.2486986835672943,
+     "operating": 0.054068707818501704,
+     "net": 0.09079568222351263
     },
     "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.4410332549039344,
+    "revenue_growth": 0.18538118293517325,
     "change": {
-     "gross": -0.0006393474644929564,
-     "operating": 0.046747571929825996,
-     "net": 0.03771623334500726
+     "gross": 0.1604273057010649,
+     "operating": -0.03420266997853237,
+     "net": 0.13876550356309122
     },
-    "leak": null,
+    "leak": {
+     "operating_margin_drop": -0.03420266997853237,
+     "from_gross_squeeze": 0.1604273057010649,
+     "from_cost_growth": -0.19462997567959728,
+     "main_cause": "cost growth"
+    },
     "margins_year_ago": {
-     "gross": 0.22581375743925916,
-     "operating": 0.11212048768826201,
-     "net": 0.08910754054632158
+     "gross": 0.08827137786622939,
+     "operating": 0.08827137779703408,
+     "net": -0.047969821339578604
     }
    },
-   "oil_beta": 0.28480137901993735,
-   "oil_correlation": 0.6070114340271502,
+   "oil_beta": 0.03830063295738096,
+   "oil_correlation": 0.029220151175829705,
+   "lithium_beta": 0.5229977633637353,
+   "lithium_correlation": 0.24150213091548484,
    "scores": {
     "parts": {
-     "operating_margin_vs_segment": 0.0,
-     "operating_margin_change": 0.6672982139076087,
-     "revenue_growth": 0.9195856999982469,
-     "trend_6m": -0.07251463762343292,
-     "calm": 0.11554008462671943,
-     "tail_risk": 0.0
+     "operating_margin_vs_segment": -0.07148923824313125,
+     "operating_margin_change": -0.17631528310467345,
+     "revenue_growth": -0.1548695818387718,
+     "trend_6m": 1.3758168818600491,
+     "calm": -0.3907823012206149,
+     "tail_risk": 0.7984951211111357
     },
-    "margin": 0.4508364255626929,
-    "price": -0.014623761417379897,
-    "ensemble": 0.21810633207265648
+    "margin": -0.13009572490687626,
+    "price": 0.6080202856442054,
+    "ensemble": 0.23896228036866457
    },
    "alignment": "mixed"
   },
   {
-   "symbol": "ET",
-   "name": "Energy Transfer",
+   "symbol": "COP",
+   "name": "ConocoPhillips",
    "country": "US",
-   "segment": "pipelines",
-   "segment_name": "Pipelines (midstream)",
-   "last_price": 21.110000610351562,
+   "segment": "producers",
+   "segment_name": "Oil producers (upstream)",
+   "last_price": 131.8300018310547,
    "price": {
-    "return_1y": 0.20353474962842588,
-    "trend_6m": 0.11642202862358757,
-    "annual_volatility": 0.1723903450025047,
-    "purity": 0.993200132083565,
-    "tail_multiplier_3sigma": 0.0
+    "return_1y": 0.4051375214226032,
+    "trend_6m": 0.045072629783585665,
+    "annual_volatility": 0.30822355530922807,
+    "purity": 0.9961299922383672,
+    "tail_multiplier_3sigma": 1.4698347116863433
    },
    "margins": {
     "quarter": "2026-06-30",
-    "revenue": 34334000000.0,
+    "revenue": 19161000000.0,
     "margins": {
-     "gross": 0.16959864856993068,
-     "operating": 0.10409506611522107,
-     "net": 0.06081435311935691
+     "gross": 0.3671520275559731,
+     "operating": 0.312040081415375,
+     "net": 0.20515630708209384
     },
     "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.7843259536430724,
+    "revenue_growth": 0.3682519280205656,
     "change": {
-     "gross": -0.03370662115255138,
-     "operating": -0.016058764047963636,
-     "net": 0.00037365048969262987
+     "gross": 0.11658076220321673,
+     "operating": 0.12595039275499223,
+     "net": 0.0644108057967468
     },
     "leak": null,
     "margins_year_ago": {
-     "gross": 0.20330526972248206,
-     "operating": 0.1201538301631847,
-     "net": 0.06044070262966428
+     "gross": 0.25057126535275637,
+     "operating": 0.18608968866038275,
+     "net": 0.14074550128534705
     }
    },
-   "oil_beta": 0.09325192002003745,
-   "oil_correlation": 0.299473824159839,
+   "oil_beta": 0.3562620478553849,
+   "oil_correlation": 0.639890094097446,
+   "lithium_beta": -0.07077892499229448,
+   "lithium_correlation": -0.07556746551276229,
    "scores": {
     "parts": {
-     "operating_margin_vs_segment": -1.6787945323523357,
-     "operating_margin_change": -0.10409014181053601,
-     "revenue_growth": 2.617953038763708,
-     "trend_6m": 0.47302927127526445,
-     "calm": 0.1725559237689183,
-     "tail_risk": -1.6345506187300654
+     "operating_margin_vs_segment": -0.34942290772051543,
+     "operating_margin_change": 0.7475163240811343,
+     "revenue_growth": 0.24183976210699928,
+     "trend_6m": 0.10169380618433035,
+     "calm": 0.3228921129791904,
+     "tail_risk": -0.7984951211111357
     },
-    "margin": -0.18956326191240702,
-    "price": 0.5721391365168981,
-    "ensemble": 0.19128793730224553
+    "margin": 0.2076053189656474,
+    "price": 0.26151358012206616,
+    "ensemble": 0.23455944954385677
    },
-   "alignment": "mixed"
+   "alignment": "aligned: strong"
   },
   {
    "symbol": "CONCOR.NS",
@@ -1093,12 +1270,12 @@
    "country": "IN",
    "segment": "transport",
    "segment_name": "Airlines, freight & logistics",
-   "last_price": 488.1499938964844,
+   "last_price": 504.54998779296875,
    "price": {
-    "return_1y": -0.13471599260589107,
-    "trend_6m": 0.10237182747381468,
-    "annual_volatility": 0.2662732173563526,
-    "purity": 0.9628854297422335,
+    "return_1y": -0.10262340988355934,
+    "trend_6m": 0.12043743556831635,
+    "annual_volatility": 0.2683709623057199,
+    "purity": 0.9643803777280622,
     "tail_multiplier_3sigma": 5.879338846745373
    },
    "margins": {
@@ -1123,22 +1300,134 @@
      "net": 0.1237631348003139
     }
    },
-   "oil_beta": -0.08189440659930754,
-   "oil_correlation": -0.17351495908176312,
+   "oil_beta": -0.08388876191018863,
+   "oil_correlation": -0.1761328513989293,
+   "lithium_beta": 0.03210737682753364,
+   "lithium_correlation": 0.039728879196911156,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": 1.721967056487594,
-     "operating_margin_change": 0.22216698615024452,
-     "revenue_growth": -1.248250430135168,
-     "trend_6m": 0.38633976077404764,
-     "calm": -0.8593087156705301,
-     "tail_risk": 1.6345506187300654
+     "operating_margin_change": 0.08157802000074131,
+     "revenue_growth": -0.5508502018013367,
+     "trend_6m": 0.4944950920888749,
+     "calm": -0.8929922233759698,
+     "tail_risk": 1.5969902422222715
     },
-    "margin": 0.5280035310281018,
-    "price": -0.22820591526271375,
-    "ensemble": 0.14989880788269405
+    "margin": 0.6112479902350668,
+    "price": -0.16609953692400828,
+    "ensemble": 0.22257422665552928
    },
    "alignment": "mixed"
+  },
+  {
+   "symbol": "002460.SZ",
+   "name": "Ganfeng Lithium",
+   "country": "CN",
+   "segment": "lithium",
+   "segment_name": "Lithium miners",
+   "last_price": 46.20000076293945,
+   "price": {
+    "return_1y": 0.13933419561485727,
+    "trend_6m": -0.31711474107797416,
+    "annual_volatility": 0.5491139555184589,
+    "purity": 0.9910390980342154,
+    "tail_multiplier_3sigma": 1.4698347116863433
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 13900787106.83,
+    "margins": {
+     "gross": 0.32693175809282454,
+     "operating": 0.27352941648043755,
+     "net": 0.174082938776252
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 2.0190906157114785,
+    "change": {
+     "gross": 0.23043781941481284,
+     "operating": 0.29260442703997774,
+     "net": 0.21217991024878288
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.0964939386780117,
+     "operating": -0.019075010559540174,
+     "net": -0.03809697147253089
+    }
+   },
+   "oil_beta": -0.061906458055424704,
+   "oil_correlation": -0.06252440154555254,
+   "lithium_beta": 0.9682227115381759,
+   "lithium_correlation": 0.6073095528127321,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 0.047199260539919644,
+     "operating_margin_change": 1.7088483255406897,
+     "revenue_growth": 3.0,
+     "trend_6m": -1.7860263774140335,
+     "calm": 0.1279310523067742,
+     "tail_risk": -0.7984951211111357
+    },
+    "margin": 1.3024190344322437,
+    "price": -0.9198587952050562,
+    "ensemble": 0.19128011961359376
+   },
+   "alignment": "diverging: margins ahead of price"
+  },
+  {
+   "symbol": "SHEL",
+   "name": "Shell",
+   "country": "GB",
+   "segment": "integrated",
+   "segment_name": "Integrated majors",
+   "last_price": 94.54000091552734,
+   "price": {
+    "return_1y": 0.323904160023043,
+    "trend_6m": 0.03607776633079645,
+    "annual_volatility": 0.22947231862207831,
+    "purity": 0.9952437337143164,
+    "tail_multiplier_3sigma": 2.9396694233726866
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 94664000000.0,
+    "margins": {
+     "gross": 0.19516394828023326,
+     "operating": 0.16032493873066847,
+     "net": 0.11430955801571875
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.4473289912240468,
+    "change": {
+     "gross": 0.04643141609664153,
+     "operating": 0.0683914769687506,
+     "net": 0.059253446955571366
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.14873253218359173,
+     "operating": 0.09193346176191787,
+     "net": 0.055056111060147385
+    }
+   },
+   "oil_beta": 0.21295247749146035,
+   "oil_correlation": 0.5137526155757898,
+   "lithium_beta": 0.09925846921647435,
+   "lithium_correlation": 0.14234230336958506,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 0.040575261324390245,
+     "operating_margin_change": 0.4154917922296734,
+     "revenue_growth": 0.4133850240348305,
+     "trend_6m": 0.05481258763673027,
+     "calm": 0.28895192586275065,
+     "tail_risk": 0.0
+    },
+    "margin": 0.2651038262285916,
+    "price": 0.10512553404772582,
+    "ensemble": 0.18511468013815868
+   },
+   "alignment": "aligned: strong"
   },
   {
    "symbol": "WMB",
@@ -1146,12 +1435,12 @@
    "country": "US",
    "segment": "pipelines",
    "segment_name": "Pipelines (midstream)",
-   "last_price": 70.9000015258789,
+   "last_price": 72.05000305175781,
    "price": {
-    "return_1y": 0.21404109029793172,
-    "trend_6m": -0.03859668285002891,
-    "annual_volatility": 0.24370964914444251,
-    "purity": 0.9968128000525805,
+    "return_1y": 0.22077266168980736,
+    "trend_6m": -0.027515177718576908,
+    "annual_volatility": 0.2432366201579464,
+    "purity": 0.9968394257336858,
     "tail_multiplier_3sigma": 1.4698347116863433
    },
    "margins": {
@@ -1176,292 +1465,79 @@
      "net": 0.19633225458468176
     }
    },
-   "oil_beta": 0.030147914784656806,
-   "oil_correlation": 0.06848549187119707,
+   "oil_beta": 0.03073530546478371,
+   "oil_correlation": 0.06995362528705285,
+   "lithium_beta": 0.0033563675035136477,
+   "lithium_correlation": 0.004540851166008162,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": 0.7053475958019929,
-     "operating_margin_change": 0.6264754129499664,
-     "revenue_growth": -0.7784551760191372,
-     "trend_6m": -0.4834336343390366,
-     "calm": 0.2955254416381476,
-     "tail_risk": -0.8172753093650327
+     "operating_margin_change": 0.27146742811819624,
+     "revenue_growth": -0.3448489980651743,
+     "trend_6m": -0.27663376768726317,
+     "calm": 0.35006060267419464,
+     "tail_risk": -0.7984951211111357
     },
-    "margin": 0.37703816829695636,
-    "price": -0.09358752378913011,
-    "ensemble": 0.14172532225391313
+    "margin": 0.32175620995504084,
+    "price": 0.04130915822286112,
+    "ensemble": 0.18153268408895099
    },
-   "alignment": "mixed"
+   "alignment": "aligned: strong"
   },
   {
-   "symbol": "EOG",
-   "name": "EOG Resources",
+   "symbol": "XOM",
+   "name": "ExxonMobil",
    "country": "US",
-   "segment": "producers",
-   "segment_name": "Oil producers (upstream)",
-   "last_price": 144.92999267578125,
-   "price": {
-    "return_1y": 0.23302698270300604,
-    "trend_6m": 0.06565686778786818,
-    "annual_volatility": 0.29022329649077455,
-    "purity": 0.9930783916526104,
-    "tail_multiplier_3sigma": 2.9396694233726866
-   },
-   "margins": {
-    "quarter": "2026-03-31",
-    "revenue": 6758000000.0,
-    "margins": {
-     "gross": 0.6583308671204499,
-     "operating": 0.36889612311334713,
-     "net": 0.2929860905593371
-    },
-    "compare_quarter": "2025-03-31",
-    "revenue_growth": 0.15679561793906194,
-    "change": {
-     "gross": -0.02431206338280245,
-     "operating": 0.010286058067130066,
-     "net": 0.04255815492085713
-    },
-    "leak": null,
-    "margins_year_ago": {
-     "gross": 0.6826429305032523,
-     "operating": 0.35861006504621706,
-     "net": 0.25042793563848
-    }
-   },
-   "oil_beta": 0.3267976201759091,
-   "oil_correlation": 0.6233911596019165,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": 0.21972890975518794,
-     "operating_margin_change": 0.21947735654242792,
-     "revenue_growth": -0.4866193280785056,
-     "trend_6m": 0.15980906208023873,
-     "calm": 0.1684120715721284,
-     "tail_risk": 0.0
-    },
-    "margin": 0.07835864090334525,
-    "price": 0.13798845514117533,
-    "ensemble": 0.10817354802226029
-   },
-   "alignment": "neutral"
-  },
-  {
-   "symbol": "BP",
-   "name": "BP",
-   "country": "GB",
    "segment": "integrated",
    "segment_name": "Integrated majors",
-   "last_price": 45.380001068115234,
+   "last_price": 163.5399932861328,
    "price": {
-    "return_1y": 0.3265127823026588,
-    "trend_6m": 0.03429681886833451,
-    "annual_volatility": 0.2935514008691659,
-    "purity": 0.9903671695677428,
+    "return_1y": 0.4185097752402491,
+    "trend_6m": 0.03345036566364505,
+    "annual_volatility": 0.2590238653832208,
+    "purity": 0.9912228518282125,
     "tail_multiplier_3sigma": 2.9396694233726866
    },
    "margins": {
     "quarter": "2026-06-30",
-    "revenue": 69105000000.0,
+    "revenue": 114529000000.0,
     "margins": {
-     "gross": 0.20583170537587728,
-     "operating": 0.13069965993777585,
-     "net": 0.05659503653860068
+     "gross": 0.2251744099747662,
+     "operating": 0.158868059618088,
+     "net": 0.12682377389132884
     },
     "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.4820811975893795,
+    "revenue_growth": 0.4410332549039344,
     "change": {
-     "gross": 0.022590235841058404,
-     "operating": 0.04141662650221277,
-     "net": 0.02165819736816295
+     "gross": -0.0006393474644929564,
+     "operating": 0.046747571929825996,
+     "net": 0.03771623334500726
     },
     "leak": null,
     "margins_year_ago": {
-     "gross": 0.18324146953481887,
-     "operating": 0.08928303343556308,
-     "net": 0.03493683917043773
+     "gross": 0.22581375743925916,
+     "operating": 0.11212048768826201,
+     "net": 0.08910754054632158
     }
    },
-   "oil_beta": 0.334607472370793,
-   "oil_correlation": 0.6310525161983284,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": -0.7845127081917779,
-     "operating_margin_change": 0.6018234626136636,
-     "revenue_growth": 1.1226616332660597,
-     "trend_6m": -0.03368192506997229,
-     "calm": 0.07612634936571962,
-     "tail_risk": 0.0
-    },
-    "margin": 0.15145662842196622,
-    "price": -0.0011775677005534703,
-    "ensemble": 0.07513953036070638
-   },
-   "alignment": "neutral"
-  },
-  {
-   "symbol": "GM",
-   "name": "General Motors",
-   "country": "US",
-   "segment": "cars",
-   "segment_name": "Car makers",
-   "last_price": 84.29000091552734,
-   "price": {
-    "return_1y": 0.42985580703365467,
-    "trend_6m": 0.1296577448004234,
-    "annual_volatility": 0.33817685912274587,
-    "purity": 0.9814026595912876,
-    "tail_multiplier_3sigma": 2.9396694233726866
-   },
-   "margins": {
-    "quarter": "2026-06-30",
-    "revenue": 48026000000.0,
-    "margins": {
-     "gross": 0.07612543205763544,
-     "operating": 0.030379377837004954,
-     "net": 0.027172781410069544
-    },
-    "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.019184245150885015,
-    "change": {
-     "gross": -0.014405530125633517,
-     "operating": -0.014758774193893567,
-     "net": -0.013041980272371776
-    },
-    "leak": null,
-    "margins_year_ago": {
-     "gross": 0.09053096218326896,
-     "operating": 0.04513815203089852,
-     "net": 0.04021476168244132
-    }
-   },
-   "oil_beta": -0.1969616299274325,
-   "oil_correlation": -0.32244212006962814,
+   "oil_beta": 0.28388215815008744,
+   "oil_correlation": 0.606736288974345,
+   "lithium_beta": -0.05219201143935529,
+   "lithium_correlation": -0.0663072435816955,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": 0.0,
-     "operating_margin_change": -0.08812364702351319,
-     "revenue_growth": -1.1674222168218908,
-     "trend_6m": 0.5546934228608439,
-     "calm": -0.2290114267025793,
+     "operating_margin_change": 0.2906404579086025,
+     "revenue_growth": 0.3997274134419438,
+     "trend_6m": 0.04111857821286965,
+     "calm": 0.13496809396264442,
      "tail_risk": 0.0
     },
-    "margin": -0.26873390217378346,
-    "price": 0.27556319704086146,
-    "ensemble": 0.003414647433539003
-   },
-   "alignment": "diverging: price ahead of margins"
-  },
-  {
-   "symbol": "FDX",
-   "name": "FedEx",
-   "country": "US",
-   "segment": "transport",
-   "segment_name": "Airlines, freight & logistics",
-   "last_price": 301.7200012207031,
-   "price": {
-    "return_1y": 0.6590656064969418,
-    "trend_6m": 0.05425740386890303,
-    "annual_volatility": 0.28409349555680324,
-    "purity": 0.9837743990217784,
-    "tail_multiplier_3sigma": 4.40950413505903
-   },
-   "margins": {
-    "quarter": "2026-05-31",
-    "revenue": 25007000000.0,
-    "margins": {
-     "gross": 0.22685648018554805,
-     "operating": 0.0835366097492702,
-     "net": 0.0638621186067901
-    },
-    "compare_quarter": "2025-05-31",
-    "revenue_growth": 0.12542754275427548,
-    "change": {
-     "gross": -0.012072412703740876,
-     "operating": -0.0036371076224669813,
-     "net": -0.010305298134884067
-    },
-    "leak": null,
-    "margins_year_ago": {
-     "gross": 0.23892889288928892,
-     "operating": 0.08717371737173718,
-     "net": 0.07416741674167417
-    }
-   },
-   "oil_beta": -0.10978051309368594,
-   "oil_correlation": -0.21393310300771373,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": 0.37797050444349106,
-     "operating_margin_change": 0.048472827771833364,
-     "revenue_growth": -0.6418061834047327,
-     "trend_6m": 0.08947455678902125,
-     "calm": -0.14828115844092923,
-     "tail_risk": 0.8172753093650327
-    },
-    "margin": 0.04221609620518327,
-    "price": -0.10597685194157447,
-    "ensemble": -0.0318803778681956
+    "margin": 0.19620166585182974,
+    "price": 0.0584131704183829,
+    "ensemble": 0.12730741813510632
    },
    "alignment": "neutral"
-  },
-  {
-   "symbol": "SLB",
-   "name": "SLB",
-   "country": "US",
-   "segment": "rigs",
-   "segment_name": "Rigs & oilfield services",
-   "last_price": 52.29999923706055,
-   "price": {
-    "return_1y": 0.5041702199742901,
-    "trend_6m": 0.12553283575893595,
-    "annual_volatility": 0.36141137315675226,
-    "purity": 0.9859176225372894,
-    "tail_multiplier_3sigma": 4.40950413505903
-   },
-   "margins": {
-    "quarter": "2026-06-30",
-    "revenue": 8972000000.0,
-    "margins": {
-     "gross": 0.15548372715113687,
-     "operating": 0.1270619705751226,
-     "net": 0.08760588497547928
-    },
-    "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.04984788205008184,
-    "change": {
-     "gross": -0.033142530747295146,
-     "operating": -0.030321600686286226,
-     "net": -0.031046115960631185
-    },
-    "leak": {
-     "operating_margin_drop": -0.030321600686286226,
-     "from_gross_squeeze": -0.033142530747295146,
-     "from_cost_growth": 0.0028209300610089194,
-     "main_cause": "gross margin squeeze"
-    },
-    "margins_year_ago": {
-     "gross": 0.18862625789843201,
-     "operating": 0.15738357126140884,
-     "net": 0.11865200093611046
-    }
-   },
-   "oil_beta": 0.009637697778186424,
-   "oil_correlation": 0.014763370299117104,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": -0.040484799793074934,
-     "operating_margin_change": -0.27926651424217896,
-     "revenue_growth": -1.0157204195257807,
-     "trend_6m": 0.5292428017731613,
-     "calm": -0.07532921138995366,
-     "tail_risk": 0.8172753093650327
-    },
-    "margin": -0.33104460951925774,
-    "price": 0.1761220818116534,
-    "ensemble": -0.07746126385380217
-   },
-   "alignment": "mixed"
   },
   {
    "symbol": "RIG",
@@ -1469,12 +1545,12 @@
    "country": "US",
    "segment": "rigs",
    "segment_name": "Rigs & oilfield services",
-   "last_price": 5.539999961853027,
+   "last_price": 5.639999866485596,
    "price": {
-    "return_1y": 0.6737160294936033,
-    "trend_6m": -0.17204023986894393,
-    "annual_volatility": 0.5367778112020615,
-    "purity": 0.9854859921190575,
+    "return_1y": 0.6588234436140779,
+    "trend_6m": -0.13574528186241405,
+    "annual_volatility": 0.5347766999537378,
+    "purity": 0.9840375125141265,
     "tail_multiplier_3sigma": 2.9396694233726866
    },
    "margins": {
@@ -1499,22 +1575,189 @@
      "net": -0.9493927125506073
     }
    },
-   "oil_beta": 0.3222129489330221,
-   "oil_correlation": 0.33232457593310755,
+   "oil_beta": 0.31889018715328615,
+   "oil_correlation": 0.3301188558352939,
+   "lithium_beta": 0.41364051833927024,
+   "lithium_correlation": 0.25453488746013775,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": 2.0754590700023443,
-     "operating_margin_change": 0.0,
-     "revenue_growth": -1.3724944244424684,
-     "trend_6m": -1.3067781910607705,
-     "calm": -0.09002122983252715,
+     "operating_margin_change": -0.022765977568734417,
+     "revenue_growth": -0.605330131430365,
+     "trend_6m": -0.8407289529480649,
+     "calm": -0.14020190914269703,
      "tail_risk": 0.0
     },
-    "margin": 0.5556847431124441,
-    "price": -0.8065722220945941,
-    "ensemble": -0.125443739491075
+    "margin": 0.700011210687371,
+    "price": -0.5394878490545132,
+    "ensemble": 0.08026168081642893
    },
    "alignment": "diverging: margins ahead of price"
+  },
+  {
+   "symbol": "ET",
+   "name": "Energy Transfer",
+   "country": "US",
+   "segment": "pipelines",
+   "segment_name": "Pipelines (midstream)",
+   "last_price": 21.139999389648438,
+   "price": {
+    "return_1y": 0.20593260476898068,
+    "trend_6m": 0.10883550303064278,
+    "annual_volatility": 0.17241964088671408,
+    "purity": 0.9933240745775086,
+    "tail_multiplier_3sigma": 0.0
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 34334000000.0,
+    "margins": {
+     "gross": 0.16959864856993068,
+     "operating": 0.10409506611522107,
+     "net": 0.06081435311935691
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.7843259536430724,
+    "change": {
+     "gross": -0.03370662115255138,
+     "operating": -0.016058764047963636,
+     "net": 0.00037365048969262987
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.20330526972248206,
+     "operating": 0.1201538301631847,
+     "net": 0.06044070262966428
+    }
+   },
+   "oil_beta": 0.09293883803290304,
+   "oil_correlation": 0.29840916329165107,
+   "lithium_beta": -0.020063845677664015,
+   "lithium_correlation": -0.038293420654173106,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -1.6787945323523357,
+     "operating_margin_change": -0.07165344591985963,
+     "revenue_growth": 1.1444469760739182,
+     "trend_6m": 0.43402583230211,
+     "calm": 0.2154365931071954,
+     "tail_risk": -1.5969902422222715
+    },
+    "margin": -0.4712897960940944,
+    "price": 0.5538231839914056,
+    "ensemble": 0.04126669394865562
+   },
+   "alignment": "diverging: price ahead of margins"
+  },
+  {
+   "symbol": "FDX",
+   "name": "FedEx",
+   "country": "US",
+   "segment": "transport",
+   "segment_name": "Airlines, freight & logistics",
+   "last_price": 303.6499938964844,
+   "price": {
+    "return_1y": 0.6690124531775052,
+    "trend_6m": 0.05655353049218892,
+    "annual_volatility": 0.284211102708321,
+    "purity": 0.9841749652299336,
+    "tail_multiplier_3sigma": 4.40950413505903
+   },
+   "margins": {
+    "quarter": "2026-05-31",
+    "revenue": 25007000000.0,
+    "margins": {
+     "gross": 0.22685648018554805,
+     "operating": 0.0835366097492702,
+     "net": 0.0638621186067901
+    },
+    "compare_quarter": "2025-05-31",
+    "revenue_growth": 0.12542754275427548,
+    "change": {
+     "gross": -0.012072412703740876,
+     "operating": -0.0036371076224669813,
+     "net": -0.010305298134884067
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.23892889288928892,
+     "operating": 0.08717371737173718,
+     "net": 0.07416741674167417
+    }
+   },
+   "oil_beta": -0.11020969069906723,
+   "oil_correlation": -0.2146744686661306,
+   "lithium_beta": 0.2723454781971185,
+   "lithium_correlation": 0.31533766635508215,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 0.37797050444349106,
+     "operating_margin_change": 0.0,
+     "revenue_growth": -0.28492958270013785,
+     "trend_6m": 0.16153224820942008,
+     "calm": -0.1349380151799811,
+     "tail_risk": 0.7984951211111357
+    },
+    "margin": 0.09420228523736887,
+    "price": -0.056589423036013595,
+    "ensemble": 0.01880643110067764
+   },
+   "alignment": "neutral"
+  },
+  {
+   "symbol": "GM",
+   "name": "General Motors",
+   "country": "US",
+   "segment": "cars",
+   "segment_name": "Car makers",
+   "last_price": 82.19999694824219,
+   "price": {
+    "return_1y": 0.39962536333968735,
+    "trend_6m": 0.10793203145865021,
+    "annual_volatility": 0.3432666452940965,
+    "purity": 0.9828208771151741,
+    "tail_multiplier_3sigma": 2.9396694233726866
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 48026000000.0,
+    "margins": {
+     "gross": 0.07612543205763544,
+     "operating": 0.030379377837004954,
+     "net": 0.027172781410069544
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.019184245150885015,
+    "change": {
+     "gross": -0.014405530125633517,
+     "operating": -0.014758774193893567,
+     "net": -0.013041980272371776
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.09053096218326896,
+     "operating": 0.04513815203089852,
+     "net": 0.04021476168244132
+    }
+   },
+   "oil_beta": -0.1937859069827801,
+   "oil_correlation": -0.31253037780830617,
+   "lithium_beta": 0.2416543525524458,
+   "lithium_correlation": 0.23166463226668907,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -0.15492452129282447,
+     "operating_margin_change": -0.0641545464563566,
+     "revenue_growth": -0.5154077210770295,
+     "trend_6m": 0.42931693945004645,
+     "calm": -0.1867942204969454,
+     "tail_risk": 0.0
+    },
+    "margin": -0.1907131713150783,
+    "price": 0.2108916085457915,
+    "ensemble": 0.010089218615356596
+   },
+   "alignment": "neutral"
   },
   {
    "symbol": "UAL",
@@ -1522,12 +1765,12 @@
    "country": "US",
    "segment": "transport",
    "segment_name": "Airlines, freight & logistics",
-   "last_price": 106.30000305175781,
+   "last_price": 108.70999908447266,
    "price": {
-    "return_1y": 0.016738402189559576,
-    "trend_6m": 0.13162486806109744,
-    "annual_volatility": 0.47659355244307255,
-    "purity": 0.99303244305973,
+    "return_1y": 0.030328849241330502,
+    "trend_6m": 0.14379450648411557,
+    "annual_volatility": 0.47668305427363206,
+    "purity": 0.993148637986439,
     "tail_multiplier_3sigma": 4.40950413505903
    },
    "margins": {
@@ -1557,20 +1800,22 @@
      "net": 0.06386190601207666
     }
    },
-   "oil_beta": -0.44094237729459224,
-   "oil_correlation": -0.512209584992278,
+   "oil_beta": -0.4412537639401075,
+   "oil_correlation": -0.5124604603459889,
+   "lithium_beta": 0.516871618522423,
+   "lithium_correlation": 0.35682041358564354,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": -0.37797050444349106,
-     "operating_margin_change": -0.6743537326322123,
-     "revenue_growth": -0.47133782209554054,
-     "trend_6m": 0.5668305410946384,
-     "calm": 0.1668480539647196,
-     "tail_risk": 0.8172753093650327
+     "operating_margin_change": -0.3394861413430091,
+     "revenue_growth": -0.21018066320604806,
+     "trend_6m": 0.6162321203364606,
+     "calm": 0.2087180673425508,
+     "tail_risk": 0.7984951211111357
     },
-    "margin": -0.5151972592493894,
-    "price": 0.25921904174320803,
-    "ensemble": -0.1279891087530907
+    "margin": -0.32901879095580977,
+    "price": 0.3021445208708437,
+    "ensemble": -0.013437135042483034
    },
    "alignment": "diverging: price ahead of margins"
   },
@@ -1580,12 +1825,12 @@
    "country": "JP",
    "segment": "cars",
    "segment_name": "Car makers",
-   "last_price": 192.2100067138672,
+   "last_price": 191.52999877929688,
    "price": {
-    "return_1y": -0.025699473321173505,
-    "trend_6m": -0.10303222534308816,
-    "annual_volatility": 0.26529601382523255,
-    "purity": 0.9924344137577824,
+    "return_1y": -0.04891253284678165,
+    "trend_6m": -0.08695478463716949,
+    "annual_volatility": 0.26528942495708013,
+    "purity": 0.9921555030272563,
     "tail_multiplier_3sigma": 2.9396694233726866
    },
    "margins": {
@@ -1610,22 +1855,84 @@
      "net": 0.06866258189817197
     }
    },
-   "oil_beta": -0.1383586923682286,
-   "oil_correlation": -0.28872856269837005,
+   "oil_beta": -0.13790211609118738,
+   "oil_correlation": -0.2877747231711563,
+   "lithium_beta": 0.20129466181265396,
+   "lithium_correlation": 0.24969453632771468,
    "scores": {
     "parts": {
-     "operating_margin_vs_segment": 0.7687644524012847,
-     "operating_margin_change": -0.11001915219212634,
-     "revenue_growth": -0.7487316590759593,
-     "trend_6m": -0.8809998740005913,
-     "calm": 0.14649208005211822,
+     "operating_margin_vs_segment": 0.6485204215967316,
+     "operating_margin_change": -0.0744380929800114,
+     "revenue_growth": -0.33181548992323256,
+     "trend_6m": -0.5864329343961123,
+     "calm": 0.17068493656658237,
      "tail_risk": 0.0
     },
-    "margin": 0.11375178826847149,
-    "price": -0.4919769043873252,
-    "ensemble": -0.18911255805942687
+    "margin": 0.16326983346204157,
+    "price": -0.3091885264960218,
+    "ensemble": -0.07295934651699011
    },
    "alignment": "mixed"
+  },
+  {
+   "symbol": "SLB",
+   "name": "SLB",
+   "country": "US",
+   "segment": "rigs",
+   "segment_name": "Rigs & oilfield services",
+   "last_price": 51.119998931884766,
+   "price": {
+    "return_1y": 0.46938768573211154,
+    "trend_6m": 0.06673183352658794,
+    "annual_volatility": 0.36153927960828236,
+    "purity": 0.9858956425163645,
+    "tail_multiplier_3sigma": 4.40950413505903
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 8972000000.0,
+    "margins": {
+     "gross": 0.15548372715113687,
+     "operating": 0.1270619705751226,
+     "net": 0.08760588497547928
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.04984788205008184,
+    "change": {
+     "gross": -0.033142530747295146,
+     "operating": -0.030321600686286226,
+     "net": -0.031046115960631185
+    },
+    "leak": {
+     "operating_margin_drop": -0.030321600686286226,
+     "from_gross_squeeze": -0.033142530747295146,
+     "from_cost_growth": 0.0028209300610089194,
+     "main_cause": "gross margin squeeze"
+    },
+    "margins_year_ago": {
+     "gross": 0.18862625789843201,
+     "operating": 0.15738357126140884,
+     "net": 0.11865200093611046
+    }
+   },
+   "oil_beta": 0.009842053724594643,
+   "oil_correlation": 0.01507064694204007,
+   "lithium_beta": 0.32355982977118264,
+   "lithium_correlation": 0.29450714111955983,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -0.040484799793074934,
+     "operating_margin_change": -0.153927609583743,
+     "revenue_growth": -0.4488877795106985,
+     "trend_6m": 0.2145815525711662,
+     "calm": -0.06904289825456576,
+     "tail_risk": 0.7984951211111357
+    },
+    "margin": -0.16754251965286687,
+    "price": -0.008286061187612076,
+    "ensemble": -0.08791429042023947
+   },
+   "alignment": "neutral"
   },
   {
    "symbol": "KMI",
@@ -1633,12 +1940,12 @@
    "country": "US",
    "segment": "pipelines",
    "segment_name": "Pipelines (midstream)",
-   "last_price": 30.729999542236328,
+   "last_price": 31.84000015258789,
    "price": {
-    "return_1y": 0.12317247283283095,
-    "trend_6m": -0.07941674254335658,
-    "annual_volatility": 0.20825169250406447,
-    "purity": 0.9953735586034912,
+    "return_1y": 0.15487850943158654,
+    "trend_6m": -0.04902938138066943,
+    "annual_volatility": 0.2092128741830284,
+    "purity": 0.9955514717245348,
     "tail_multiplier_3sigma": 2.9396694233726866
    },
    "margins": {
@@ -1663,186 +1970,24 @@
      "net": 0.17689262741217218
     }
    },
-   "oil_beta": 0.06005095257103395,
-   "oil_correlation": 0.1596413478506605,
+   "oil_beta": 0.059412783156932096,
+   "oil_correlation": 0.15721469734774038,
+   "lithium_beta": -0.05781946486676592,
+   "lithium_correlation": -0.09094574437429333,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": 0.0,
-     "operating_margin_change": 0.2852386427024267,
-     "revenue_growth": -0.7299052484760539,
-     "trend_6m": -0.7352927327051995,
-     "calm": 0.24653593343815816,
+     "operating_margin_change": 0.11120055254719753,
+     "revenue_growth": -0.32356026977864183,
+     "trend_6m": -0.38876577380986616,
+     "calm": 0.3007370713549663,
      "tail_risk": 0.0
     },
-    "margin": -0.031885592614240094,
-    "price": -0.37954165626358016,
-    "ensemble": -0.20571362443891011
-   },
-   "alignment": "aligned: weak"
-  },
-  {
-   "symbol": "BKR",
-   "name": "Baker Hughes",
-   "country": "US",
-   "segment": "rigs",
-   "segment_name": "Rigs & oilfield services",
-   "last_price": 56.31999969482422,
-   "price": {
-    "return_1y": 0.21694038851225494,
-    "trend_6m": -0.012001561403367313,
-    "annual_volatility": 0.33410113662519786,
-    "purity": 0.9863322248266788,
-    "tail_multiplier_3sigma": 2.9396694233726866
-   },
-   "margins": {
-    "quarter": "2026-06-30",
-    "revenue": 6742000000.0,
-    "margins": {
-     "gross": 0.23390685256600416,
-     "operating": 0.12830020765351527,
-     "net": 0.10100860278849007
-    },
-    "compare_quarter": "2025-06-30",
-    "revenue_growth": -0.024312590448625215,
-    "change": {
-     "gross": 0.000187605098565663,
-     "operating": -6.448120321411732e-05,
-     "net": -0.0004385752144042826
-    },
-    "leak": null,
-    "margins_year_ago": {
-     "gross": 0.2337192474674385,
-     "operating": 0.1283646888567294,
-     "net": 0.10144717800289435
-    }
-   },
-   "oil_beta": 0.025778673241784372,
-   "oil_correlation": 0.04271659559185814,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": 0.040484799793074934,
-     "operating_margin_change": 0.09235187876626233,
-     "revenue_growth": -1.3826135249772507,
-     "trend_6m": -0.31934217149412397,
-     "calm": -0.061216803587477456,
-     "tail_risk": 0.0
-    },
-    "margin": -0.22338803357171522,
-    "price": -0.20690950379334375,
-    "ensemble": -0.21514876868252947
+    "margin": -0.020231832936849346,
+    "price": -0.1580751964471781,
+    "ensemble": -0.08915351469201373
    },
    "alignment": "neutral"
-  },
-  {
-   "symbol": "F",
-   "name": "Ford",
-   "country": "US",
-   "segment": "cars",
-   "segment_name": "Car makers",
-   "last_price": 13.350000381469727,
-   "price": {
-    "return_1y": 0.14297945485103414,
-    "trend_6m": 0.11162234060009116,
-    "annual_volatility": 0.3805122818099633,
-    "purity": 0.9734222551954002,
-    "tail_multiplier_3sigma": 5.879338846745373
-   },
-   "margins": {
-    "quarter": "2026-06-30",
-    "revenue": 48296000000.0,
-    "margins": {
-     "gross": 0.0687841643200265,
-     "operating": 0.013210203743581249,
-     "net": -0.027476395560708963
-    },
-    "compare_quarter": "2025-06-30",
-    "revenue_growth": -0.03762155268611511,
-    "change": {
-     "gross": 0.004680067396704332,
-     "operating": 0.0030276754477100553,
-     "net": -0.026759035445931344
-    },
-    "leak": null,
-    "margins_year_ago": {
-     "gross": 0.06410409692332217,
-     "operating": 0.010182528295871194,
-     "net": -0.0007173601147776184
-    }
-   },
-   "oil_beta": -0.1931421772447953,
-   "oil_correlation": -0.2810104486990306,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": -0.2735641690575934,
-     "operating_margin_change": 0.1303297928961811,
-     "revenue_growth": -1.4484567743677417,
-     "trend_6m": 0.4434152749431064,
-     "calm": -0.5006518014561876,
-     "tail_risk": 1.6345506187300654
-    },
-    "margin": -0.3469851053381133,
-    "price": -0.10429637820769286,
-    "ensemble": -0.22564074177290305
-   },
-   "alignment": "aligned: weak"
-  },
-  {
-   "symbol": "MARUTI.NS",
-   "name": "Maruti Suzuki",
-   "country": "IN",
-   "segment": "cars",
-   "segment_name": "Car makers",
-   "last_price": 12338.0,
-   "price": {
-    "return_1y": -0.20773132986579335,
-    "trend_6m": -0.020933514941045783,
-    "annual_volatility": 0.2308228740865556,
-    "purity": 0.9811908143336763,
-    "tail_multiplier_3sigma": 7.349173558431716
-   },
-   "margins": {
-    "quarter": "2026-06-30",
-    "revenue": 517082000000.0,
-    "margins": {
-     "gross": 0.22244054134547325,
-     "operating": 0.048986427684583875,
-     "net": 0.06666060702171028
-    },
-    "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.3611397013338107,
-    "change": {
-     "gross": -0.05964448875542466,
-     "operating": -0.03173715209793154,
-     "net": -0.0331685536015244
-    },
-    "leak": {
-     "operating_margin_drop": -0.03173715209793154,
-     "from_gross_squeeze": -0.05964448875542466,
-     "from_cost_growth": 0.02790733665749312,
-     "main_cause": "gross margin squeeze"
-    },
-    "margins_year_ago": {
-     "gross": 0.2820850301008979,
-     "operating": 0.08072357978251542,
-     "net": 0.09982916062323469
-    }
-   },
-   "oil_beta": -0.13353034013311618,
-   "oil_correlation": -0.3214579265463635,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": 0.29647448983092617,
-     "operating_margin_change": -0.29665233780382927,
-     "revenue_growth": 0.524329399879513,
-     "trend_6m": -0.37445217822975524,
-     "calm": -0.2362223050381391,
-     "tail_risk": 2.451825928095098
-    },
-    "margin": 0.10479474078674136,
-    "price": -0.6515007724116526,
-    "ensemble": -0.27335301581245564
-   },
-   "alignment": "mixed"
   },
   {
    "symbol": "TSLA",
@@ -1850,12 +1995,12 @@
    "country": "US",
    "segment": "cars",
    "segment_name": "Car makers",
-   "last_price": 358.0799865722656,
+   "last_price": 364.2699890136719,
    "price": {
-    "return_1y": -0.12671939540008026,
-    "trend_6m": -0.10888146462623544,
-    "annual_volatility": 0.4675056719757109,
-    "purity": 0.9954787528613573,
+    "return_1y": -0.1446249905049095,
+    "trend_6m": -0.043065062083818696,
+    "annual_volatility": 0.46710930217040747,
+    "purity": 0.9954819219151593,
     "tail_multiplier_3sigma": 1.4698347116863433
    },
    "margins": {
@@ -1885,22 +2030,364 @@
      "net": 0.05209815078236131
     }
    },
-   "oil_beta": -0.16008311277543752,
-   "oil_correlation": -0.18957133166969736,
+   "oil_beta": -0.1616293454506889,
+   "oil_correlation": -0.19155934829808546,
+   "lithium_beta": 0.526936031030689,
+   "lithium_correlation": 0.3712240460022013,
    "scores": {
     "parts": {
-     "operating_margin_vs_segment": -0.2594586494191855,
-     "operating_margin_change": -0.23766038699373077,
-     "revenue_growth": 0.0,
-     "trend_6m": -0.9170895843794866,
-     "calm": 0.25011658000832615,
-     "tail_risk": -0.8172753093650327
+     "operating_margin_vs_segment": -0.4260878654272449,
+     "operating_margin_change": -0.13438667906244828,
+     "revenue_growth": -0.0035030565947186862,
+     "trend_6m": -0.3576797481118749,
+     "calm": 0.29807358944753104,
+     "tail_risk": -0.7984951211111357
     },
-    "margin": -0.19884761456516653,
-    "price": -0.3651333092208556,
-    "ensemble": -0.281990461893011
+    "margin": -0.22489042911482104,
+    "price": -0.020315183338571824,
+    "ensemble": -0.12260280622669643
+   },
+   "alignment": "neutral"
+  },
+  {
+   "symbol": "BP",
+   "name": "BP",
+   "country": "GB",
+   "segment": "integrated",
+   "segment_name": "Integrated majors",
+   "last_price": 44.58000183105469,
+   "price": {
+    "return_1y": 0.2997085371036037,
+    "trend_6m": -0.028307921707597883,
+    "annual_volatility": 0.2941287638618318,
+    "purity": 0.990858338003494,
+    "tail_multiplier_3sigma": 2.9396694233726866
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 69105000000.0,
+    "margins": {
+     "gross": 0.20583170537587728,
+     "operating": 0.13069965993777585,
+     "net": 0.05659503653860068
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.4820811975893795,
+    "change": {
+     "gross": 0.022590235841058404,
+     "operating": 0.04141662650221277,
+     "net": 0.02165819736816295
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.18324146953481887,
+     "operating": 0.08928303343556308,
+     "net": 0.03493683917043773
+    }
+   },
+   "oil_beta": 0.3353336242628364,
+   "oil_correlation": 0.6311626018523796,
+   "lithium_beta": 0.00571350792056167,
+   "lithium_correlation": 0.00639237222771604,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -0.7845127081917779,
+     "operating_margin_change": 0.2598892765190452,
+     "revenue_growth": 0.488774474553127,
+     "trend_6m": -0.280765548497128,
+     "calm": 0.12100865991294132,
+     "tail_risk": 0.0
+    },
+    "margin": -0.11209447775846769,
+    "price": -0.13820716412004147,
+    "ensemble": -0.1251508209392546
+   },
+   "alignment": "neutral"
+  },
+  {
+   "symbol": "300750.SZ",
+   "name": "CATL",
+   "country": "CN",
+   "segment": "batteries",
+   "segment_name": "Battery makers",
+   "last_price": 301.95001220703125,
+   "price": {
+    "return_1y": -0.006841385983675674,
+    "trend_6m": -0.2824522853271779,
+    "annual_volatility": 0.38182334617379204,
+    "purity": 0.9872945716317079,
+    "tail_multiplier_3sigma": 4.40950413505903
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 147785539000.0,
+    "margins": {
+     "gross": 0.2315315776599766,
+     "operating": 0.16642571503562334,
+     "net": 0.15256088080444732
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.5691540446768917,
+    "change": {
+     "gross": -0.02423128505606123,
+     "operating": -0.022832695178916923,
+     "net": -0.02287221623660729
+    },
+    "leak": {
+     "operating_margin_drop": -0.022832695178916923,
+     "from_gross_squeeze": -0.02423128505606123,
+     "from_cost_growth": 0.0013985898771443073,
+     "main_cause": "gross margin squeeze"
+    },
+    "margins_year_ago": {
+     "gross": 0.2557628627160378,
+     "operating": 0.18925841021454026,
+     "net": 0.17543309704105461
+    }
+   },
+   "oil_beta": -0.01771533445972768,
+   "oil_correlation": -0.024709741746440958,
+   "lithium_beta": 0.38632603916415453,
+   "lithium_correlation": 0.33465251400301654,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 1.6939369566646092,
+     "operating_margin_change": -0.11072838820858166,
+     "revenue_growth": 0.6776653331070611,
+     "trend_6m": -1.6053656956839852,
+     "calm": -0.015469460426995504,
+     "tail_risk": 0.7984951211111357
+    },
+    "margin": 0.7688164940038233,
+    "price": -1.0868610506838103,
+    "ensemble": -0.1590222783399935
+   },
+   "alignment": "diverging: margins ahead of price"
+  },
+  {
+   "symbol": "F",
+   "name": "Ford",
+   "country": "US",
+   "segment": "cars",
+   "segment_name": "Car makers",
+   "last_price": 13.210000038146973,
+   "price": {
+    "return_1y": 0.13293312272888924,
+    "trend_6m": 0.12652664962359514,
+    "annual_volatility": 0.38211360195849847,
+    "purity": 0.9753292739803644,
+    "tail_multiplier_3sigma": 5.879338846745373
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 48296000000.0,
+    "margins": {
+     "gross": 0.0687841643200265,
+     "operating": 0.013210203743581249,
+     "net": -0.027476395560708963
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": -0.03762155268611511,
+    "change": {
+     "gross": 0.004680067396704332,
+     "operating": 0.0030276754477100553,
+     "net": -0.026759035445931344
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.06410409692332217,
+     "operating": 0.010182528295871194,
+     "net": -0.0007173601147776184
+    }
+   },
+   "oil_beta": -0.19133134710911168,
+   "oil_correlation": -0.2772013140120994,
+   "lithium_beta": 0.32322018742079495,
+   "lithium_correlation": 0.27835735450736565,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -0.44082971305678714,
+     "operating_margin_change": 0.03844532942533325,
+     "revenue_growth": -0.6386389726460512,
+     "trend_6m": 0.5262320691321586,
+     "calm": -0.47369291348258186,
+     "tail_risk": 1.5969902422222715
+    },
+    "margin": -0.2886815479817918,
+    "price": -0.04223252322469101,
+    "ensemble": -0.1654570356032414
    },
    "alignment": "aligned: weak"
+  },
+  {
+   "symbol": "BKR",
+   "name": "Baker Hughes",
+   "country": "US",
+   "segment": "rigs",
+   "segment_name": "Rigs & oilfield services",
+   "last_price": 57.25,
+   "price": {
+    "return_1y": 0.23171257667455403,
+    "trend_6m": -0.05868077162765511,
+    "annual_volatility": 0.33330973362822425,
+    "purity": 0.9854682305287302,
+    "tail_multiplier_3sigma": 2.9396694233726866
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 6742000000.0,
+    "margins": {
+     "gross": 0.23390685256600416,
+     "operating": 0.12830020765351527,
+     "net": 0.10100860278849007
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": -0.024312590448625215,
+    "change": {
+     "gross": 0.000187605098565663,
+     "operating": -6.448120321411732e-05,
+     "net": -0.0004385752144042826
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.2337192474674385,
+     "operating": 0.1283646888567294,
+     "net": 0.10144717800289435
+    }
+   },
+   "oil_beta": 0.023442269353547884,
+   "oil_correlation": 0.03893617703921036,
+   "lithium_beta": 0.348333568274695,
+   "lithium_correlation": 0.34390940445135876,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 0.040484799793074934,
+     "operating_margin_change": 0.02060844263880544,
+     "revenue_growth": -0.6097672705300663,
+     "trend_6m": -0.43906880929583625,
+     "calm": -0.0854110825286234,
+     "tail_risk": 0.0
+    },
+    "margin": -0.09751615713326112,
+    "price": -0.2847940562096576,
+    "ensemble": -0.19115510667145935
+   },
+   "alignment": "aligned: weak"
+  },
+  {
+   "symbol": "MARUTI.NS",
+   "name": "Maruti Suzuki",
+   "country": "IN",
+   "segment": "cars",
+   "segment_name": "Car makers",
+   "last_price": 12103.0,
+   "price": {
+    "return_1y": -0.2340358205176888,
+    "trend_6m": -0.040322820131089364,
+    "annual_volatility": 0.23102207950693063,
+    "purity": 0.9816760919290608,
+    "tail_multiplier_3sigma": 7.349173558431716
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 517082000000.0,
+    "margins": {
+     "gross": 0.22244054134547325,
+     "operating": 0.048986427684583875,
+     "net": 0.06666060702171028
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.3611397013338107,
+    "change": {
+     "gross": -0.05964448875542466,
+     "operating": -0.03173715209793154,
+     "net": -0.0331685536015244
+    },
+    "leak": {
+     "operating_margin_drop": -0.03173715209793154,
+     "from_gross_squeeze": -0.05964448875542466,
+     "from_cost_growth": 0.02790733665749312,
+     "main_cause": "gross margin squeeze"
+    },
+    "margins_year_ago": {
+     "gross": 0.2820850301008979,
+     "operating": 0.08072357978251542,
+     "net": 0.09982916062323469
+    }
+   },
+   "oil_beta": -0.13079120250385495,
+   "oil_correlation": -0.3142957721304743,
+   "lithium_beta": 0.08639627966366382,
+   "lithium_correlation": 0.12235450230586645,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 0.15492452129282452,
+     "operating_margin_change": -0.1620931177129902,
+     "revenue_growth": 0.22641090397237174,
+     "trend_6m": -0.3433871860322986,
+     "calm": -0.23063495361308378,
+     "tail_risk": 2.3954853633334072
+    },
+    "margin": 0.04241474222640808,
+    "price": -0.6230138545226611,
+    "ensemble": -0.2902995561481265
+   },
+   "alignment": "mixed"
+  },
+  {
+   "symbol": "ALB",
+   "name": "Albemarle",
+   "country": "US",
+   "segment": "lithium",
+   "segment_name": "Lithium miners",
+   "last_price": 110.91000366210938,
+   "price": {
+    "return_1y": 0.38360776690601806,
+    "trend_6m": -0.386624893741088,
+    "annual_volatility": 0.5754499926585519,
+    "purity": 0.9926941723313184,
+    "tail_multiplier_3sigma": 1.4698347116863433
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 1743313000.0,
+    "margins": {
+     "gross": 0.33860872947084086,
+     "operating": 0.26402659763335673,
+     "net": 0.275314300988979
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.3107695384633893,
+    "change": {
+     "gross": 0.19058077140793522,
+     "operating": 0.2249474152021842,
+     "net": 0.25809840796105105
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.14802795806290564,
+     "operating": 0.03907918243117252,
+     "net": 0.01721589302792799
+    }
+   },
+   "oil_beta": -0.0014540392370763894,
+   "oil_correlation": -0.0013988469168015058,
+   "lithium_beta": 1.1753856610533655,
+   "lithium_correlation": 0.6721551328026105,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -0.047199260539919644,
+     "operating_margin_change": 1.3185736413312679,
+     "revenue_growth": 0.11714075112514802,
+     "trend_6m": -2.1483132176068094,
+     "calm": 0.19131383488192608,
+     "tail_risk": -0.7984951211111357
+    },
+    "margin": 0.531977902541569,
+    "price": -1.1213852036769336,
+    "ensemble": -0.29470365056768233
+   },
+   "alignment": "diverging: margins ahead of price"
   },
   {
    "symbol": "IOC.NS",
@@ -1908,12 +2395,12 @@
    "country": "IN",
    "segment": "refiners",
    "segment_name": "Refiners & fuel retail",
-   "last_price": 134.27000427246094,
+   "last_price": 137.0,
    "price": {
-    "return_1y": -0.07387220148085405,
-    "trend_6m": -0.06110197380327061,
-    "annual_volatility": 0.2623555693364654,
-    "purity": 0.9771255116503686,
+    "return_1y": -0.06125806695799929,
+    "trend_6m": -0.05399042610619008,
+    "annual_volatility": 0.2630608587093137,
+    "purity": 0.9778373920422454,
     "tail_multiplier_3sigma": 2.9396694233726866
    },
    "margins": {
@@ -1943,22 +2430,134 @@
      "net": 0.0354252208256549
     }
    },
-   "oil_beta": -0.1538364090240143,
-   "oil_correlation": -0.3282195762852281,
+   "oil_beta": -0.155486349996929,
+   "oil_correlation": -0.33036830538966233,
+   "lithium_beta": 0.08378340047621322,
+   "lithium_correlation": 0.10491292532221952,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": -0.5039404795284573,
-     "operating_margin_change": -0.5000569323816763,
-     "revenue_growth": 0.6427712957932226,
-     "trend_6m": -0.6222909101621319,
-     "calm": -0.37459879444882804,
+     "operating_margin_change": -0.2576250817100978,
+     "revenue_growth": 0.27834666304453826,
+     "trend_6m": -0.41462273353163176,
+     "calm": -0.3776419373618869,
      "tail_risk": 0.0
     },
-    "margin": -0.27304470560540894,
-    "price": -0.4670242447094861,
-    "ensemble": -0.37003447515744753
+    "margin": -0.24895689188651443,
+    "price": -0.3431841244594508,
+    "ensemble": -0.29607050817298264
    },
    "alignment": "aligned: weak"
+  },
+  {
+   "symbol": "ARE&M.NS",
+   "name": "Amara Raja Energy & Mobility",
+   "country": "IN",
+   "segment": "batteries",
+   "segment_name": "Battery makers",
+   "last_price": 796.0,
+   "price": {
+    "return_1y": -0.22808374932969044,
+    "trend_6m": 0.04739976735645223,
+    "annual_volatility": 0.3076118468095974,
+    "purity": 0.9531017259651071,
+    "tail_multiplier_3sigma": 7.349173558431716
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 42145400000.0,
+    "margins": {
+     "gross": 0.2938280334271356,
+     "operating": 0.058618496917813095,
+     "net": 0.04530506294874411
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.23917696731626426,
+    "change": {
+     "gross": -0.0052152116597191656,
+     "operating": -0.006463771067650351,
+     "net": -0.0031501336358701892
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.29904324508685476,
+     "operating": 0.06508226798546345,
+     "net": 0.0484551965846143
+    }
+   },
+   "oil_beta": -0.07174144263323093,
+   "oil_correlation": -0.1289636582868604,
+   "lithium_beta": 0.08326689060788163,
+   "lithium_correlation": 0.0882133860964119,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 0.0,
+     "operating_margin_change": -0.0163054080200896,
+     "revenue_growth": -0.03816808144894536,
+     "trend_6m": 0.11382284468686134,
+     "calm": -1.3249198617203837,
+     "tail_risk": 2.3954853633334072
+    },
+    "margin": -0.014155779497824914,
+    "price": -0.6222590631179902,
+    "ensemble": -0.3182074213079075
+   },
+   "alignment": "aligned: weak"
+  },
+  {
+   "symbol": "1211.HK",
+   "name": "BYD",
+   "country": "CN",
+   "segment": "cars",
+   "segment_name": "Car makers",
+   "last_price": 81.5,
+   "price": {
+    "return_1y": -0.23040605452603558,
+    "trend_6m": -0.2485840511580487,
+    "annual_volatility": 0.3754321620526166,
+    "purity": 0.992342054083844,
+    "tail_multiplier_3sigma": 4.40950413505903
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 194590107000.0,
+    "margins": {
+     "gross": 0.18879103653506907,
+     "operating": 0.07479509736843919,
+     "net": 0.042349825112126586
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": -0.03150695424309613,
+    "change": {
+     "gross": 0.026135677823538872,
+     "operating": 0.04394680164948567,
+     "net": 0.010717672096381553
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.1626553587115302,
+     "operating": 0.030848295718953516,
+     "net": 0.03163215301574503
+    }
+   },
+   "oil_beta": 0.04755746277085024,
+   "oil_correlation": 0.06952682470215789,
+   "lithium_beta": 0.24734924325681246,
+   "lithium_correlation": 0.22506275854284175,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": 0.5846966591361777,
+     "operating_margin_change": 0.2744844127772631,
+     "revenue_growth": -0.625374312212316,
+     "trend_6m": -1.4288444959750684,
+     "calm": 0.17782910228745705,
+     "tail_risk": 0.7984951211111357
+    },
+    "margin": 0.21859756632291313,
+    "price": -0.932623690179847,
+    "ensemble": -0.35701306192846693
+   },
+   "alignment": "mixed"
   },
   {
    "symbol": "HAL",
@@ -1966,12 +2565,12 @@
    "country": "US",
    "segment": "rigs",
    "segment_name": "Rigs & oilfield services",
-   "last_price": 34.5099983215332,
+   "last_price": 33.63999938964844,
    "price": {
-    "return_1y": 0.5837538720313551,
-    "trend_6m": -0.03221949700434663,
-    "annual_volatility": 0.3560133110461266,
-    "purity": 0.992421245052835,
+    "return_1y": 0.5119100849280196,
+    "trend_6m": -0.09330842016697818,
+    "annual_volatility": 0.3554765231203367,
+    "purity": 0.9923289306556576,
     "tail_multiplier_3sigma": 4.40950413505903
    },
    "margins": {
@@ -1996,20 +2595,22 @@
      "net": 0.08566243194192377
     }
    },
-   "oil_beta": 0.21445908653729331,
-   "oil_correlation": 0.3334972371178067,
+   "oil_beta": 0.213808100810091,
+   "oil_correlation": 0.33297749736333715,
+   "lithium_beta": 0.16810399123783493,
+   "lithium_correlation": 0.15561943030475409,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": -0.5329442661065521,
-     "operating_margin_change": -0.05928760116953294,
-     "revenue_growth": -1.0791658494850602,
-     "trend_6m": -0.4440865023339961,
-     "calm": 0.14604383811230234,
-     "tail_risk": 0.8172753093650327
+     "operating_margin_change": -0.05061127276552026,
+     "revenue_growth": -0.4767080582995131,
+     "trend_6m": -0.6195480758774867,
+     "calm": 0.17732652702734103,
+     "tail_risk": 0.7984951211111357
     },
-    "margin": -0.4527259168074461,
-    "price": -0.35253223827707697,
-    "ensemble": -0.4026290775422615
+    "margin": -0.3287638272087316,
+    "price": -0.44717148193632716,
+    "ensemble": -0.38796765457252935
    },
    "alignment": "aligned: weak"
   },
@@ -2019,12 +2620,12 @@
    "country": "US",
    "segment": "transport",
    "segment_name": "Airlines, freight & logistics",
-   "last_price": 98.7699966430664,
+   "last_price": 99.05999755859375,
    "price": {
-    "return_1y": 0.1755534466712838,
-    "trend_6m": 0.01017613375008204,
-    "annual_volatility": 0.3013157046175438,
-    "purity": 0.9763091136223252,
+    "return_1y": 0.17676404370959675,
+    "trend_6m": 0.0255611510089093,
+    "annual_volatility": 0.3012846773623969,
+    "purity": 0.9762449810883562,
     "tail_multiplier_3sigma": 5.879338846745373
    },
    "margins": {
@@ -2054,131 +2655,22 @@
      "net": 0.06045897931294472
     }
    },
-   "oil_beta": -0.13969066928404086,
-   "oil_correlation": -0.2566608658726019,
+   "oil_beta": -0.1404496730392453,
+   "oil_correlation": -0.25807464596856305,
+   "lithium_beta": 0.24750804332843113,
+   "lithium_correlation": 0.2703391797868298,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": -0.7107684739312905,
-     "operating_margin_change": -0.4611387058036467,
-     "revenue_growth": -0.8862908402299052,
-     "trend_6m": -0.1825061563792223,
-     "calm": -0.40238769527196355,
-     "tail_risk": 1.6345506187300654
+     "operating_margin_change": -0.23934656333149418,
+     "revenue_growth": -0.39213401518375995,
+     "trend_6m": 0.0,
+     "calm": -0.43862496237612136,
+     "tail_risk": 1.5969902422222715
     },
-    "margin": -0.646021039939956,
-    "price": -0.45528321045503406,
-    "ensemble": -0.550652125197495
-   },
-   "alignment": "aligned: weak"
-  },
-  {
-   "symbol": "BPCL.NS",
-   "name": "BPCL",
-   "country": "IN",
-   "segment": "refiners",
-   "segment_name": "Refiners & fuel retail",
-   "last_price": 307.0,
-   "price": {
-    "return_1y": -0.0353495679497251,
-    "trend_6m": 0.07085593676734447,
-    "annual_volatility": 0.2904093645415284,
-    "purity": 0.9771929250741161,
-    "tail_multiplier_3sigma": 7.349173558431716
-   },
-   "margins": {
-    "quarter": "2026-06-30",
-    "revenue": 1512770300000.0,
-    "margins": {
-     "gross": 0.010838790264457202,
-     "operating": -0.0404804351328156,
-     "net": -0.012379275293810303
-    },
-    "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.3440700230872191,
-    "change": {
-     "gross": -0.12116910479153718,
-     "operating": -0.10968425258696657,
-     "net": -0.07314277500882953
-    },
-    "leak": {
-     "operating_margin_drop": -0.10968425258696657,
-     "from_gross_squeeze": -0.12116910479153718,
-     "from_cost_growth": 0.011484852204570614,
-     "main_cause": "gross margin squeeze"
-    },
-    "margins_year_ago": {
-     "gross": 0.1320078950559944,
-     "operating": 0.06920381745415097,
-     "net": 0.06076349971501922
-    }
-   },
-   "oil_beta": -0.1475478261504201,
-   "oil_correlation": -0.28482296103159815,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": -0.9718152144974314,
-     "operating_margin_change": -1.2539997891898926,
-     "revenue_growth": 0.4398808108948815,
-     "trend_6m": 0.19188723235612448,
-     "calm": -0.3723041478642977,
-     "tail_risk": 2.451825928095098
-    },
-    "margin": -0.8023498392959534,
-    "price": -0.3457175867666644,
-    "ensemble": -0.5740337130313089
-   },
-   "alignment": "aligned: weak"
-  },
-  {
-   "symbol": "RELIANCE.NS",
-   "name": "Reliance Industries",
-   "country": "IN",
-   "segment": "integrated",
-   "segment_name": "Integrated majors",
-   "last_price": 1243.9000244140625,
-   "price": {
-    "return_1y": -0.11485093489369291,
-    "trend_6m": -0.10730413527910576,
-    "annual_volatility": 0.2033487015187746,
-    "purity": 0.986366433104866,
-    "tail_multiplier_3sigma": 2.9396694233726866
-   },
-   "margins": {
-    "quarter": "2026-06-30",
-    "revenue": 3094680000000.0,
-    "margins": {
-     "gross": 0.2682151304819884,
-     "operating": 0.10475073351687413,
-     "net": 0.0676838962348288
-    },
-    "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.27022722795035126,
-    "change": {
-     "gross": -0.048409943399931876,
-     "operating": -0.014539835866458115,
-     "net": -0.04311435686821184
-    },
-    "leak": null,
-    "margins_year_ago": {
-     "gross": 0.3166250738819203,
-     "operating": 0.11929056938333224,
-     "net": 0.11079825310304064
-    }
-   },
-   "oil_beta": -0.05904471727668377,
-   "oil_correlation": -0.16148888135429917,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": -1.507211291432883,
-     "operating_margin_change": -0.0854346432188041,
-     "revenue_growth": 0.07455934637138492,
-     "trend_6m": -0.9073574881949359,
-     "calm": -0.06005240776923499,
-     "tail_risk": 0.0
-    },
-    "margin": -0.6221465045863979,
-    "price": -0.5594275948592703,
-    "ensemble": -0.590787049722834
+    "margin": -0.4584728179418659,
+    "price": -0.34920477692737106,
+    "ensemble": -0.4038387974346185
    },
    "alignment": "aligned: weak"
   },
@@ -2188,12 +2680,12 @@
    "country": "IN",
    "segment": "transport",
    "segment_name": "Airlines, freight & logistics",
-   "last_price": 4845.0,
+   "last_price": 4920.0,
    "price": {
-    "return_1y": -0.15408118725447406,
-    "trend_6m": 0.12215016551653085,
-    "annual_volatility": 0.33686679302379013,
-    "purity": 0.9663935550515791,
+    "return_1y": -0.14098646879092103,
+    "trend_6m": 0.16916463512511823,
+    "annual_volatility": 0.3372499923959376,
+    "purity": 0.9674622950867037,
     "tail_multiplier_3sigma": 5.879338846745373
    },
    "margins": {
@@ -2223,20 +2715,257 @@
      "net": 0.10618013983011568
     }
    },
-   "oil_beta": -0.24111602208677044,
-   "oil_correlation": -0.4038103549150814,
+   "oil_beta": -0.2414194524382129,
+   "oil_correlation": -0.4039060987494441,
+   "lithium_beta": 0.1231458744589319,
+   "lithium_correlation": 0.12447817166237268,
    "scores": {
     "parts": {
      "operating_margin_vs_segment": -1.3541253769260344,
-     "operating_margin_change": -1.3998313637966808,
-     "revenue_growth": -0.27564102445409155,
-     "trend_6m": 0.5083717818941419,
-     "calm": -0.7398976649969137,
-     "tail_risk": 1.6345506187300654
+     "operating_margin_change": -0.6802173971189743,
+     "revenue_growth": -0.12436928999985145,
+     "trend_6m": 0.7484612032616448,
+     "calm": -0.7749670095234674,
+     "tail_risk": 1.5969902422222715
     },
-    "margin": -1.1567109011799044,
-    "price": -0.12513393992225308,
-    "ensemble": -0.6409224205510787
+    "margin": -0.8386109676179738,
+    "price": 0.015786433242779285,
+    "ensemble": -0.41141226718759727
+   },
+   "alignment": "mixed"
+  },
+  {
+   "symbol": "BPCL.NS",
+   "name": "BPCL",
+   "country": "IN",
+   "segment": "refiners",
+   "segment_name": "Refiners & fuel retail",
+   "last_price": 314.0,
+   "price": {
+    "return_1y": -0.0295162668931378,
+    "trend_6m": 0.08712723386996689,
+    "annual_volatility": 0.29081887503860865,
+    "purity": 0.9775482724958126,
+    "tail_multiplier_3sigma": 7.349173558431716
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 1512770300000.0,
+    "margins": {
+     "gross": 0.010838790264457202,
+     "operating": -0.0404804351328156,
+     "net": -0.012379275293810303
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.3440700230872191,
+    "change": {
+     "gross": -0.12116910479153718,
+     "operating": -0.10968425258696657,
+     "net": -0.07314277500882953
+    },
+    "leak": {
+     "operating_margin_drop": -0.10968425258696657,
+     "from_gross_squeeze": -0.12116910479153718,
+     "from_cost_growth": 0.011484852204570614,
+     "main_cause": "gross margin squeeze"
+    },
+    "margins_year_ago": {
+     "gross": 0.1320078950559944,
+     "operating": 0.06920381745415097,
+     "net": 0.06076349971501922
+    }
+   },
+   "oil_beta": -0.14885153733615825,
+   "oil_correlation": -0.28613921939259757,
+   "lithium_beta": 0.07186541290242442,
+   "lithium_correlation": 0.08141583770214442,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -0.9718152144974314,
+     "operating_margin_change": -0.611725450002975,
+     "revenue_growth": 0.189380919458399,
+     "trend_6m": 0.3208823570116439,
+     "calm": -0.3887140695204588,
+     "tail_risk": 2.3954853633334072
+    },
+    "margin": -0.5955400819084827,
+    "price": -0.26397190767313944,
+    "ensemble": -0.42975599479081106
+   },
+   "alignment": "aligned: weak"
+  },
+  {
+   "symbol": "HINDPETRO.NS",
+   "name": "HPCL",
+   "country": "IN",
+   "segment": "refiners",
+   "segment_name": "Refiners & fuel retail",
+   "last_price": 359.0,
+   "price": {
+    "return_1y": -0.10696517412935325,
+    "trend_6m": 0.10011281778398103,
+    "annual_volatility": 0.34999734039952707,
+    "purity": 0.9758812034482909,
+    "tail_multiplier_3sigma": 2.9396694233726866
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 1399775100000.0,
+    "margins": {
+     "gross": -0.09348630362120315,
+     "operating": -0.09430793561051343,
+     "net": -0.08761886105846575
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.26943359382970655,
+    "change": {
+     "gross": -0.19362742383511167,
+     "operating": -0.19125909147493753,
+     "net": -0.1249002260711907
+    },
+    "leak": {
+     "operating_margin_drop": -0.19125909147493753,
+     "from_gross_squeeze": -0.19362742383511167,
+     "from_cost_growth": 0.0023683323601741413,
+     "main_cause": "gross margin squeeze"
+    },
+    "margins_year_ago": {
+     "gross": 0.10014112021390853,
+     "operating": 0.09695115586442411,
+     "net": 0.03728136501272494
+    }
+   },
+   "oil_beta": -0.20688551649582707,
+   "oil_correlation": -0.33035075410914366,
+   "lithium_beta": 0.07806274903580712,
+   "lithium_correlation": 0.07498686785608116,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -1.6103937001439457,
+     "operating_margin_change": -1.0822841344858927,
+     "revenue_growth": 0.027468915045792054,
+     "trend_6m": 0.3885632062692633,
+     "calm": -0.45255620347286396,
+     "tail_risk": 0.0
+    },
+    "margin": -1.071577350842777,
+    "price": 0.11999887289334196,
+    "ensemble": -0.47578923897471753
+   },
+   "alignment": "mixed"
+  },
+  {
+   "symbol": "RELIANCE.NS",
+   "name": "Reliance Industries",
+   "country": "IN",
+   "segment": "integrated",
+   "segment_name": "Integrated majors",
+   "last_price": 1226.4000244140625,
+   "price": {
+    "return_1y": -0.13255058561456068,
+    "trend_6m": -0.14262236167975229,
+    "annual_volatility": 0.20370191888104755,
+    "purity": 0.9864906890244133,
+    "tail_multiplier_3sigma": 2.9396694233726866
+   },
+   "margins": {
+    "quarter": "2026-06-30",
+    "revenue": 3094680000000.0,
+    "margins": {
+     "gross": 0.2682151304819884,
+     "operating": 0.10475073351687413,
+     "net": 0.0676838962348288
+    },
+    "compare_quarter": "2025-06-30",
+    "revenue_growth": 0.27022722795035126,
+    "change": {
+     "gross": -0.048409943399931876,
+     "operating": -0.014539835866458115,
+     "net": -0.04311435686821184
+    },
+    "leak": null,
+    "margins_year_ago": {
+     "gross": 0.3166250738819203,
+     "operating": 0.11929056938333224,
+     "net": 0.11079825310304064
+    }
+   },
+   "oil_beta": -0.05722026603276792,
+   "oil_correlation": -0.15622563155220565,
+   "lithium_beta": 0.046003213496655475,
+   "lithium_correlation": 0.07402109292458914,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -1.507211291432883,
+     "operating_margin_change": -0.0628916162103968,
+     "revenue_growth": 0.02919057955362201,
+     "trend_6m": -0.8765722854875876,
+     "calm": -0.046254976583753354,
+     "tail_risk": 0.0
+    },
+    "margin": -0.6222030471465876,
+    "price": -0.5375071154384908,
+    "ensemble": -0.5798550812925392
+   },
+   "alignment": "aligned: weak"
+  },
+  {
+   "symbol": "373220.KS",
+   "name": "LG Energy Solution",
+   "country": "KR",
+   "segment": "batteries",
+   "segment_name": "Battery makers",
+   "last_price": 364000.0,
+   "price": {
+    "return_1y": 0.03703703703703698,
+    "trend_6m": -0.05218575317057019,
+    "annual_volatility": 0.6215977864023259,
+    "purity": 0.9842619783411634,
+    "tail_multiplier_3sigma": 5.879338846745373
+   },
+   "margins": {
+    "quarter": "2026-03-31",
+    "revenue": 6554967000000.0,
+    "margins": {
+     "gross": 0.18937868031982463,
+     "operating": -0.03169428618023554,
+     "net": -0.10312485173457013
+    },
+    "compare_quarter": "2025-03-31",
+    "revenue_growth": -0.02495183862581629,
+    "change": {
+     "gross": -0.029278941583005924,
+     "operating": -0.08742671317285801,
+     "net": -0.08144609743440759
+    },
+    "leak": {
+     "operating_margin_drop": -0.08742671317285801,
+     "from_gross_squeeze": -0.029278941583005924,
+     "from_cost_growth": -0.058147771589852085,
+     "main_cause": "cost growth"
+    },
+    "margins_year_ago": {
+     "gross": 0.21865762190283056,
+     "operating": 0.05573242699262247,
+     "net": -0.02167875430016254
+    }
+   },
+   "oil_beta": 0.05792019080162351,
+   "oil_correlation": 0.05261900434683059,
+   "lithium_beta": 0.47022918045898987,
+   "lithium_correlation": 0.2585632789834453,
+   "scores": {
+    "parts": {
+     "operating_margin_vs_segment": -1.419053043200136,
+     "operating_margin_change": -0.48333440922000576,
+     "revenue_growth": -0.6111540189948007,
+     "trend_6m": -0.40521678015103874,
+     "calm": -0.13160575806021663,
+     "tail_risk": 1.5969902422222715
+    },
+    "margin": -0.8831857847670168,
+    "price": -0.5155800439390181,
+    "ensemble": -0.6993829143530175
    },
    "alignment": "aligned: weak"
   },
@@ -2246,12 +2975,12 @@
    "country": "IN",
    "segment": "cars",
    "segment_name": "Car makers",
-   "last_price": 314.5,
+   "last_price": 303.79998779296875,
    "price": {
-    "return_1y": -0.5590606379249912,
-    "trend_6m": 0.016672435916110357,
-    "annual_volatility": 0.5964813909608553,
-    "purity": 0.8188651394304433,
+    "return_1y": -0.5775568692492307,
+    "trend_6m": -0.033341875995831466,
+    "annual_volatility": 0.5971917098840521,
+    "purity": 0.8214202819171228,
     "tail_multiplier_3sigma": 1.4698347116863433
    },
    "margins": {
@@ -2281,78 +3010,22 @@
      "net": 0.045030467862429854
     }
    },
-   "oil_beta": -0.14928304153988736,
-   "oil_correlation": -0.13944350330870514,
+   "oil_beta": -0.1452997448309238,
+   "oil_correlation": -0.13539367147643666,
+   "lithium_beta": 0.15752175618071348,
+   "lithium_correlation": 0.08650455285061548,
    "scores": {
     "parts": {
-     "operating_margin_vs_segment": -1.685437805888858,
-     "operating_margin_change": -0.1723205408409866,
-     "revenue_growth": -0.8259722041408957,
-     "trend_6m": -0.14242407863259215,
+     "operating_margin_vs_segment": -1.916395772293672,
+     "operating_margin_change": -0.10369885785961133,
+     "revenue_growth": -0.3656848087833254,
+     "trend_6m": -0.3070025127805743,
      "calm": -3.0,
-     "tail_risk": -0.8172753093650327
+     "tail_risk": -0.7984951211111357
     },
-    "margin": -0.908297779520117,
-    "price": -0.7128631507748004,
-    "ensemble": -0.8105804651474587
-   },
-   "alignment": "aligned: weak"
-  },
-  {
-   "symbol": "HINDPETRO.NS",
-   "name": "HPCL",
-   "country": "IN",
-   "segment": "refiners",
-   "segment_name": "Refiners & fuel retail",
-   "last_price": 350.6000061035156,
-   "price": {
-    "return_1y": -0.1278606813345382,
-    "trend_6m": 0.07643641919160848,
-    "annual_volatility": 0.3490517381075316,
-    "purity": 0.9743957090261265,
-    "tail_multiplier_3sigma": 4.40950413505903
-   },
-   "margins": {
-    "quarter": "2026-06-30",
-    "revenue": 1399775100000.0,
-    "margins": {
-     "gross": -0.09348630362120315,
-     "operating": -0.09430793561051343,
-     "net": -0.08761886105846575
-    },
-    "compare_quarter": "2025-06-30",
-    "revenue_growth": 0.26943359382970655,
-    "change": {
-     "gross": -0.19362742383511167,
-     "operating": -0.19125909147493753,
-     "net": -0.1249002260711907
-    },
-    "leak": {
-     "operating_margin_drop": -0.19125909147493753,
-     "from_gross_squeeze": -0.19362742383511167,
-     "from_cost_growth": 0.0023683323601741413,
-     "main_cause": "gross margin squeeze"
-    },
-    "margins_year_ago": {
-     "gross": 0.10014112021390853,
-     "operating": 0.09695115586442411,
-     "net": 0.03728136501272494
-    }
-   },
-   "oil_beta": -0.20525344458179487,
-   "oil_correlation": -0.32851838285168056,
-   "scores": {
-    "parts": {
-     "operating_margin_vs_segment": -1.6103937001439457,
-     "operating_margin_change": -2.2559031777272707,
-     "revenue_growth": 0.07063301098941094,
-     "trend_6m": 0.2263187173265664,
-     "calm": -0.46751696890057093,
-     "tail_risk": 0.8172753093650327
-    },
-    "margin": -1.5323921489506047,
-    "price": -0.10367930823395781,
-    "ensemble": -0.8180357285922812
+    "margin": -0.8811748138179784,
+    "price": -0.8144272395016742,
+    "ensemble": -0.8478010266598263
    },
    "alignment": "aligned: weak"
   },
@@ -2362,12 +3035,12 @@
    "country": "IN",
    "segment": "producers",
    "segment_name": "Oil producers (upstream)",
-   "last_price": 232.42999267578125,
+   "last_price": 232.8000030517578,
    "price": {
-    "return_1y": -0.011314831356270094,
-    "trend_6m": -0.14649400749924543,
-    "annual_volatility": 0.23558019461213228,
-    "purity": 0.9622309771330305,
+    "return_1y": -0.017223918215778178,
+    "trend_6m": -0.1310583699344776,
+    "annual_volatility": 0.23546149500753497,
+    "purity": 0.9621342225063921,
     "tail_multiplier_3sigma": 7.349173558431716
    },
    "margins": {
@@ -2397,20 +3070,22 @@
      "net": 0.06010845808375432
     }
    },
-   "oil_beta": 0.0892771722017119,
-   "oil_correlation": 0.21143317037346843,
+   "oil_beta": 0.08811899313168585,
+   "oil_correlation": 0.20852531728519327,
+   "lithium_beta": -0.03200035428463324,
+   "lithium_correlation": -0.04462815759473604,
    "scores": {
     "parts": {
-     "operating_margin_vs_segment": -1.8312000063803262,
-     "operating_margin_change": -0.9274466510699265,
-     "revenue_growth": 0.00798888226501079,
-     "trend_6m": -1.1491583566062795,
-     "calm": -0.8815852499416477,
-     "tail_risk": 2.451825928095098
+     "operating_margin_vs_segment": -1.899250867570213,
+     "operating_margin_change": -0.4583549585508771,
+     "revenue_growth": 0.0,
+     "trend_6m": -0.8163007730696024,
+     "calm": -0.9790110614996432,
+     "tail_risk": 2.3954853633334072
     },
-    "margin": -1.101860886527099,
-    "price": -1.2776652156634443,
-    "ensemble": -1.1897630510952717
+    "margin": -0.9430423304484361,
+    "price": -1.0938560337166834,
+    "ensemble": -1.0184491820825596
    },
    "alignment": "aligned: weak"
   }

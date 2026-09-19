@@ -7,6 +7,12 @@ Original files — `WALLSTREET.k`, `Convoluted.net`, `StatSelections.c`, `øphi.
 Everything here is analysis and **pretend-money** paper trading. Nothing connects to a
 broker, bank, UPI or wallet, and nothing places real orders.
 
+## 0.6.0 — 2026-09-19 · Lithium & battery chain
+- New segments: lithium miners (Albemarle, SQM, Sigma Lithium, Ganfeng) and battery makers (CATL,
+  LG Energy Solution, Samsung SDI, Amara Raja, Exide). BYD is added to car makers.
+- Lithium beta: each company's sensitivity to the lithium & battery ETF (LIT), next to oil beta.
+- Lithium Americas is listed but skipped, because it has no revenue yet.
+
 ## 0.5.1 — 2026-09-19 · Raw price history no longer published
 - The public data files no longer include raw daily price series, because Yahoo Finance's terms allow
   personal use only. The page's price chart is replaced by the 20-day volatility chart. Derived results

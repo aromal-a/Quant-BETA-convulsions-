@@ -125,7 +125,7 @@ source .venv/bin/activate
 | `quant-beam analyse` | Re-read markets and rebuild the quantum analysis |
 | `quant-beam research` | Test the trading rules on 10 years of history |
 | `quant-beam bot run` / `status` / `watch` | Paper QuantBot (pretend money) |
-| `quant-beam oil` | Oil & transport value chain |
+| `quant-beam oil` | Oil, lithium & transport value chain |
 | `quant-beam cost` | Trading cost from the live Binance order book |
 
 To see the web page:
@@ -245,10 +245,10 @@ over, especially on thinner markets like Solana. The web page has a box for your
 number of round trips. Ten round trips a day costs about 2%, roughly Bitcoin's whole normal daily
 move, which is why frequent small trades rarely pay.
 
-## Oil & transport value chain
+## Oil, lithium & transport value chain
 
-`quant-beam oil` follows the chain from the oil well to the car and the truck, across
-35 companies in the US, India and a few global majors (UK, Japan):
+`quant-beam oil` follows two chains, from the oil well and from the lithium mine, to the car and
+the truck. It covers 44 companies in the US, India, China, Korea, Chile, Canada, the UK and Japan:
 
 | Segment | Examples |
 |---|---|
@@ -257,7 +257,9 @@ move, which is why frequent small trades rarely pay.
 | Pipelines | Kinder Morgan, Williams, Energy Transfer |
 | Integrated majors | ExxonMobil, Chevron, Shell, BP, Reliance |
 | Refiners & fuel retail | Valero, Marathon, Phillips 66, BPCL, Indian Oil, HPCL |
-| Car makers | Toyota, GM, Ford, Tesla, Maruti Suzuki, Mahindra, Tata Motors PV |
+| Lithium miners | Albemarle, SQM, Sigma Lithium, Ganfeng Lithium |
+| Battery makers | CATL, LG Energy Solution, Samsung SDI, Amara Raja, Exide |
+| Car makers | Toyota, GM, Ford, Tesla, BYD, Maruti Suzuki, Mahindra, Tata Motors PV |
 | Airlines, freight & logistics | Delta, United, UPS, FedEx, IndiGo, Container Corp of India |
 
 For each company it reports:
@@ -265,7 +267,8 @@ For each company it reports:
   year earlier (from quarterly filings via Yahoo Finance's fundamentals feed).
 - **Margin leaks:** operating margin down 2 points or more. Each leak is split into a *gross-margin squeeze*
   (selling price vs input cost) and *cost growth* (operating costs rising faster than revenue).
-- **Oil sensitivity:** the share's beta and correlation to WTI crude over the last year.
+- **Oil and lithium sensitivity:** the share's beta and correlation to WTI crude, and to the lithium &
+  battery ETF (LIT), over the last year.
 - **The refining margin:** the 3-2-1 crack spread, what a refinery earns turning 3 barrels of crude into 2
   of gasoline and 1 of diesel.
 - **Ensemble:** a margin score (operating margin ranked **within its segment**, its change and revenue

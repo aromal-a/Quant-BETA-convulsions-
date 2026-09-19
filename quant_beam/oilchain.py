@@ -1,8 +1,9 @@
-"""Oil and transport value chain: who is winning on margins, and does the price agree?
+"""Oil, lithium and transport value chain: who is winning on margins, and does the price agree?
 
-Segments follow the physical chain from the oil well to the car and the truck:
-producers -> rigs & oilfield services -> pipelines -> integrated majors ->
-refiners -> car makers -> transport. Big car-and-transport countries (US, India,
+Segments follow two physical chains to the car and the truck:
+oil:     producers -> rigs & oilfield services -> pipelines -> integrated majors -> refiners
+lithium: lithium miners -> battery makers
+both end at car makers and transport. Big car-and-transport countries (US, India,
 plus global ADRs) are tagged so they can be compared.
 
 For each company the ensemble combines, as cross-sectional z-scores:
@@ -56,7 +57,18 @@ SEGMENTS = {
         "name": "Car makers",
         "companies": {"TM": ("Toyota", "JP"), "GM": ("General Motors", "US"), "F": ("Ford", "US"),
                       "TSLA": ("Tesla", "US"), "MARUTI.NS": ("Maruti Suzuki", "IN"),
-                      "M&M.NS": ("Mahindra & Mahindra", "IN"), "TMPV.NS": ("Tata Motors PV", "IN")},
+                      "M&M.NS": ("Mahindra & Mahindra", "IN"), "TMPV.NS": ("Tata Motors PV", "IN"), "1211.HK": ("BYD", "CN")},
+    },
+    "lithium": {
+        "name": "Lithium miners",
+        "companies": {"ALB": ("Albemarle", "US"), "SQM": ("SQM", "CL"), "SGML": ("Sigma Lithium", "CA"),
+                      "LAC": ("Lithium Americas", "US"), "002460.SZ": ("Ganfeng Lithium", "CN")},
+    },
+    "batteries": {
+        "name": "Battery makers",
+        "companies": {"300750.SZ": ("CATL", "CN"), "373220.KS": ("LG Energy Solution", "KR"),
+                      "006400.KS": ("Samsung SDI", "KR"), "ARE&M.NS": ("Amara Raja Energy & Mobility", "IN"),
+                      "EXIDEIND.NS": ("Exide Industries", "IN")},
     },
     "transport": {
         "name": "Airlines, freight & logistics",
@@ -75,7 +87,8 @@ def us_tradable():
             for symbol, (name, country) in SEGMENTS[code]["companies"].items() if country == "US"}
 
 
-BENCHMARKS = {"CL=F": "WTI crude", "BZ=F": "Brent crude", "RB=F": "Gasoline (RBOB)", "HO=F": "Diesel / heating oil"}
+BENCHMARKS = {"CL=F": "WTI crude", "BZ=F": "Brent crude", "RB=F": "Gasoline (RBOB)", "HO=F": "Diesel / heating oil",
+              "LIT": "Lithium & battery (LIT ETF)"}
 GALLONS_PER_BARREL = 42
 WEIGHTS = {
     "margin": {"operating_margin_vs_segment": 0.4, "operating_margin_change": 0.4, "revenue_growth": 0.2},
@@ -102,7 +115,10 @@ def aligned_series(series):
 
 
 def oil_beta(stamps, closes, oil_stamps, oil_closes, days=252):
-    """Sensitivity of daily returns to WTI returns over the last year, and the correlation."""
+    """Sensitivity of daily returns to a benchmark's returns over the last year, and the correlation.
+
+    Used against WTI crude (oil beta) and against the LIT ETF (lithium beta).
+    """
     _, (stock, oil) = aligned_series([(stamps, closes), (oil_stamps, oil_closes)])
     stock, oil = np.diff(np.log(stock))[-days:], np.diff(np.log(oil))[-days:]
     keep = np.isfinite(stock) & np.isfinite(oil)
@@ -195,6 +211,7 @@ def segment_summary(rows):
             "median_revenue_growth": median(pick(lambda r: r["margins"].get("revenue_growth"))),
             "median_return_1y": median(pick(lambda r: r["price"].get("return_1y"))),
             "median_oil_beta": median(pick(lambda r: r.get("oil_beta"))),
+            "median_lithium_beta": median(pick(lambda r: r.get("lithium_beta"))),
             "leaking": [r["symbol"] for r in members if r["margins"].get("leak")],
             "median_ensemble": median(pick(lambda r: r["scores"]["ensemble"])),
         }
@@ -232,10 +249,12 @@ def run(output_path, price_reader=None, quarter_reader=fundamentals.fetch_quarte
                 log(f"skip  {symbol}: {error}")
                 continue
             beta, corr = oil_beta(stamps, closes, *bench["CL=F"]) if "CL=F" in bench else (None, None)
+            li_beta, li_corr = oil_beta(stamps, closes, *bench["LIT"]) if "LIT" in bench else (None, None)
             rows.append({"symbol": symbol, "name": name, "country": country, "segment": code,
                          "segment_name": segment["name"], "last_price": closes[-1],
                          "price": price_profile(closes), "margins": fundamentals.margin_report(quarters),
-                         "oil_beta": beta, "oil_correlation": corr})
+                         "oil_beta": beta, "oil_correlation": corr,
+                         "lithium_beta": li_beta, "lithium_correlation": li_corr})
             log(f"ok    {symbol}")
 
     ensemble(rows)
