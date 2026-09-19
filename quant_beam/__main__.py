@@ -1,11 +1,12 @@
 import argparse
 
-from . import oilchain, paperbot, pipeline, research
+from . import oilchain, paperbot, pipeline, research, tradingcost
 
 DATA = "docs/data/quant_beam.json"
 RESEARCH = "docs/data/research.json"
 WALLET = "docs/data/paper_wallet.json"
 OIL = "docs/data/oil_chain.json"
+COST = "docs/data/trading_cost.json"
 
 
 def main():
@@ -15,6 +16,7 @@ def main():
     commands.add_parser("analyse", help="re-read markets and rebuild the analysis (default)")
     commands.add_parser("research", help="test trading rules on 10 years of history")
     commands.add_parser("oil", help="oil & transport value chain: margins, leaks and the ensemble")
+    commands.add_parser("cost", help="trading cost slice: round-trip loss on the live Binance order book")
     bot = commands.add_parser("bot", help="paper QuantBot (pretend money only)")
     bot.add_argument("action", choices=["run", "status", "cancel", "cancel-signals", "resume", "watch", "radar"])
     bot.add_argument("switch", nargs="?", choices=["on", "off"], help="for 'radar': show or hide it")
@@ -24,6 +26,8 @@ def main():
         research.run(RESEARCH)
     elif args.command == "oil":
         oilchain.run(OIL)
+    elif args.command == "cost":
+        tradingcost.run(COST)
     elif args.command == "bot":
         if args.action == "run":
             print(paperbot.summary(paperbot.run(WALLET, RESEARCH)))

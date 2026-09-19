@@ -104,6 +104,24 @@
     </div>
   </section>
 
+  <h2>Trading cost slice</h2>
+  <p class="sub">How much one round trip (buy, then sell straight back) loses on the live Binance order book: the buy/sell gap, the price moving under big orders, and fees. <span id="cost-updated"></span></p>
+  <section id="cost-section">
+    <div class="panel" style="margin-top:14px">
+      <div class="controls">
+        <label for="cost-size">Your trade size (USD)</label>
+        <input id="cost-size" type="number" min="100" max="10000000" step="100" value="1000" inputmode="numeric"
+          style="font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 10px;width:10em">
+        <label for="cost-trips">round trips</label>
+        <input id="cost-trips" type="number" min="1" max="1000" step="1" value="1" inputmode="numeric"
+          style="font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 10px;width:6em">
+      </div>
+      <div class="stats" id="cost-yours" style="margin-top:12px"></div>
+    </div>
+    <div class="panel scroll" style="margin-top:16px"><h3>Loss per round trip</h3><table id="cost-table"></table>
+      <p class="note" id="cost-note"></p></div>
+  </section>
+
   <h2>Oil &amp; transport value chain</h2>
   <p class="sub">From the oil well to the car and the truck: who is winning on profit margins right now, where margins are leaking, and whether the share price agrees. Margins come from the latest quarterly filings, compared with the same quarter a year earlier.</p>
   <section id="oil-section">
@@ -603,8 +621,59 @@
     draw();
   }
 
+  async function renderCost() {
+    let report;
+    try { report = await loadJson("data/trading_cost.json"); }
+    catch { document.getElementById("cost-section").innerHTML = '<p class="note">The trading cost slice has not run yet.</p>'; return; }
+    const pairs = Object.values(report.pairs);
+    const usd = v => new Intl.NumberFormat(undefined, { style: "currency", currency: "USD", maximumFractionDigits: v < 100 ? 2 : 0 }).format(v);
+    document.getElementById("cost-updated").textContent = "Read " + new Date(report.generated_at).toLocaleString() + ".";
+    const sizes = pairs[0].sizes.map(x => x && x.size).filter(Boolean);
+    document.getElementById("cost-table").innerHTML =
+      "<tr><th>Trade size</th>" + pairs.map(p => `<th>${esc(p.name)}</th>`).join("") + "</tr>" +
+      sizes.map((size, i) => `<tr><td>${usd(size)}</td>` + pairs.map(p => {
+        const trip = p.sizes[i];
+        if (!trip) return "<td>book too thin</td>";
+        const heavy = trip.market > trip.fees;
+        return `<td class="${heavy ? "warn" : ""}">${usd(trip.loss)} <small class="note">(${pct(trip.total, 2)})</small></td>`;
+      }).join("") + "</tr>").join("");
+    document.getElementById("cost-note").textContent =
+      `Fees assume Binance's standard ${pct(report.fee_per_side, 1)} per side (${pct(2 * report.fee_per_side, 1)} per round trip). ` +
+      `Orange = the order moves the price more than the fees cost. Order books change every second and get thinner in fast markets.`;
+
+    // log-scale interpolation on the saved cost curve
+    const costAt = (curve, size) => {
+      const xs = curve.size, ys = curve.total;
+      if (size <= xs[0]) return ys[0];
+      for (let i = 1; i < xs.length; i++) {
+        if (size <= xs[i]) {
+          if (ys[i] == null || ys[i - 1] == null) return null;
+          const f = Math.log(size / xs[i - 1]) / Math.log(xs[i] / xs[i - 1]);
+          return ys[i - 1] + f * (ys[i] - ys[i - 1]);
+        }
+      }
+      return null;
+    };
+    const sizeBox = document.getElementById("cost-size"), tripsBox = document.getElementById("cost-trips");
+    const update = () => {
+      const size = Math.min(Math.max(Number(sizeBox.value) || 0, 100), 1e7);
+      const trips = Math.min(Math.max(Math.round(Number(tripsBox.value) || 1), 1), 1000);
+      document.getElementById("cost-yours").innerHTML = pairs.map(p => {
+        const rate = costAt(p.curve, size);
+        if (rate == null) return stat(p.name, "book too thin");
+        // each trip costs `rate` of what is left, so repeated trips compound
+        const kept = Math.pow(1 - rate, trips);
+        return `<div class="stat"><small>${esc(p.name)} · ${trips} round trip${trips > 1 ? "s" : ""}</small><b>${usd(size * (1 - kept))} ` +
+          `<small class="down">${pct(1 - kept, 2)} of ${usd(size)}</small></b></div>`;
+      }).join("");
+    };
+    sizeBox.addEventListener("input", update); tripsBox.addEventListener("input", update);
+    update();
+  }
+
   main();
   renderBot();
+  renderCost();
   renderOil();
   renderResearch();
 })();

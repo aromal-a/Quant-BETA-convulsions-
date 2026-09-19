@@ -208,6 +208,21 @@ as a secret. **Never put it in a file in this public repo.**
 > Past results do not guarantee future results. This is a research and learning tool, not
 > financial advice, and nothing here is a recommendation to buy or sell anything.
 
+## Trading cost slice
+
+`python -m quant_beam cost` reads the live Binance order book for Bitcoin, Ethereum and Solana. It
+works out how much **one round trip** (buy, then sell straight back) loses at sizes from $100 to
+$5 million. The loss has three parts:
+
+- **the buy/sell gap:** you buy at the higher price and sell at the lower one,
+- **price impact:** a big order eats through the book and moves the price against itself,
+- **fees:** Binance's standard 0.1% per side, so 0.2% per round trip, before any discounts.
+
+Up to about $100,000, fees are nearly the whole cost. For multi-million orders, price impact takes
+over, especially on thinner markets like Solana. The web page has a box for your own trade size and
+number of round trips. Ten round trips a day costs about 2%, roughly Bitcoin's whole normal daily
+move, which is why frequent small trades rarely pay.
+
 ## Oil & transport value chain
 
 `python -m quant_beam oil` follows the chain from the oil well to the car and the truck, across
