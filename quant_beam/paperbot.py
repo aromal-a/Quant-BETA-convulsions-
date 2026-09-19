@@ -283,6 +283,15 @@ def allocation(state):
     return result
 
 
+def set_radar(state_path, on, log=lambda m: print(m, file=sys.stderr)):
+    """Show or hide the signal radar. Signals themselves are not affected."""
+    state = load_state(state_path)
+    state["show_radar"] = bool(on)
+    save_state(state, state_path)
+    log(f"radar {'on' if on else 'off'}")
+    return state
+
+
 def resume(state_path, log=lambda m: print(m, file=sys.stderr)):
     state = load_state(state_path)
     state["halted"], state["halt_reason"] = False, None
@@ -310,7 +319,9 @@ def summary(state):
     for p in state["positions"]:
         last = state["last_price"].get(p["symbol"], p["entry_price"])
         lines.append(f"    {p['symbol']:12} since {p['entry_date']}  {last / p['entry_price'] - 1:+.2%}")
-    for entry in state.get("radar", []):
+    if not state.get("show_radar", True):
+        lines.append("  radar hidden (turn it back on with: bot radar on)")
+    for entry in (state.get("radar", []) if state.get("show_radar", True) else []):
         near = entry["nearest_rule"]
         if near and entry["z"] is not None:
             lines.append(f"  radar {entry['symbol']:12} today {entry['z']:+.2f}σ, {near['gap_sigma']:.2f}σ from: {near['rule']}")

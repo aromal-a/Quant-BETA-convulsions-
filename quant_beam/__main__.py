@@ -16,7 +16,8 @@ def main():
     commands.add_parser("research", help="test trading rules on 10 years of history")
     commands.add_parser("oil", help="oil & transport value chain: margins, leaks and the ensemble")
     bot = commands.add_parser("bot", help="paper QuantBot (pretend money only)")
-    bot.add_argument("action", choices=["run", "status", "cancel", "cancel-signals", "resume", "watch"])
+    bot.add_argument("action", choices=["run", "status", "cancel", "cancel-signals", "resume", "watch", "radar"])
+    bot.add_argument("switch", nargs="?", choices=["on", "off"], help="for 'radar': show or hide it")
     args = parser.parse_args()
 
     if args.command == "research":
@@ -32,6 +33,10 @@ def main():
             print(paperbot.summary(paperbot.cancel(WALLET)))
         elif args.action == "cancel-signals":
             print(paperbot.summary(paperbot.cancel_signals(WALLET)))
+        elif args.action == "radar":
+            if not args.switch:
+                parser.error("say 'bot radar on' or 'bot radar off'")
+            print(paperbot.summary(paperbot.set_radar(WALLET, args.switch == "on")))
         elif args.action == "resume":
             print(paperbot.summary(paperbot.resume(WALLET)))
         else:

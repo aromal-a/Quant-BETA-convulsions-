@@ -118,3 +118,15 @@ def test_cancel_signals_keeps_bot_running_and_split_adds_up(tmp_path):
     assert math.isclose(split["cash_share"] + sum(h["share"] for h in split["positions"]), 1.0)
     assert math.isclose(split["positions"][0]["share"], 0.2)
     assert math.isclose(split["slot_size"], 10000.0 / split["slots"])
+
+
+def test_radar_switch_hides_radar_lines(tmp_path):
+    wallet = tmp_path / "wallet.json"
+    state = paperbot.new_state()
+    state["radar"] = [{"symbol": "^NSEI", "group": "IN", "date": "2026-09-18", "z": 0.5,
+                       "nearest_rule": {"rule": "momentum", "gap_sigma": 2.5}}]
+    paperbot.save_state(state, wallet)
+    assert "radar ^NSEI" in paperbot.summary(paperbot.load_state(wallet))
+    hidden = paperbot.set_radar(wallet, False, log=lambda _: None)
+    assert "radar ^NSEI" not in paperbot.summary(hidden) and "radar hidden" in paperbot.summary(hidden)
+    assert "radar ^NSEI" in paperbot.summary(paperbot.set_radar(wallet, True, log=lambda _: None))

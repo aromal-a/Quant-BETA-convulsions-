@@ -523,7 +523,8 @@
           return `<tr><td>${esc(p.symbol)}</td><td>${esc(p.entry_date)}</td><td>${num(p.entry_price, 2)}</td><td>${num(now, 2)}</td><td class="${change >= 0 ? "up" : "down"}">${pct(change)}</td></tr>`;
         }).join("")
       : "<tr><td>None open.</td></tr>";
-    const radar = state.radar || [];
+    const radar = state.show_radar === false ? [] : state.radar || [];
+    if (state.show_radar === false) document.getElementById("bot-radar").closest(".panel").hidden = true;
     document.getElementById("bot-radar").innerHTML = radar.length
       ? "<tr><th>Market</th><th>Day</th><th>Move</th><th>Distance to signal</th></tr>" + radar.map(r =>
           `<tr><td>${esc(r.symbol)}</td><td>${esc(r.date || "–")}</td><td>${r.z == null ? "–" : (r.z >= 0 ? "+" : "") + r.z.toFixed(2) + "σ"}</td>` +

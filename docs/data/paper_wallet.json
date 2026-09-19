@@ -71,7 +71,7 @@
   "US": [],
   "CRYPTO": []
  },
- "updated_at": "2026-09-19T08:44:36+00:00",
+ "updated_at": "2026-09-19T08:48:43+00:00",
  "radar": [
   {
    "symbol": "^NSEI",
@@ -179,5 +179,6 @@
    "z": 3.6055260315768956,
    "nearest_rule": null
   }
- ]
+ ],
+ "show_radar": true
 }

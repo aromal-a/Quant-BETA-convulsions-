@@ -190,6 +190,8 @@ The same actions work as commands: `bot status`, `bot cancel-signals`, `bot canc
 share of the wallet, and the most any one market can get (the wallet divided evenly across its
 markets). It also shows a **signal radar**: today's move in σ for each market and how far it is
 from firing a rule. Big moves are rare, so days or weeks without a signal are normal.
+Hide or show the radar with `bot radar off` / `bot radar on`. This only changes what is shown; the
+bot still watches for signals.
 
 **Which APIs does it use?** No broker API. The bot only reads public prices (the Yahoo Finance
 chart API, with Alpha Vantage as an optional backup) and keeps its pretend wallet in
