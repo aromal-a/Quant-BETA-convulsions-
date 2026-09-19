@@ -7,6 +7,12 @@ Original files — `WALLSTREET.k`, `Convoluted.net`, `StatSelections.c`, `øphi.
 Everything here is analysis and **pretend-money** paper trading. Nothing connects to a
 broker, bank, UPI or wallet, and nothing places real orders.
 
+## 0.5.1 — 2026-09-19 · Raw price history no longer published
+- The public data files no longer include raw daily price series, because Yahoo Finance's terms allow
+  personal use only. The page's price chart is replaced by the 20-day volatility chart. Derived results
+  (volatility, margins, quantum states, test results) and each market's latest price remain.
+- Older commits in the git history still contain the earlier price files.
+
 ## 0.5.0 — 2026-09-19 · Setup, boot bulletin, oil chain in research
 - **One-step setup:** `./setup.sh` creates `.venv`, installs Quant-beam, runs the tests and shows the
   bulletin. `pyproject.toml` makes it installable with `pip install -e .` and adds the

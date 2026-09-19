@@ -183,10 +183,9 @@
   </div>
   <div class="grid" style="margin-top:16px">
     <div class="panel">
-      <h3>Price (last 180 days)</h3>
-      <canvas data-k="price" height="160"></canvas>
-      <h3 style="margin-top:12px">20-day volatility</h3>
-      <canvas data-k="vol" height="90"></canvas>
+      <h3>20-day volatility (last 180 days)</h3>
+      <canvas data-k="vol" height="200"></canvas>
+      <p class="note">Daily swing size over the previous 20 days. Raw price history isn't published here; see the data provider for price charts.</p>
     </div>
     <div class="panel">
       <h3>Quantum state populations</h3>
@@ -405,7 +404,6 @@
       peg,
     ].join("") + (market.stale ? '<p class="note">⚠ Could not re-read this market on the last run; showing the previous data.</p>' : "");
 
-    sparkline(host.querySelector('[data-k="price"]'), market.prices.close, css("--beam"));
     sparkline(host.querySelector('[data-k="vol"]'), market.rolling_volatility_20, css("--normal"));
     statesChart(host.querySelector('[data-k="states"]'), market.quantum.populations);
     host.querySelector('[data-k="state-note"]').textContent =

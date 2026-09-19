@@ -68,6 +68,7 @@ def test_pipeline_end_to_end_with_fake_reader(tmp_path):
     assert btc["symbol"] == "BTC-USD"
     assert len(btc["curves"]["z"]) == len(btc["curves"]["quantum"])
     assert "peg" in result["crypto"]["markets"][-1]
+    assert "prices" not in btc  # raw price history is never published
 
 
 def test_boot_bulletin_reads_saved_data():

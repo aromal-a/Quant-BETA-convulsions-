@@ -136,6 +136,13 @@ python3 -m http.server 8000 --directory docs
 
 Then open http://localhost:8000. Every change to this repo is listed in [CHANGELOG.md](CHANGELOG.md).
 
+## Data sources and terms
+
+Prices and company figures come from Yahoo Finance, and the trading cost comes from Binance's public API.
+Both restrict republishing their raw data, so this public repo publishes **derived results only**
+(volatility, margins, quantum states, test results and each market's latest price), not raw price history.
+Check each provider's terms before any commercial use.
+
 ## Web page
 
 The page lives in [`docs/`](docs/). To publish it with GitHub Pages: **Settings → Pages →

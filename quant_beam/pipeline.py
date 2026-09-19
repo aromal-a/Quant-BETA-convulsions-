@@ -12,7 +12,7 @@ from .fetch import FetchError, fetch_closes
 from .markets import COUNTRIES, CRYPTO, PEGGED
 
 GRID_STEP = 10  # send every 10th grid point (dz = 0.1) to keep the JSON small
-PRICE_POINTS = 180
+PRICE_POINTS = 180  # length of the published volatility history (raw prices are not published)
 
 
 def analyse_symbol(symbol, name, currency, periods_per_year, timestamps, closes):
@@ -55,10 +55,6 @@ def analyse_symbol(symbol, name, currency, periods_per_year, timestamps, closes)
             "empirical": empirical[::GRID_STEP].round(6).tolist(),
             "normal": normal[::GRID_STEP].round(6).tolist(),
             "quantum": reconstructed[::GRID_STEP].round(6).tolist(),
-        },
-        "prices": {
-            "t": timestamps[-PRICE_POINTS:],
-            "close": [round(c, 6) for c in closes[-PRICE_POINTS:]],
         },
         "rolling_volatility_20": [round(v, 6) for v in base["rolling_volatility_20"][-PRICE_POINTS:]],
     }
