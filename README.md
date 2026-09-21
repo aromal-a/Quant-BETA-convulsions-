@@ -230,6 +230,41 @@ as a secret. **Never put it in a file in this public repo.**
 > Past results do not guarantee future results. This is a research and learning tool, not
 > financial advice, and nothing here is a recommendation to buy or sell anything.
 
+## Your own broker account (read-only)
+
+Quant-beam can **show** your Upstox account beside the analysis. It can never trade:
+[`quant_beam/upstox.py`](quant_beam/upstox.py) contains only GET requests, and a test checks that no
+order endpoint ever appears in it. Place trades yourself in the Upstox app.
+
+1. Create an app at https://account.upstox.com/developer/apps and generate an access token.
+2. In your own terminal (never in a file in this public repo):
+
+```bash
+export UPSTOX_ACCESS_TOKEN="...your token..."
+```
+
+```bash
+quant-beam account
+```
+
+It prints your cash, holdings with profit or loss, intraday positions and today's trades. Upstox tokens
+expire daily, so you paste a fresh one each day.
+
+### Win / loss from your own trade history
+
+Export your trade book from your broker (any CSV with date, symbol, side, quantity and price), then:
+
+```bash
+quant-beam ledger ~/Downloads/tradebook.csv --cost 0.001
+```
+
+Buys and sells are matched oldest-first, so each completed round trip becomes one closed trade. You get
+the number of trades, win and loss rates, average win, average loss, best and worst, profit factor,
+median days held, and the chance a win rate that high came from luck alone. The paper bot's record is
+printed underneath for comparison.
+
+**What this never does:** place, change or cancel an order, hold money, or tell you when to trade.
+
 ## Trading cost slice
 
 `quant-beam cost` reads the live Binance order book for Bitcoin, Ethereum and Solana. It

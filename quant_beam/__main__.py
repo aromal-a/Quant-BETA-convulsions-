@@ -1,6 +1,6 @@
 import argparse
 
-from . import oilchain, paperbot, pipeline, research, tradingcost
+from . import ledger, oilchain, paperbot, pipeline, research, tradingcost, upstox
 
 DATA = "docs/data/quant_beam.json"
 RESEARCH = "docs/data/research.json"
@@ -16,6 +16,11 @@ def main():
     commands.add_parser("analyse", help="re-read markets and rebuild the analysis (default)")
     commands.add_parser("research", help="test trading rules on 10 years of history")
     commands.add_parser("oil", help="oil & transport value chain: margins, leaks and the ensemble")
+    account = commands.add_parser("account", help="read-only Upstox account view (needs UPSTOX_ACCESS_TOKEN)")
+    account.add_argument("--json", action="store_true", help="print the raw summary as JSON")
+    book = commands.add_parser("ledger", help="compile YOUR broker trade history (CSV) into win/loss numbers")
+    book.add_argument("csv", help="trade book exported from your broker")
+    book.add_argument("--cost", type=float, default=0.0, help="cost per side as a fraction, e.g. 0.001")
     commands.add_parser("boot", help="bold one-screen bulletin of the latest saved data (instant, offline)")
     commands.add_parser("cost", help="trading cost slice: round-trip loss on the live Binance order book")
     bot = commands.add_parser("bot", help="paper QuantBot (pretend money only)")
@@ -27,6 +32,12 @@ def main():
         research.run(RESEARCH)
     elif args.command == "oil":
         oilchain.run(OIL)
+    elif args.command == "account":
+        from .accountview import show_account
+        show_account(json_out=args.json)
+    elif args.command == "ledger":
+        from .accountview import show_ledger
+        show_ledger(args.csv, args.cost)
     elif args.command == "boot":
         from .boot import bulletin
         print(bulletin())

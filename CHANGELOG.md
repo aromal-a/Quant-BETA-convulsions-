@@ -7,6 +7,14 @@ Original files — `WALLSTREET.k`, `Convoluted.net`, `StatSelections.c`, `øphi.
 Everything here is analysis and **pretend-money** paper trading. Nothing connects to a
 broker, bank, UPI or wallet, and nothing places real orders.
 
+## 0.7.0 — 2026-09-22 · Read-only Upstox account and trade-history compiler
+- `quant-beam account`: your Upstox cash, holdings, positions and today's trades, read with a token you
+  set yourself in `UPSTOX_ACCESS_TOKEN`. GET requests only; a test asserts no order endpoint exists.
+- `quant-beam ledger <csv>`: matches your broker's buys and sells oldest-first and reports trades, win
+  and loss rates, average win/loss, profit factor, median days held, and the chance the win rate is luck.
+  The paper bot's record is shown for comparison.
+- Interactive Brokers was offered as a connector but never connected, and no broker data has been read.
+
 ## 0.6.0 — 2026-09-19 · Lithium & battery chain
 - New segments: lithium miners (Albemarle, SQM, Sigma Lithium, Ganfeng) and battery makers (CATL,
   LG Energy Solution, Samsung SDI, Amara Raja, Exide). BYD is added to car makers.
