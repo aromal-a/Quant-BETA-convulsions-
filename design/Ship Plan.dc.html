@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><style>body{margin:0;background:#0a0c17;color:#e8ebff;font:15px/1.55 system-ui,-apple-system,sans-serif}a{color:#9d8bff}a:hover{color:#c4b8ff}code{font:13px ui-monospace,Menlo,monospace;background:#12162a;border:1px solid #252b48;border-radius:5px;padding:1px 5px}</style></helmet>
+<div style="max-width:880px;margin:0 auto;padding:40px 20px 64px;display:flex;flex-direction:column;gap:36px">
+<header style="display:flex;flex-direction:column;gap:6px">
+<div style="font-size:14px;color:#9aa2c7"><span style="color:#9d8bff;font-weight:700">ø</span> Quant-beam · ship plan</div>
+<h1 style="margin:0;font-size:34px;letter-spacing:-.02em;line-height:1.1">Sign-in database, fork-and-install, store release</h1>
+<p style="margin:0;color:#9aa2c7;max-width:640px;text-wrap:pretty">Files to commit are in <code>repo-additions/</code>. I can read your repo but can't push to it, so copy them in or ask me to bundle them as a download.</p>
+</header>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:20px">1 · Collect sign-ins in a database</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+<div style="background:#12162a;border:1px solid #252b48;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px"><div style="font-weight:600">Supabase <span style="font-size:12px;color:#51cf66;font-weight:600">recommended</span></div><div style="color:#9aa2c7;font-size:14px">Postgres + Auth (Apple, Google, email). Row-level security, free tier. SQL is in <code>supabase/schema.sql</code>.</div></div>
+<div style="background:#12162a;border:1px solid #252b48;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px"><div style="font-weight:600">Firebase Auth + Firestore</div><div style="color:#9aa2c7;font-size:14px">Same providers, NoSQL. Good if you want Google tooling; harder to query sign-in history.</div></div>
+</div>
+<div style="background:#12162a;border:1px solid #252b48;border-radius:14px;overflow:hidden;font-size:14px">
+<div style="display:grid;grid-template-columns:150px 1fr;padding:10px 16px;border-bottom:1px solid #252b48"><code style="justify-self:start">profiles</code><span style="color:#9aa2c7">One row per user, created automatically on sign-up (home country, crypto toggle)</span></div>
+<div style="display:grid;grid-template-columns:150px 1fr;padding:10px 16px;border-bottom:1px solid #252b48"><code style="justify-self:start">sign_in_events</code><span style="color:#9aa2c7">Every sign-in: provider, platform, time</span></div>
+<div style="display:grid;grid-template-columns:150px 1fr;padding:10px 16px;border-bottom:1px solid #252b48"><code style="justify-self:start">broker_links</code><span style="color:#9aa2c7">Which broker is linked (label only)</span></div>
+<div style="display:grid;grid-template-columns:150px 1fr;padding:10px 16px"><code style="justify-self:start">watchlist</code><span style="color:#9aa2c7">Saved vendors / markets</span></div>
+</div>
+<p style="margin:0;font-size:13px;color:#ffa94d">Upstox tokens stay on the phone (Keychain / Keystore) and are never written to the database, the same rule as the repo's README.</p>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:20px">2 · Fork and install from the README</h2>
+<div style="background:#12162a;border:1px solid #252b48;border-radius:14px;padding:16px;font:13px/1.6 ui-monospace,Menlo,monospace;overflow-x:auto;white-space:pre">curl -fsSL https://raw.githubusercontent.com/aromal-a/Quant-BETA-convulsions-/main/install.sh | bash</div>
+<ol style="margin:0;padding-left:20px;color:#9aa2c7;display:flex;flex-direction:column;gap:4px">
+<li>Add <code>repo-additions/install.sh</code> to the repo root as <code>install.sh</code>. It checks git + Python 3.9, clones (or updates), then runs your existing <code>setup.sh</code>.</li>
+<li>Paste <code>README-install-section.md</code> into the README above "Quick start".</li>
+<li>Fork users pass <code>REPO=&lt;you&gt;/Quant-BETA-convulsions-</code> to install their own copy.</li>
+</ol>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:20px">3 · Release on the App Store and Google Play</h2>
+<p style="margin:0;color:#9aa2c7">The repo has no mobile app yet (Python + a static web page), so the first decision is how to build it.</p>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#12162a;border:1.5px solid #9d8bff;border-radius:14px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px"><div style="font-weight:600">A · Expo (React Native) + EAS</div><div style="font-size:12px;color:#51cf66;font-weight:600">recommended</div><div style="color:#9aa2c7;font-size:14px;grid-column:1/-1">One codebase in <code>mobile/</code> for both stores. <code>eas build</code> makes the iOS and Android binaries in the cloud (no Mac needed) and <code>eas submit</code> uploads them. Supabase and Apple/Google sign-in have Expo libraries. The beam canvas ports to react-native-skia.</div></div>
+<div style="background:#12162a;border:1px solid #252b48;border-radius:14px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px"><div style="font-weight:600">B · Capacitor wrapping docs/</div><div style="font-size:12px;color:#ffa94d;font-weight:600">fastest, risky on iOS</div><div style="color:#9aa2c7;font-size:14px;grid-column:1/-1">Reuses the existing web page. Apple often rejects apps that are mostly a website (guideline 4.2), so you'd need native features such as sign-in, a watchlist and notifications.</div></div>
+<div style="background:#12162a;border:1px solid #252b48;border-radius:14px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px"><div style="font-weight:600">C · PWA, plus a Play Store TWA</div><div style="font-size:12px;color:#9aa2c7;font-weight:600">cheapest</div><div style="color:#9aa2c7;font-size:14px;grid-column:1/-1">Make docs/ installable ("Add to Home Screen"). Google Play accepts it as a Trusted Web Activity (Bubblewrap). Not on the App Store.</div></div>
+<div style="background:#12162a;border:1px solid #252b48;border-radius:14px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px"><div style="font-weight:600">D · Native Swift + Kotlin</div><div style="font-size:12px;color:#9aa2c7;font-weight:600">best feel, 2× work</div><div style="color:#9aa2c7;font-size:14px;grid-column:1/-1">Two apps to build and maintain. Only worth it if you need deep platform features.</div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+<div style="background:#12162a;border:1px solid #252b48;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px"><div style="font-weight:600">App Store checklist</div><ul style="margin:0;padding-left:18px;color:#9aa2c7;font-size:14px;display:flex;flex-direction:column;gap:3px"><li>Apple Developer Program, $99/year</li><li>If you offer Google sign-in, you must offer Sign in with Apple too</li><li>In-app account deletion</li><li>Privacy policy URL + privacy "nutrition" labels</li><li>TestFlight beta → App Review</li><li>Keep the "paper money only, not financial advice" wording visible</li></ul></div>
+<div style="background:#12162a;border:1px solid #252b48;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px"><div style="font-weight:600">Google Play checklist</div><ul style="margin:0;padding-left:18px;color:#9aa2c7;font-size:14px;display:flex;flex-direction:column;gap:3px"><li>Play Console, $25 one-time</li><li>New personal accounts: closed test with 12+ testers for 14 days before production</li><li>Account deletion: in the app and through a web link</li><li>Data safety form + privacy policy</li><li>Financial features declaration</li><li>Upload an .aab (EAS builds it)</li></ul></div>
+</div>
+<p style="margin:0;font-size:13px;color:#9aa2c7">Store rules and fees change; check them in App Store Connect and the Play Console before you submit.</p>
+</section>
+</div>
+</x-dc>
+</body>
+</html>

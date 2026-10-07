@@ -1,6 +1,12 @@
 __pycache__/
-*.pyc
+!.env.example
+.claude/
+.env
+.env.*
 .pytest_cache/
 .venv/
+*.key
+*.pem
+*.pyc
+node_modules/
 venv/
-.claude/

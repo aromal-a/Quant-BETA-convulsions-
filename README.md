@@ -65,9 +65,9 @@ The standardized return curve p(z) is treated as a quantum probability |ψ(z)|²
 ψ = √p is expanded in harmonic-oscillator eigenstates φₙ (Hermite functions):
 
 ```
-ψ(z) ≈ Σ cₙ φₙ(z),   cₙ = ∫ ψ(z) φₙ(z) dz,   n = 0 … 15
+ψ(z) ≈ Σ cₙ φₙ(z),   cₙ = ∫ ψ(z) φₙ(z) dz,   n = 0 … 15phi = Azhimuthal{$ : 'detain', complec}
 ```
-
+x.plan()
 The oscillator is scaled so that **|φ₀|² is exactly the normal curve**. That gives a
 physical reading of the market:
 
@@ -77,7 +77,7 @@ physical reading of the market:
 | **Odd states** (n = 1, 3, 5 …) | Lopsided moves (skew) |
 | **Higher even states** (n = 2, 4 …) | Fat tails: calm periods broken by sudden big moves |
 | **Mean energy** `Σ |cₙ|² (n + ½)` | Overall excitation; 0.5 = perfectly normal |
-
+| **Cur pos** audity : <Natural-sim(Elevator: [Artificial] Lift = resume, Neuron = axial.proton)>
 The empirical curve comes from a Gaussian kernel density estimate. The **pulsating beam** on
 the page is this superposition evolving in time, `ψ(z,t) = Σ cₙ φₙ(z) e^{−i(n+½)t}`.
 
@@ -85,8 +85,9 @@ the page is this superposition evolving in time, `ψ(z,t) = Σ cₙ φₙ(z) e^{
 Tail probabilities are computed by **trapezoid-rule integration** of each density curve on a
 fine grid (z from −12 to 12, step 0.01). The integrator is tested against the exact normal tail
 `erfc(k/√2)` to within 10⁻⁴.
-
-### 5. Loss functions — `losses.py`
+Pg : cur`v.Intensity() : Intensity - [tapezoid: Fall-off: `qwargs{Tr,qr}.trace : args[i, con(v.common())]
+[Selection : stream : Open -flling{c: .Ic: `sales./Ic- Rc : AC -2: 0 : {''approvals}}]]
+### 5. Loss functions — `losses.py` || Adjudgated.fake - [Losing, approval : head-head.html -[NDt.(non-filings , Recover -[Actual.agent()])]] //Sine-e: sales-a: Broker()
 Each curve (normal vs quantum) is scored. Lower is better.
 
 | Loss | Formula |
@@ -332,7 +333,7 @@ Mr: <EA-AGENTS : Simulator : non-k > k-log : <H:temp/ Guide-plate>
 Boiler:list {[platecode.tech-c]} Infirm : <telemetry :'guides' , Frame.Syn[ACK.get]>
 get*attr(ibutes, no-nodes) : <Track:telefarm : <Base : Sentry>>
 @T-[Hat-frames] : R-risen[alt-dam]
-Hat-[AG,HQ-GI]
+Hat-[AG,HQ-GI] //gaunt.blit(AQI = CGI) -> Biller.soup[plate = 1chick.!dead -[crisis]]
 [Fauntlet: Lomd-Tord :'fort-tran : 'DBC'Alt-V']
 Handlet : <Malt_v[sat-vet : salt_sea]>
 
@@ -340,20 +341,70 @@ Malt-Licket : Tolt-Vlan(0)-ombnack -cc
 Watnack : KIKI ? 
 
 Ib-lesk : <Lisk-Bram : ratviconch>
-Ognua":-obadesik 'sea-form : Panda-[-algorim]
+Ognua":-obadesik 'sea-form : Panda-[-algorithm] _O.S_.T = [Sea_form./NAND_EX(
 
-Th:<Tambnom :<Omb:num>seivdong>BOSHNA
+Shared:Due-Rows: 'chained-Bureaus' = > [1.click@22 -[#@.blit]] [lane = in.e: [Evil1: 0-pery-dead]]
+Wary -[~var(://Composite: transile)] //peace-making: transformer(inf(Cost :: 1.wary -[./Piece-[!ruby.rarewin.(get -x: [Xi- [vit] : jit.ve(-we :a: [Ics-vary])])]]))
+
+
+
+)]
+EMP : GAME  - [I>R>E«SR : Guard(PRE::<Rec.columns()>) : P-_R_-E : Tilts.m]
+Th:<Tambnom :<Omb:num>seivdong>BOSHNA //Org: Bit- [G:Bit: org]
 <IB-peta:'desk' , ask-dam : 'alcore-orom' , me-rum[rad + m ]
 asqQuellang : >>OLLANG:LC : V_c : LCC: -LLB :LC-[rom]
-
 <Kell-gesh : DOCK_VRAM : Me-pair : IAM >[NO-target : Ic-cc:(I-bip) 🎛️,passportcontrol]
 Asker-li : <Docker-v : VG ptank: (.)duemeshtra saharshi>
-
 ,Naiker-c , Kaiser -.> Nei-dhet - [tether]
 ,Kind:args($: 'Virtual-dock', Offload , Pv)
 R:rs.p[arckell]
-
 No_dram : Tp-ip-net : <IC:BP>[TK:art$👣]
-
-m-ye : <creek : Kive-j , mreek>
+m-ye : <creek : Kive-j , mreek> : [Kwargs(l , li-) : Stack: R, IR]
+red:control : Tupac-chains:{[!,Block : cancel-order]} //Deduct -[$:500]
+Cd: sale, markov-chains{[Slaver.io : backlash : //impedence]}
+//Crisis-[Built.in(Sat -in : cover: 'lat'-in.corner(9-0 : Silt /Splice: [Cn : lice]))]
+Powder -m : [F -fi(m(9-0))]
+ƒm. power -o [H>m -/Greater_parcel]
 ```
+Virtual.~fip(frappe.bottle-neck : 'Fisk' -a: [.jazz(min) : man(den) : [tap.vm]])
+[!.filt(1.fill : [0 - [Blit+1:[[@+1., tilt]]]])]
+
+
+1dx -[trans.riviery : [RR.pi (qnadex.ddi + [a +[ : . ppi(pandex.dppi)]])]]
+Args(pv, r- load:RM :[Fine.a = [ollang.crisis - [Llama: [Embessil -dss:SsTDS: [AEDS-{@56-&564@dat.chloride}]]]]]
+
+&a.p&(get : a.attributes(SAND::CHROME -[Rom(a, vessel)]))
+
+Args:<PVN> : NR : I-select : [1.blit: # = swipe(a) : Card_1] :[If - transacted: 'Proceeded = 1true']
+[Args(n -> [@BN . [NDE: [AI>E: [Vison : <>sLTE: [Voltve] - I.e:EPS>package: 32- [bit/2 ()]>]]]])]
+normal:load: 64
+
+Normal -ffe .in : [Back-track : 'trace-back `a] -[Ack -guide: Fool_ret : `re: ret]
+[Kin -a: Y +[c.s: [fairy - Wombinator() : Dreary : [Dread.comp(FSN : DAD{fil.a})]]]]
+
+Ry.comp_fill(0,34,0)
+
+[MSM -[B@missing: FSm Bolt@fitting() : (so) , NO-trace: <Back -`ack.(get -error)" ~.sin : gn : a.get>] ]
+S*S : [m*m : BL-=lac(0-s: [Sl : {GLT :[Trace-back :ack -ec]}])]
+[ACk -a: ['get.error :a -[Wine.a: [Index[Pr.sine:a `h.getter- [Time:B]]]]]]
+
+
+[Blit.chrome -[A.fit() : Y.crop]]
+
+[Volt-a: [Volt-v] : Syn -c: [Ack -[No-verb] : console: Git.a: [h.wind(time = hider)]]]
+
+[F.tan(., = askell()] //Lad-a: [Tin :b: <Dot.d>]
+Vision = Guard.b [DAW - FOGS : 'winter-chillings' : $r.blit+[F+[lanes:s'kine.filt' = cine.get]]]
+Spine.v == mac.Os: x: guard: -oh: [2pH™)0] //The : OddyNum{[Wed-e: [thu] : z-sat(Br: k + Noon:DAY)]}
+
+
+No-trace:back,  arp[.get(top = bottom + [tap.get [Rit -> ret : [>builts./ In()/-]]])]
+xnn- [t-built.nn(9-0 : [1-0 : consult.v :P:D:M ])] //nn -[Con-[.builts: [Recog[condacs.HH]]]]
+
+(OP : Berk-a:(win -a: h.get(*attr: hr.attr 
+[Dr.dry-gets{$: 'sat-s', long:time(wind:pine, spine -g.lit)}])))
+
+SRK.SRT-win(a://TLS. ..[SLt: [TLn : VLt:4K :[*-bit: [16-tor.[onion:browsel]]]]])
+
+
+

@@ -1,0 +1,11 @@
+{
+  "name": "quant-beam-trade",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --env-file=../.env smoke-test.mjs",
+    "test:auth": "node --env-file=../.env auth-test.mjs",
+    "test:resume": "node --env-file=../.env auth-test.mjs --resume"
+  },
+  "dependencies": { "@supabase/supabase-js": "^2.45.0" }
+}
