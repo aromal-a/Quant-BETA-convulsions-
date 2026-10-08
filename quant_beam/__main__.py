@@ -1,12 +1,13 @@
 import argparse
 
-from . import ledger, oilchain, paperbot, pipeline, research, tradingcost, upstox
+from . import chainlinks, ledger, oilchain, paperbot, pipeline, research, tradingcost, upstox
 
 DATA = "docs/data/quant_beam.json"
 RESEARCH = "docs/data/research.json"
 WALLET = "docs/data/paper_wallet.json"
 OIL = "docs/data/oil_chain.json"
 COST = "docs/data/trading_cost.json"
+LINKS = "docs/data/chain_links.json"
 
 
 def main():
@@ -16,6 +17,7 @@ def main():
     commands.add_parser("analyse", help="re-read markets and rebuild the analysis (default)")
     commands.add_parser("research", help="test trading rules on 10 years of history")
     commands.add_parser("oil", help="oil & transport value chain: margins, leaks and the ensemble")
+    commands.add_parser("links", help="chain links: median candles, sell-volume check and perforation per chain")
     account = commands.add_parser("account", help="read-only Upstox account view (needs UPSTOX_ACCESS_TOKEN)")
     account.add_argument("--json", action="store_true", help="print the raw summary as JSON")
     book = commands.add_parser("ledger", help="compile YOUR broker trade history (CSV) into win/loss numbers")
@@ -32,6 +34,8 @@ def main():
         research.run(RESEARCH)
     elif args.command == "oil":
         oilchain.run(OIL)
+    elif args.command == "links":
+        chainlinks.run(LINKS)
     elif args.command == "account":
         from .accountview import show_account
         show_account(json_out=args.json)

@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Quant-beam",
+    "slug": "quant-beam",
+    "scheme": "quantbeam",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0a0c17",
+    "ios": {
+      "bundleIdentifier": "com.aromal.quantbeam",
+      "buildNumber": "1",
+      "supportsTablet": false,
+      "usesAppleSignIn": true,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.aromal.quantbeam",
+      "versionCode": 1
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-apple-authentication",
+      "expo-web-browser",
+      "expo-status-bar"
+    ],
+    "extra": {
+      "privacyPolicyUrl": "https://aromal-a.github.io/Quant-BETA-convulsions-/privacy.html"
+    }
+  }
+}
