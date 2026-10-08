@@ -15,6 +15,21 @@ export default function Chain({ nav }) {
   return (
     <Screen>
       <Title>Value chain</Title>
+      <View style={{ gap: 6 }}>
+        <Label>3D chain links · by company</Label>
+        {!links.data ? (
+          <Card onPress={links.reload}><Muted style={{ fontSize: 12 }}>{links.error ? `${links.error} Tap to retry.` : 'Loading chain links…'}</Muted></Card>
+        ) : companyChains.map(([code, c]) => (
+          <Card key={code} selected onPress={() => nav.push('Links', { code })} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 12 }}>
+            <View style={{ flex: 1, gap: 2 }}>
+              <T style={{ fontSize: 15, fontWeight: '600' }}>{c.name}</T>
+              <T style={{ fontSize: 11, color: c.sell_links ? C.orange : C.muted }}>{c.link_count} links worldwide · {c.sell_links} under sell pressure</T>
+            </View>
+            <T style={{ fontSize: 14, fontVariant: ['tabular-nums'] }}>{c.perforation?.score == null ? '—' : c.perforation.score.toFixed(2)}</T>
+            <T style={{ color: C.accent, fontWeight: '600', marginLeft: 8 }}>›</T>
+          </Card>
+        ))}
+      </View>
       <View style={{ flexDirection: 'row', gap: 6 }}>
         <Chip label="Oil" active={group === 'oil'} onPress={() => setGroup('oil')} />
         <Chip label="Lithium" active={group === 'lithium'} onPress={() => setGroup('lithium')} />
@@ -40,20 +55,6 @@ export default function Chain({ nav }) {
             ))}
           </View>
           <Muted style={{ fontSize: 11, lineHeight: 16 }}>Segment medians, latest quarter. Describes now; it hasn't been back-tested.</Muted>
-          {companyChains.length > 0 && (
-            <View style={{ gap: 6, marginTop: 6 }}>
-              <Label>Company chains</Label>
-              {companyChains.map(([code, c]) => (
-                <Card key={code} onPress={() => nav.push('Links', { code })} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 12 }}>
-                  <View style={{ flex: 1, gap: 2 }}>
-                    <T style={{ fontSize: 14 }}>{c.name}</T>
-                    <T style={{ fontSize: 11, color: c.sell_links ? C.orange : C.muted }}>{c.link_count} links · {c.sell_links} under sell pressure</T>
-                  </View>
-                  <T style={{ fontSize: 14, fontVariant: ['tabular-nums'] }}>{c.perforation?.score == null ? '—' : c.perforation.score.toFixed(2)}</T>
-                </Card>
-              ))}
-            </View>
-          )}
         </>
       )}
     </Screen>
